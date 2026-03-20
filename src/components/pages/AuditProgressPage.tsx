@@ -540,33 +540,33 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
               <tbody>
                 <tr>
                   <td><span className="audit-severity audit-severity--blocker">Blocker</span></td>
+                  <td style={{ textAlign: 'center' }}>1</td>
+                  <td style={{ textAlign: 'center' }}>4</td>
                   <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>3</td>
                 </tr>
                 <tr>
-                  <td><span className="audit-severity audit-severity--high">High</span></td>
-                  <td style={{ textAlign: 'center' }}>{metrics.securityVulnerabilities}</td>
-                  <td style={{ textAlign: 'center' }}>2</td>
-                  <td style={{ textAlign: 'center' }}>{metrics.criticalCodeSmells}</td>
+                  <td><span className="audit-severity audit-severity--high">Critical</span></td>
+                  <td style={{ textAlign: 'center' }}>7</td>
+                  <td style={{ textAlign: 'center' }}>10</td>
+                  <td style={{ textAlign: 'center' }}>8</td>
                 </tr>
                 <tr>
-                  <td><span className="audit-severity audit-severity--medium">Medium</span></td>
-                  <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>178</td>
-                  <td style={{ textAlign: 'center' }}>2</td>
-                </tr>
-                <tr>
-                  <td><span className="audit-severity audit-severity--low">Low</span></td>
-                  <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>184</td>
+                  <td><span className="audit-severity audit-severity--medium">Major</span></td>
                   <td style={{ textAlign: 'center' }}>6</td>
+                  <td style={{ textAlign: 'center' }}>25</td>
+                  <td style={{ textAlign: 'center' }}>79</td>
+                </tr>
+                <tr>
+                  <td><span className="audit-severity audit-severity--low">Minor</span></td>
+                  <td style={{ textAlign: 'center' }}>0</td>
+                  <td style={{ textAlign: 'center' }}>1</td>
+                  <td style={{ textAlign: 'center' }}>99</td>
                 </tr>
                 <tr>
                   <td><span className="audit-severity audit-severity--info">Info</span></td>
+                  <td style={{ textAlign: 'center' }}>1</td>
                   <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>0</td>
-                  <td style={{ textAlign: 'center' }}>14</td>
+                  <td style={{ textAlign: 'center' }}>39</td>
                 </tr>
               </tbody>
             </table>
@@ -588,21 +588,33 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             <tbody>
               <tr>
                 <td><span className="audit-severity audit-severity--blocker">Blocker</span></td>
-                <td>Code Smell</td>
-                <td style={{ textAlign: 'center' }}>3</td>
-                <td>Method naming clashes (1), field shadowing (1), method always returns same value (1)</td>
+                <td>Vulnerability</td>
+                <td style={{ textAlign: 'center' }}>1</td>
+                <td>Weak password hashing in <code>MiddlewareUtils</code></td>
+              </tr>
+              <tr>
+                <td><span className="audit-severity audit-severity--blocker">Blocker</span></td>
+                <td>Bug</td>
+                <td style={{ textAlign: 'center' }}>4</td>
+                <td>Null pointer risks in <code>DashboardPopulator</code>, <code>ExportUtils</code>, <code>FulfilmentService</code>; unclosed resource in <code>PunchoutCatalogInterceptor</code></td>
               </tr>
               <tr>
                 <td><span className="audit-severity audit-severity--high">Critical</span></td>
                 <td>Vulnerability</td>
-                <td style={{ textAlign: 'center' }}>{metrics.securityVulnerabilities}</td>
-                <td>Weak TLS protocol (1), disabled certificate validation (4) in <code>AbstractIntegrationCommand</code></td>
+                <td style={{ textAlign: 'center' }}>7</td>
+                <td>Disabled certificate validation (2), hardcoded passwords (2), CSRF disabled (1), reflected XSS (1), weak hashing (1)</td>
+              </tr>
+              <tr>
+                <td><span className="audit-severity audit-severity--high">Critical</span></td>
+                <td>Bug</td>
+                <td style={{ textAlign: 'center' }}>10</td>
+                <td>Unclosed resources (4), static field writes from instance methods (3), swallowed InterruptedException (2), null pointer (1)</td>
               </tr>
               <tr>
                 <td><span className="audit-severity audit-severity--high">Critical</span></td>
                 <td>Code Smell</td>
-                <td style={{ textAlign: 'center' }}>{metrics.criticalCodeSmells}</td>
-                <td>Static access issues, duplicate literals, empty methods, interface constants, cognitive complexity</td>
+                <td style={{ textAlign: 'center' }}>8</td>
+                <td>Cognitive complexity too high (4), duplicate string literals (4)</td>
               </tr>
             </tbody>
           </table>
@@ -611,7 +623,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             className="sonar-view-all-btn"
             onClick={() => navigateTo('sonar-detail')}
           >
-            View all 1,274 issues in detail
+            View all 280 issues in detail
           </button>
         </Reveal>
 
