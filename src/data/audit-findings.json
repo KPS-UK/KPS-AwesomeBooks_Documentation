@@ -1,0 +1,142 @@
+[
+  {
+    "id": "AUD-001",
+    "title": "Legacy encryption in AbstractRESTCommand",
+    "severity": "High",
+    "section": "Code Quality & Security",
+    "description": "The class AbstractRESTCommand uses legacy TLS configuration and does not validate the server certificate for outbound connections. This file contains all 5 high-level security issues highlighted by static analysis."
+  },
+  {
+    "id": "AUD-002",
+    "title": "Non thread-safe date formatter in DateUtils",
+    "severity": "Medium",
+    "section": "Code Quality & Security",
+    "description": "Non thread-safe SimpleDateFormat in DateUtils could cause incorrectly formatted dates in a multithreaded environment. Called during cart availability caching."
+  },
+  {
+    "id": "AUD-003",
+    "title": "Hardcoded cookie handling",
+    "severity": "Low",
+    "section": "Code Quality & Security",
+    "description": "Legacy cookie class appears to support older browsers using an older HTTP cookie specification. Should use default servlet container behaviour."
+  },
+  {
+    "id": "AUD-004",
+    "title": "Largest Contentful Paint",
+    "severity": "Critical",
+    "section": "Performance",
+    "description": "LCP of 24.8s on mobile and 5.1s on desktop is well above the 2.5s target. The single biggest factor dragging down the performance score, likely due to render-blocking resources and unoptimised images."
+  },
+  {
+    "id": "AUD-005",
+    "title": "Layout instability (CLS)",
+    "severity": "High",
+    "section": "Performance",
+    "description": "Multiple layout shifts detected with a CLS of 0.48 on mobile (target: under 0.1). Elements moving after initial paint, likely due to images without explicit dimensions and dynamically injected content."
+  },
+  {
+    "id": "AUD-006",
+    "title": "Unused JavaScript and CSS",
+    "severity": "Medium",
+    "section": "Performance",
+    "description": "380 KiB of unused JavaScript and 92 KiB of unused CSS identified. Removing these could save approximately 2.3 seconds on mobile. Typical of monolithic accelerator storefront bundles."
+  },
+  {
+    "id": "AUD-007",
+    "title": "Checkout flow gaps",
+    "severity": "Medium",
+    "section": "Headless Readiness",
+    "description": "B2B checkout works via OCC for the trade site. The Accelerator checkout adds payment session handling, delivery cost calculation via AJAX, and address selection not yet exposed via OCC."
+  },
+  {
+    "id": "AUD-008",
+    "title": "B2B Punchout (cXML)",
+    "severity": "Critical",
+    "section": "Headless Readiness",
+    "description": "The entire cXML punchout protocol (5 controllers) is Accelerator-only and tightly coupled to the storefront session model. A headless approach would need a dedicated punchout microservice or OCC extension."
+  },
+  {
+    "id": "AUD-009",
+    "title": "B2B Quoting workflow",
+    "severity": "High",
+    "section": "Headless Readiness",
+    "description": "Full quote lifecycle (create, edit, apply discount, submit, approve, reject, checkout from quote) has zero OCC coverage. A significant B2B business process."
+  },
+  {
+    "id": "AUD-010",
+    "title": "SAML SSO authentication",
+    "severity": "High",
+    "section": "Headless Readiness",
+    "description": "SAML authentication is implemented via storefront filters. No OCC equivalent exists. A headless frontend would need OAuth2/OIDC with the SAP IDP directly."
+  },
+  {
+    "id": "AUD-011",
+    "title": "Assisted Service Mode (ASM)",
+    "severity": "High",
+    "section": "Headless Readiness",
+    "description": "Full ASM lifecycle (agent login, customer emulation, cart binding, Customer 360 view) is entirely storefront session-based. Zero OCC coverage."
+  },
+  {
+    "id": "AUD-012",
+    "title": "Cart/wishlist import and export",
+    "severity": "Medium",
+    "section": "Headless Readiness",
+    "description": "CSV/Excel import into saved carts and wishlists, plus export to PDF/Excel. No OCC equivalent exists."
+  },
+  {
+    "id": "AUD-013",
+    "title": "Consent management",
+    "severity": "Medium",
+    "section": "Headless Readiness",
+    "description": "Custom GDPR consent management and cart voucher apply/remove are storefront-only. Net price preference toggle per user is also not in OCC."
+  },
+  {
+    "id": "AUD-014",
+    "title": "Promotions and brand pages",
+    "severity": "Low",
+    "section": "Headless Readiness",
+    "description": "Dedicated promotions page, brand pages, quick order, category directory, and maintenance mode are all storefront-only. Lower priority as rendering-layer concerns."
+  },
+  {
+    "id": "AUD-020",
+    "title": "JDK21 upgrade",
+    "severity": "Critical",
+    "section": "JDK21",
+    "description": "Mandatory by August 2026. Blocking issues include XSD-to-Java generation library, OAuth migration to Spring Security 6, and EhCache 2.x to 3.x migration. Full scope unknown until blockers resolved."
+  },
+  {
+    "id": "AUD-021",
+    "title": "Email library replacement",
+    "severity": "High",
+    "section": "Next Steps",
+    "description": "The 2018 email library should be replaced regardless of headless timeline. This is an operational risk on the current platform."
+  },
+  {
+    "id": "AUD-022",
+    "title": "Security remediation",
+    "severity": "High",
+    "section": "Next Steps",
+    "description": "Fix the SSL/TLS vulnerabilities in the REST integration layer. All issues are in one file and the fix is straightforward."
+  },
+  {
+    "id": "AUD-023",
+    "title": "Headless transition planning",
+    "severity": "Medium",
+    "section": "Next Steps",
+    "description": "Findings feed directly into the Discovery phase. The headless readiness analysis, integration inventory, and JDK21 blocking items provide the evidence base for sizing the engagement."
+  },
+  {
+    "id": "AUD-024",
+    "title": "Production API keys in source code",
+    "severity": "Medium",
+    "section": "Code Quality & Security",
+    "description": "Production API keys for third-party services are stored directly in the codebase. Move sensitive properties to the SAP Commerce Cloud Portal and blacklist them in HAC."
+  },
+  {
+    "id": "AUD-025",
+    "title": "SAP domain URLs exposed",
+    "severity": "Low",
+    "section": "Code Quality & Security",
+    "description": "Some API calls reference SAP infrastructure domain names directly. Custom domains are already available and could be used more consistently."
+  }
+]
