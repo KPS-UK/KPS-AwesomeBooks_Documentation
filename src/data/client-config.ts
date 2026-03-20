@@ -61,13 +61,17 @@ export const platform = {
   /** Payment provider */
   payment: 'Adyen',
   /** Email provider */
-  email: 'Mandrill (Mailchimp Transactional)',
+  email: 'SendGrid',
   /** APM / monitoring */
   monitoring: 'Dynatrace',
   /** Authentication */
   authentication: 'SAP IDP (SAML SSO)',
   /** CRM */
-  crm: 'SAP CRM',
+  crm: 'Microsoft Dynamics 365',
+  /** Tax calculation */
+  tax: 'Avalara',
+  /** Content management */
+  cms: 'Contentful',
 };
 
 export const audit = {
@@ -163,10 +167,12 @@ export const integrations = [
   { name: 'SAP CPI', type: 'Middleware', protocol: 'REST / IDoc', status: 'Active', notes: 'Integration orchestration layer' },
   { name: 'Adyen', type: 'Payment', protocol: 'REST API', status: 'Active', notes: 'Library from 2022, upgrade recommended' },
   { name: 'Algolia', type: 'Search', protocol: 'REST API', status: 'Active', notes: 'Product search and indexing' },
-  { name: 'Mandrill', type: 'Email', protocol: 'REST API', status: 'Active', notes: 'Library from 2018, replacement recommended' },
+  { name: 'SendGrid', type: 'Email', protocol: 'REST API', status: 'Active', notes: 'Library from 2019, upgrade recommended' },
   { name: 'SAP IDP', type: 'Authentication', protocol: 'SAML 2.0', status: 'Active', notes: 'B2B SSO for trade customers' },
-  { name: 'SAP CRM', type: 'CRM', protocol: 'OData via CPI', status: 'Active', notes: 'Customer data and segmentation sync' },
+  { name: 'Microsoft Dynamics 365', type: 'CRM', protocol: 'OData via CPI', status: 'Active', notes: 'Customer data and segmentation sync' },
   { name: 'Warehouse API', type: 'Fulfilment', protocol: 'REST', status: 'Active', notes: 'Real-time stock and dispatch updates' },
+  { name: 'Avalara', type: 'Tax', protocol: 'REST API', status: 'Active', notes: 'Tax calculation for UK, IE, FR' },
+  { name: 'Contentful', type: 'CMS', protocol: 'REST API', status: 'Active', notes: 'Headless CMS for trade portal content' },
 ];
 
 /**

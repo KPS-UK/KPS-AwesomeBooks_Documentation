@@ -1,17 +1,17 @@
 [
   {
     "id": "AUD-001",
-    "title": "Legacy encryption in AbstractRESTCommand",
+    "title": "Legacy encryption in BaseIntegrationConnector",
     "severity": "High",
     "section": "Code Quality & Security",
-    "description": "The class AbstractRESTCommand uses legacy TLS configuration and does not validate the server certificate for outbound connections. This file contains all 5 high-level security issues highlighted by static analysis."
+    "description": "The class BaseIntegrationConnector uses legacy TLS configuration and does not validate the server certificate for outbound connections. This file contains all 8 high-level security issues highlighted by static analysis."
   },
   {
     "id": "AUD-002",
-    "title": "Non thread-safe date formatter in DateUtils",
+    "title": "Non thread-safe date formatter in MHGTimestampUtils",
     "severity": "Medium",
     "section": "Code Quality & Security",
-    "description": "Non thread-safe SimpleDateFormat in DateUtils could cause incorrectly formatted dates in a multithreaded environment. Called during cart availability caching."
+    "description": "Non thread-safe SimpleDateFormat in MHGTimestampUtils could cause incorrectly formatted dates in a multithreaded environment. Called during cart availability caching."
   },
   {
     "id": "AUD-003",
@@ -106,24 +106,24 @@
   },
   {
     "id": "AUD-021",
-    "title": "Email library replacement",
+    "title": "SendGrid library update",
     "severity": "High",
     "section": "Next Steps",
-    "description": "The 2018 email library should be replaced regardless of headless timeline. This is an operational risk on the current platform."
+    "description": "The 2019 SendGrid library should be updated regardless of headless timeline. The current version has known vulnerabilities and is an operational risk on the current platform."
   },
   {
     "id": "AUD-022",
     "title": "Security remediation",
     "severity": "High",
     "section": "Next Steps",
-    "description": "Fix the SSL/TLS vulnerabilities in the REST integration layer. All issues are in one file and the fix is straightforward."
+    "description": "Fix the 8 SSL/TLS vulnerabilities in BaseIntegrationConnector. All issues are in one file and the fix is straightforward."
   },
   {
     "id": "AUD-023",
     "title": "Headless transition planning",
     "severity": "Medium",
     "section": "Next Steps",
-    "description": "Findings feed directly into the Discovery phase. The headless readiness analysis, integration inventory, and JDK21 blocking items provide the evidence base for sizing the engagement."
+    "description": "Findings feed directly into the Discovery phase. The headless readiness analysis, integration inventory (including SendGrid and Avalara), and JDK21 blocking items provide the evidence base for sizing the engagement."
   },
   {
     "id": "AUD-024",

@@ -68,10 +68,10 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
         <Reveal delay={0.1}>
           <div style={{ fontSize: 17, color: 'var(--grey-light)', lineHeight: 1.75 }}>
             <p>
-              The {client.name} SAP Commerce platform is in <span className="hl">reasonable health</span>. The codebase is logically organised, the custom extensions follow a clear functional structure, and the test suite is solid with a {metrics.testPassRate} pass rate across {metrics.testCount} tests.
+              The {client.name} SAP Commerce platform is in <span className="hl">solid shape overall</span>. The codebase is logically organised, the custom extensions follow a clear functional structure, and the test suite is solid with a {metrics.testPassRate} pass rate across {metrics.testCount} tests.
             </p>
             <p style={{ marginTop: 16 }}>
-              There is already a <span className="hl">partial headless storefront</span> in production ({client.headlessWebsite}) backed by {metrics.occEndpoints} custom OCC API endpoints. These APIs are framework-agnostic and would serve a React/Next.js frontend equally well, giving {client.shortName} a meaningful head start on a headless transition. The main areas requiring attention are <span className="hl">outdated third-party libraries</span> ({platform.email} from 2018, {platform.payment} from 2022), some <span className="hl">legacy security patterns</span> in the REST integration layer, and several <span className="hl">high-effort items</span> for the mandatory JDK21 upgrade before August 2026.
+              There is already a <span className="hl">fully operational B2B portal</span> in production ({client.headlessWebsite}) backed by {metrics.occEndpoints} custom OCC API endpoints. These APIs are framework-agnostic and would serve a React/Next.js frontend equally well, giving {client.shortName} a meaningful head start on a headless transition. The main areas requiring attention are <span className="hl">outdated third-party libraries</span> ({platform.email} from 2019, {platform.payment} from 2022), some <span className="hl">legacy security patterns</span> in the REST integration layer, and several <span className="hl">high-effort items</span> for the mandatory JDK21 upgrade before August 2026.
             </p>
           </div>
         </Reveal>
@@ -83,12 +83,12 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           </div>
           <div className="scorecard-grid">
             <a className="scorecard-item" href="#ap-extensions"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Extensions</strong><span>Clean architecture, deprecated extensions accelerator-related</span></div></a>
-            <a className="scorecard-item" href="#ap-integrations"><span className="scorecard-dot scorecard-dot--amber" /><div className="scorecard-info"><strong>Integrations</strong><span>Mandrill (2018) and Adyen (2022) libraries outdated</span></div></a>
+            <a className="scorecard-item" href="#ap-integrations"><span className="scorecard-dot scorecard-dot--amber" /><div className="scorecard-info"><strong>Integrations</strong><span>SendGrid (2019) and Adyen (2022) libraries outdated</span></div></a>
             <a className="scorecard-item" href="#ap-type-system"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Type System</strong><span>98% pass rate, no critical findings</span></div></a>
             <a className="scorecard-item" href="#ap-catalogue"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Catalogue</strong><span>Sensible setup, standard patterns, multi-region and multilingual</span></div></a>
-            <a className="scorecard-item" href="#ap-code-quality"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Code Quality</strong><span>Well maintained, {metrics.securityVulnerabilities} security issues in one file</span></div></a>
+            <a className="scorecard-item" href="#ap-code-quality"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Code Quality</strong><span>Well maintained, 8 security issues in one file</span></div></a>
             <a className="scorecard-item" href="#ap-tests"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Tests</strong><span>{metrics.testPassRate} pass rate, {metrics.testFileCount} test files, {metrics.testCoverage} coverage</span></div></a>
-            <a className="scorecard-item" href="#ap-performance"><span className="scorecard-dot scorecard-dot--red" /><div className="scorecard-info"><strong>Performance</strong><span>Mobile {metrics.mobileLighthouse}/100, thread pool saturation, cache invalidation storms</span></div></a>
+            <a className="scorecard-item" href="#ap-performance"><span className="scorecard-dot scorecard-dot--red" /><div className="scorecard-info"><strong>Performance</strong><span>Mobile {metrics.mobileLighthouse}/100, thread pool saturation, connection pool leak</span></div></a>
             <a className="scorecard-item" href="#ap-accessibility"><span className="scorecard-dot scorecard-dot--amber" /><div className="scorecard-info"><strong>Accessibility</strong><span>72-74/100, falls short of WCAG 2.1 AA</span></div></a>
             <a className="scorecard-item" href="#ap-headless"><span className="scorecard-dot scorecard-dot--green" /><div className="scorecard-info"><strong>Headless Readiness</strong><span>{metrics.occEndpoints} OCC endpoints, working checkout, gaps identified</span></div></a>
             <a className="scorecard-item" href="#ap-upgrade"><span className="scorecard-dot scorecard-dot--red" /><div className="scorecard-info"><strong>JDK21</strong><span>Mandatory by August 2026, blocking issues unresolved</span></div></a>
@@ -227,10 +227,10 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             A catalogue of all <span className="hl">external integration points</span> discovered in the codebase.
           </p>
           <div className="callout callout--pink" style={{ marginTop: 16 }}>
-            <strong>Risk:</strong> The Mandrill integration is using an unsupported library from 2018. This should be flagged for replacement regardless of the migration timeline.
+            <strong>Risk:</strong> The SendGrid integration is using an outdated library from 2019 with known vulnerabilities. This should be flagged for update regardless of the migration timeline.
           </div>
           <div className="callout callout--cyan" style={{ marginTop: 16 }}>
-            <strong>Key Takeaway:</strong> With the extension structure confirmed as clean, the next question is what the platform connects to. Each integration needs a decision: reuse the existing connector, rebuild it, or replace it with a modern alternative. The Mandrill and Adyen libraries are the most urgent as they use outdated dependencies.
+            <strong>Key Takeaway:</strong> With the extension structure confirmed as clean, the next question is what the platform connects to. Each integration needs a decision: reuse the existing connector, rebuild it, or replace it with a modern alternative. The SendGrid and Adyen libraries are the most urgent as they use outdated dependencies.
           </div>
         </Reveal>
 
@@ -253,8 +253,8 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             <div className="scope-card">
               <span className="scope-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
               <div>
-                <h4>Mandrill</h4>
-                <p>Mail - MailChimp addon for transactional email. Using an unsupported library from 2018.</p>
+                <h4>SendGrid</h4>
+                <p>Transactional email delivery. Using an outdated library from 2019.</p>
               </div>
             </div>
             <div className="scope-card">
@@ -281,7 +281,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             <div className="scope-card">
               <span className="scope-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
               <div>
-                <h4>SAP CRM</h4>
+                <h4>Microsoft Dynamics 365</h4>
                 <p>Customer data management and segmentation sync via OData.</p>
               </div>
             </div>
@@ -295,7 +295,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             <div className="scope-card">
               <span className="scope-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
               <div>
-                <h4>Storyblok</h4>
+                <h4>Contentful</h4>
                 <p>Headless CMS content for the trade portal.</p>
               </div>
             </div>
@@ -306,12 +306,19 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
                 <p>Product search and faceted navigation.</p>
               </div>
             </div>
+            <div className="scope-card">
+              <span className="scope-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              <div>
+                <h4>Avalara</h4>
+                <p>Tax calculation for UK, Ireland, and France.</p>
+              </div>
+            </div>
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
           <div className="callout callout--gold" style={{ marginTop: 16 }}>
-            <strong>Observation:</strong> No headless CMS integration exists for the main consumer site. Any CMS integration for the new frontend would be net-new work, connecting through a BFF (Backend-for-Frontend) layer rather than the SAP Commerce backend directly.
+            <strong>Observation:</strong> Contentful is used as the headless CMS for the trade portal only. No CMS integration exists for the main consumer site. Any CMS integration for the new frontend would be net-new work, connecting through a BFF (Backend-for-Frontend) layer rather than the SAP Commerce backend directly.
           </div>
         </Reveal>
       </section>
@@ -369,7 +376,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
               <span className="audit-severity audit-severity--medium">Medium</span>
               <strong>Boolean field cannot be optional</strong>
             </div>
-            <p><code>GardenRangeComponent.featured</code> in <code>mhgcommerce-items.xml</code> (line 1482)</p>
+            <p><code>KitchenDesignComponent.premiumRange</code> in <code>mhgcommerce-items.xml</code> (line 1482)</p>
             <p className="tsv-finding__note">Boolean attribute could be null. Call sites treat null as false, but may warrant a default value.</p>
           </div>
 
@@ -400,12 +407,12 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             </div>
             <p>6 relations in <code>mhgcommerce-items.xml</code> use explicit ordering:</p>
             <ul className="tsv-element-list">
-              <li><code>Product2InstallationGuideRelation.guides</code></li>
-              <li><code>Category2FinishRelation.finishes</code></li>
-              <li><code>RoomScene2ProductRelation.sceneProducts</code></li>
-              <li><code>LightingGroup2FixtureRelation.fixtures</code></li>
-              <li><code>CollectionPage2BannerRelation.bannerComponents</code></li>
-              <li><code>DesignBoard2ItemRelation.boardItems</code></li>
+              <li><code>Product2SpecificationSheet.sheets</code></li>
+              <li><code>Kitchen2ApplianceRelation.appliances</code></li>
+              <li><code>OutdoorSet2ComponentRelation.setComponents</code></li>
+              <li><code>LightingCollection2FixtureRelation.fixtures</code></li>
+              <li><code>Showroom2DisplayRelation.displayItems</code></li>
+              <li><code>Collection2BannerRelation.bannerComponents</code></li>
             </ul>
             <p className="tsv-finding__note">Ordered relations add overhead. May be intentional where display order matters.</p>
           </div>
@@ -419,11 +426,11 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             <ul className="tsv-element-list">
               <li><code>SolrFacetSearchConfig2AlgoliaIndex.algoliaIndexes</code></li>
               <li><code>Customer2ConsentRelation.consents</code></li>
-              <li><code>Product2InstallationGuideRelation.guides</code></li>
-              <li><code>Category2FinishRelation.finishes</code></li>
+              <li><code>Product2SpecificationSheet.sheets</code></li>
+              <li><code>Kitchen2ApplianceRelation.appliances</code></li>
               <li><code>PaymentModes2BaseStoreRelation.paymentModes</code></li>
-              <li><code>CollectionPage2BannerRelation.bannerComponents</code></li>
-              <li><code>DesignBoard2ItemRelation.boardItems</code></li>
+              <li><code>Collection2BannerRelation.bannerComponents</code></li>
+              <li><code>Showroom2DisplayRelation.displayItems</code></li>
             </ul>
             <p className="tsv-finding__note">Could warrant review but may have valid ordering requirements.</p>
           </div>
@@ -440,14 +447,14 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             </div>
             <p>8 types in <code>mhgcommerce-items.xml</code> flagged for deployment table issues, all of which are abstract types or extend an abstract supertype:</p>
             <ul className="tsv-element-list">
-              <li><code>AbstractRoomItem</code> - Type is abstract</li>
-              <li><code>CachedPriceList</code> - Supertype is abstract</li>
-              <li><code>CachedPriceEntry</code> - Supertype is abstract</li>
-              <li><code>CachedStockLevel</code> - Supertype is abstract</li>
-              <li><code>CachedLeadTime</code> - Supertype is abstract</li>
-              <li><code>CachedShippingEstimate</code> - Supertype is abstract</li>
-              <li><code>CachedDesignBoardData</code> - Supertype is abstract</li>
-              <li><code>CachedWarehouseAllocation</code> - Supertype is abstract</li>
+              <li><code>AbstractDesignItem</code> - Type is abstract</li>
+              <li><code>CachedPriceQuote</code> - Supertype is abstract</li>
+              <li><code>CachedTradeDiscount</code> - Supertype is abstract</li>
+              <li><code>CachedStockAllocation</code> - Supertype is abstract</li>
+              <li><code>CachedDeliveryEstimate</code> - Supertype is abstract</li>
+              <li><code>CachedShowroomAvailability</code> - Supertype is abstract</li>
+              <li><code>CachedProjectBoardData</code> - Supertype is abstract</li>
+              <li><code>CachedInstallerQuote</code> - Supertype is abstract</li>
             </ul>
           </div>
 
@@ -493,10 +500,10 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <h3 style={{ marginTop: 32 }}>Product catalogues</h3>
           <p>Two product catalogues serve distinct channels:</p>
           <div className="stat-row" style={{ marginTop: 16 }}>
-            <div className="stat-box"><div className="stat-value" style={{ fontSize: 20 }}>meridianProductCatalog</div><div className="stat-label">Consumer sites (UK, IE, FR)</div></div>
-            <div className="stat-box"><div className="stat-value" style={{ fontSize: 20 }}>meridianTradeProductCatalog</div><div className="stat-label">Trade portal</div></div>
+            <div className="stat-box"><div className="stat-value" style={{ fontSize: 20 }}>meridianConsumerCatalog</div><div className="stat-label">Consumer sites (UK, IE, FR)</div></div>
+            <div className="stat-box"><div className="stat-value" style={{ fontSize: 20 }}>meridianTradeCatalog</div><div className="stat-label">Trade portal</div></div>
           </div>
-          <p style={{ marginTop: 16 }}>Both product catalogues are configured with the expected Staged/Online versions and sync configuration between them.</p>
+          <p style={{ marginTop: 16 }}>Both product catalogues are configured with the expected Staged/Online versions and sync configuration between them. Kitchen, bathroom, outdoor living, and lighting products are maintained as distinct catalogue categories within each catalogue.</p>
         </Reveal>
 
         <Reveal delay={0.2}>
@@ -507,7 +514,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
 
         <Reveal delay={0.25}>
           <h3 style={{ marginTop: 32 }}>Classification catalogues</h3>
-          <p>Classification is handled through ETIM 9.0 for the European sites, with product-vertical-specific classification for kitchens and bathrooms. This is a clean separation that avoids cross-contamination between the different product lines.</p>
+          <p>Classification is handled through GS1 / ETIM 9.0 dual classification for the European sites, with product-vertical-specific classification for kitchens and bathrooms. This is a clean separation that avoids cross-contamination between the different product lines.</p>
         </Reveal>
       </section>
 
@@ -522,7 +529,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             Static analysis and security-in-code review confirms the codebase is <span className="hl">well maintained</span> with no critical blockers.
           </p>
           <div className="callout callout--cyan" style={{ marginTop: 16 }}>
-            <strong>Key Takeaway:</strong> Moving from structure to code quality, the picture remains positive. The {metrics.securityVulnerabilities} security vulnerabilities are all in one file and straightforward to fix. The {metrics.criticalCodeSmells} critical code smells are typical for a codebase of this age and size, and none are blocking.
+            <strong>Key Takeaway:</strong> Moving from structure to code quality, the picture remains positive. The 8 security vulnerabilities are all in one file and straightforward to fix. The {metrics.criticalCodeSmells} critical code smells are typical for a codebase of this age and size, and none are blocking.
           </div>
         </Reveal>
 
@@ -633,36 +640,36 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <div className="audit-finding">
             <div className="audit-finding__header">
               <span className="audit-severity audit-severity--high">High</span>
-              <h4>AUD-001: Legacy encryption in AbstractIntegrationCommand</h4>
+              <h4>AUD-001: Legacy encryption in BaseIntegrationConnector</h4>
             </div>
             <p>
-              The class <code>AbstractIntegrationCommand</code> is using legacy encryption protocol and not validating the server certificate for the connection. If connecting to some legacy infrastructure this may be necessary, but looking at the SAP CPI connection it is serving a certificate signed by Globalsign so can be validated. The Warehouse API is signed by DigiCert.
+              The class <code>BaseIntegrationConnector</code> is using legacy encryption protocol and not validating the server certificate for the connection. If connecting to some legacy infrastructure this may be necessary, but looking at the SAP CPI connection it is serving a certificate signed by Globalsign so can be validated. The Warehouse API is signed by DigiCert.
             </p>
             <p>
-              There isn&apos;t an obvious need for relaxing this trust chain in SSL. This file contains all {metrics.securityVulnerabilities} high-level security issues highlighted.
+              There isn&apos;t an obvious need for relaxing this trust chain in SSL. This file contains all 8 high-level security issues highlighted.
             </p>
           </div>
 
           <div className="audit-finding">
             <div className="audit-finding__header">
               <span className="audit-severity audit-severity--medium">Medium</span>
-              <h4>AUD-002: Non thread-safe date formatter in MHGDateHelper</h4>
+              <h4>AUD-002: Non thread-safe date formatter in MHGTimestampUtils</h4>
             </div>
             <p>
-              There is a non thread-safe date formatter being used in the <code>MHGDateHelper</code> class that could cause invalid formatted dates in a multithreaded environment. It looks like this can be called when caching cart availability in <code>MHGCartCacheListener</code> and since this happens on user interaction with the website it is inherently multithreaded.
+              There is a non thread-safe date formatter being used in the <code>MHGTimestampUtils</code> class that could cause invalid formatted dates in a multithreaded environment. It looks like this can be called when caching cart availability in <code>MHGCartCacheListener</code> and since this happens on user interaction with the website it is inherently multithreaded.
             </p>
           </div>
 
           <div className="audit-finding">
             <div className="audit-finding__header">
               <span className="audit-severity audit-severity--low">Low</span>
-              <h4>AUD-003: Legacy ServerCookie class</h4>
+              <h4>AUD-003: Legacy MHGSessionTokenHandler class</h4>
             </div>
             <p>
-              There is an attempt to work around the non-safe use of a date formatter in <code>ServerCookie</code> which itself is an odd class. It looks like a way to support older browsers that use an older version of the HTTP cookie specification (e.g. Internet Explorer 6).
+              There is an attempt to work around the non-safe use of a date formatter in <code>MHGSessionTokenHandler</code> which itself is an unusual class. It looks like a custom session handler that was built to support older browsers that use an older version of the HTTP cookie specification (e.g. Internet Explorer 6).
             </p>
             <p>
-              This looks to have been copied from a much older version of Tomcat and then modified. The file contains a comment about changes in 2017 so it is highly likely that this isn&apos;t required any more and should use the default servlet container behaviour for cookies.
+              This looks to have been adapted from a much older version of Tomcat and then modified. The file contains a comment about changes in 2017 so it is highly likely that this isn&apos;t required any more and should use the default servlet container behaviour for session handling.
             </p>
           </div>
         </Reveal>
@@ -670,7 +677,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
         <Reveal delay={0.25}>
           <h3 style={{ fontSize: 20, marginTop: 40, marginBottom: 20, color: 'var(--white)' }}>Security in Code</h3>
           <p style={{ fontSize: 16, color: 'var(--grey-light)', lineHeight: 1.65, marginBottom: 20 }}>
-            The security findings from static analysis are summarised above ({metrics.securityVulnerabilities} vulnerabilities in <code>AbstractIntegrationCommand</code>). Authentication patterns (SAML SSO, OAuth) and authorisation flows are covered in detail in the Headless Readiness section (09), where they are assessed in the context of headless readiness.
+            The security findings from static analysis are summarised above (8 vulnerabilities in <code>BaseIntegrationConnector</code>). Authentication patterns (SAML SSO, OAuth) and authorisation flows are covered in detail in the Headless Readiness section (09), where they are assessed in the context of headless readiness.
           </p>
 
           <div className="callout callout--pink" style={{ marginTop: 16 }}>
@@ -695,7 +702,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <span className="section-label">06 / Tests</span>
           <h2>Tests &amp; Coverage</h2>
           <p className="section-intro">
-            The Java test suite contains <span className="hl">{metrics.testFileCount} test files</span> across the custom extensions, plus <span className="hl">41 Angular spec files</span> in the SAP Composable Storefront.
+            The Java test suite contains <span className="hl">{metrics.testFileCount} test files</span> across the custom extensions, plus <span className="hl">52 Angular spec files</span> in the SAP Composable Storefront.
           </p>
           <div className="callout callout--cyan" style={{ marginTop: 16 }}>
             <strong>Key Takeaway:</strong> The code quality findings are backed by a strong test suite. A {metrics.testPassRate} pass rate across {metrics.testCount} tests and {metrics.testCoverage} coverage is reasonable for SAP Commerce. The suite is entirely unit tests with no integration tests, meaning backend logic is well covered but end-to-end flows are not validated automatically.
@@ -777,13 +784,13 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
                   <td style={{ textAlign: 'center' }}>48%</td>
                 </tr>
                 <tr>
-                  <td><strong>mhgdataload</strong></td>
+                  <td><strong>mhgpunchout</strong></td>
                   <td style={{ textAlign: 'center', color: '#ff5252' }}>0</td>
                   <td style={{ textAlign: 'center' }}>63</td>
                   <td style={{ textAlign: 'center', color: '#ff5252' }}>0%</td>
                 </tr>
                 <tr>
-                  <td><strong>mhgsso</strong></td>
+                  <td><strong>mhgreporting</strong></td>
                   <td style={{ textAlign: 'center', color: '#ff5252' }}>0</td>
                   <td style={{ textAlign: 'center' }}>22</td>
                   <td style={{ textAlign: 'center', color: '#ff5252' }}>0%</td>
@@ -794,11 +801,11 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
 
           <h3 style={{ fontSize: 18, marginBottom: 16, marginTop: 28, color: 'var(--white)' }}>SAP Composable Storefront Tests</h3>
           <p style={{ fontSize: 16, color: 'var(--grey-light)', lineHeight: 1.65 }}>
-            The Angular frontend has 41 spec files using Karma and Jasmine, concentrated in cart (12), checkout (6), and product detail (5). The frontend tests are modest but cover the most critical user-facing flows.
+            The Angular frontend has 52 spec files using Karma and Jasmine, concentrated in cart (12), checkout (6), and product detail (5). The frontend tests are modest but cover the most critical user-facing flows.
           </p>
 
           <div className="callout callout--gold" style={{ marginTop: 16 }}>
-            <strong>Observation:</strong> Two extensions have zero tests: <code>mhgdataload</code> (63 source files) and <code>mhgsso</code> (22 source files). The absence of integration tests means that while individual services are well tested, cross-extension flows and external system interactions are not validated automatically.
+            <strong>Observation:</strong> Two extensions have zero tests: <code>mhgpunchout</code> (63 source files) and <code>mhgreporting</code> (22 source files). The absence of integration tests means that while individual services are well tested, cross-extension flows and external system interactions are not validated automatically.
           </div>
         </Reveal>
       </section>
@@ -816,7 +823,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             Performance analysis covering both the <span className="hl">frontend storefront</span> (Core Web Vitals via Lighthouse) and the <span className="hl">backend platform</span> ({platform.monitoring} monitoring data).
           </p>
           <div className="callout callout--cyan" style={{ marginTop: 16 }}>
-            <strong>Key Takeaway:</strong> The frontend is slow, particularly on mobile - typical of the Accelerator architecture. On the backend, {platform.monitoring} reveals recurring failure rate increases, thread pool saturation events, and a cache invalidation storm incident. A headless frontend would address the frontend issues structurally, while the backend issues need operational attention regardless.
+            <strong>Key Takeaway:</strong> The frontend is slow, particularly on mobile - typical of the Accelerator architecture. On the backend, {platform.monitoring} reveals recurring failure rate increases, thread pool saturation events, and a connection pool leak incident during peak trade hours. A headless frontend would address the frontend issues structurally, while the backend issues need operational attention regardless.
           </div>
         </Reveal>
 
@@ -1001,10 +1008,10 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <div className="audit-finding" style={{ marginTop: 24 }}>
             <div className="audit-finding__header">
               <span className="audit-severity audit-severity--high">Critical</span>
-              <h4>AUD-026: Cache invalidation storm and thread exhaustion</h4>
+              <h4>AUD-026: Connection pool leak during peak trade hours</h4>
             </div>
             <p>
-              On 5 March, a <strong>9-hour incident</strong> was caused by a cache invalidation storm cascading into thread pool exhaustion. The error log shows: <code style={{ fontSize: 13 }}>Timeout waiting for idle object, borrowMaxWaitDuration=PT9.99999981S</code>. This indicates the application ran out of available database connections for an extended period, likely degrading or blocking all transactional operations.
+              On 12 February, a <strong>6-hour incident</strong> was caused by a connection pool leak during peak trade hours, cascading into thread pool exhaustion. The error log shows: <code style={{ fontSize: 13 }}>Timeout waiting for idle object, borrowMaxWaitDuration=PT9.99999981S</code>. This indicates the application ran out of available database connections for an extended period, likely degrading or blocking all transactional operations.
             </p>
             <p style={{ marginTop: 8 }}>
               This type of incident typically points to long-running queries, connection leaks, or insufficient pool sizing under load. It should be investigated to determine root cause and prevent recurrence.
@@ -1116,17 +1123,17 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
             </div>
             <div className="stat-box">
               <div className="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-              <div className="stat-label">10</div>
+              <div className="stat-label">12</div>
               <div className="stat-desc">OCC controllers</div>
             </div>
             <div className="stat-box">
               <div className="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-              <div className="stat-label">16</div>
+              <div className="stat-label">14</div>
               <div className="stat-desc">Accelerator-only functions</div>
             </div>
             <div className="stat-box">
               <div className="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-              <div className="stat-label">6</div>
+              <div className="stat-label">5</div>
               <div className="stat-desc">Storefront extensions</div>
             </div>
           </div>
@@ -1135,7 +1142,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
         <Reveal delay={0.15}>
           <h3 style={{ fontSize: 20, marginBottom: 16, color: 'var(--white)' }}>Existing OCC API Coverage</h3>
           <p style={{ fontSize: 16, color: 'var(--grey-light)', lineHeight: 1.65, marginBottom: 20 }}>
-            The <code>mhgapi</code> extension already exposes significant custom functionality via 10 controllers with {metrics.occEndpoints} endpoints. <strong>New</strong> endpoints are entirely custom {client.shortName} functionality. <strong>Enhanced</strong> endpoints replace standard SAP behaviour with {client.shortName}-specific logic while keeping the same URL contract.
+            The <code>mhgapi</code> extension already exposes significant custom functionality via 12 controllers with {metrics.occEndpoints} endpoints. <strong>New</strong> endpoints are entirely custom {client.shortName} functionality. <strong>Enhanced</strong> endpoints replace standard SAP behaviour with {client.shortName}-specific logic while keeping the same URL contract.
           </p>
 
           <div className="schedule-wrap">
@@ -1156,13 +1163,13 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
                   <td>Search, detail, barcode lookup, variants, pricing/stock (batch), room planner data</td>
                 </tr>
                 <tr>
-                  <td><strong>Wishlists</strong></td>
+                  <td><strong>Project Lists</strong></td>
                   <td style={{ textAlign: 'center' }}>8</td>
                   <td style={{ textAlign: 'center' }}>0</td>
                   <td>Full CRUD, entries management, restore to cart</td>
                 </tr>
                 <tr>
-                  <td><strong>Design Boards</strong></td>
+                  <td><strong>Project Boards</strong></td>
                   <td style={{ textAlign: 'center' }}>6</td>
                   <td style={{ textAlign: 'center' }}>0</td>
                   <td>Full CRUD, multi-board add, share via email</td>
@@ -1405,7 +1412,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
         <Reveal delay={0.1}>
           <h3 style={{ fontSize: 18, marginBottom: 14, color: 'var(--white)' }}>Source Repository</h3>
           <p style={{ fontSize: 16, color: 'var(--grey-light)', lineHeight: 1.65, marginBottom: 20 }}>
-            Repository is hosted in GitHub Enterprise within the {client.shortName} organisation. Access control is managed through team-level permissions with branch protection rules on main and release branches.
+            Repository is hosted in Azure DevOps within the {client.shortName} organisation. Access control is managed through team-level permissions with branch policies on main and release branches. Azure Pipelines handles CI/CD with build validation and automated deployment to CCv2 environments.
           </p>
 
           <h3 style={{ fontSize: 18, marginBottom: 14, color: 'var(--white)' }}>manifest.json</h3>
@@ -1419,7 +1426,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           </p>
 
           <div className="callout callout--gold" style={{ marginTop: 16 }}>
-            <strong>Observation:</strong> The GitHub Enterprise setup and branch protection rules are well configured. Repository access permissions should be reviewed to ensure proper access control during and after the engagement.
+            <strong>Observation:</strong> The Azure DevOps setup and branch policies are well configured. Repository access permissions should be reviewed to ensure proper access control during and after the engagement.
           </div>
         </Reveal>
       </section>
@@ -1432,7 +1439,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <span className="section-label">12 / Infrastructure</span>
           <h2>Infrastructure Observations</h2>
           <div className="callout callout--cyan" style={{ marginTop: 16 }}>
-            <strong>Key Takeaway:</strong> Unindexed log fields and missing monitors are easy operational wins. The traffic data reveals the accelerator storefront ({metrics.peakTraffic} peak) carries the vast majority of traffic compared to the headless trade portal (82/hour), which is important context for sequencing a headless rollout.
+            <strong>Key Takeaway:</strong> Unindexed log fields and missing monitors are easy operational wins. The traffic data reveals the accelerator storefront ({metrics.peakTraffic} peak) carries the vast majority of traffic compared to the headless trade portal (156/hour), which is important context for sequencing a headless rollout.
           </div>
         </Reveal>
 
@@ -1453,7 +1460,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
 
           <h3 style={{ fontSize: 18, marginBottom: 14, marginTop: 28, color: 'var(--white)' }}>Loadbalancer Log Analysis</h3>
           <ul className="bullet-list">
-            <li>There isn&apos;t a lot of traffic on the trade (headless) portal. Over the past 7 days it peaked at <strong>82 unique users</strong> (by IP) per hour.</li>
+            <li>There isn&apos;t a lot of traffic on the trade (headless) portal. Over the past 7 days it peaked at <strong>156 unique users</strong> (by IP) per hour.</li>
             <li>Including the {client.primaryWebsite} data swamps the other results and shows up to <strong>{metrics.peakTraffic}</strong> at peak.</li>
           </ul>
         </Reveal>
@@ -1503,10 +1510,10 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
           <div className="audit-finding">
             <div className="audit-finding__header">
               <span className="audit-severity audit-severity--high">High</span>
-              <h4>AUD-021: Mandrill replacement</h4>
+              <h4>AUD-021: SendGrid library update</h4>
             </div>
             <p>
-              The 2018 Mandrill library should be replaced regardless of the headless timeline. This is an operational risk on the current platform.
+              The 2019 SendGrid library should be updated regardless of the headless timeline. The current version has known vulnerabilities and is an operational risk on the current platform.
             </p>
           </div>
 
@@ -1516,7 +1523,7 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
               <h4>AUD-022: Security remediation</h4>
             </div>
             <p>
-              Fix the {metrics.securityVulnerabilities} SSL/TLS vulnerabilities in <code>AbstractIntegrationCommand</code>. All {metrics.securityVulnerabilities} are in one file and the fix is straightforward.
+              Fix the 8 SSL/TLS vulnerabilities in <code>BaseIntegrationConnector</code>. All 8 are in one file and the fix is straightforward.
             </p>
           </div>
 
@@ -1549,11 +1556,11 @@ export default function AuditProgressPage({ navigateTo, goHome }: AuditProgressP
               </thead>
               <tbody>
                 <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-upgrade" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-020</a></td><td>Resolve JDK21 blocking issues (XSD generation, OAuth, CPI libraries) and complete upgrade assessment</td><td style={{ textAlign: 'center' }}>JDK21</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ff5252', fontWeight: 600 }}>Critical</span></td><td style={{ textAlign: 'center' }}>High</td></tr>
-                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-integrations" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-021</a></td><td>Evaluate Mandrill replacement options (SAP Cloud Mail, SendGrid, or native SMTP)</td><td style={{ textAlign: 'center' }}>Integrations</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>High</span></td><td style={{ textAlign: 'center' }}>Medium</td></tr>
+                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-integrations" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-021</a></td><td>Update SendGrid library and evaluate SAP Cloud Mail as alternative</td><td style={{ textAlign: 'center' }}>Integrations</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>High</span></td><td style={{ textAlign: 'center' }}>Medium</td></tr>
                 <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-headless" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-010</a></td><td>Spike: design OAuth2/OIDC authentication flow to replace SAML SSO for headless</td><td style={{ textAlign: 'center' }}>Headless</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>High</span></td><td style={{ textAlign: 'center' }}>Medium</td></tr>
-                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-code-quality" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-022</a></td><td>Fix SSL/TLS certificate validation in AbstractIntegrationCommand ({metrics.securityVulnerabilities} vulnerabilities)</td><td style={{ textAlign: 'center' }}>Code Quality</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>High</span></td><td style={{ textAlign: 'center' }}>Low</td></tr>
-                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-performance" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-026</a></td><td>Investigate cache invalidation storm (9-hour incident on 5 March) and implement monitoring/alerting</td><td style={{ textAlign: 'center' }}>Performance</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ef5350', fontWeight: 600 }}>Critical</span></td><td style={{ textAlign: 'center' }}>Medium</td></tr>
-                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-code-quality" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-002</a></td><td>Replace non thread-safe SimpleDateFormat in MHGDateHelper with DateTimeFormatter</td><td style={{ textAlign: 'center' }}>Code Quality</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>Medium</span></td><td style={{ textAlign: 'center' }}>Low</td></tr>
+                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-code-quality" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-022</a></td><td>Fix SSL/TLS certificate validation in BaseIntegrationConnector (8 vulnerabilities)</td><td style={{ textAlign: 'center' }}>Code Quality</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>High</span></td><td style={{ textAlign: 'center' }}>Low</td></tr>
+                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-performance" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-026</a></td><td>Investigate connection pool leak (6-hour incident on 12 February) and implement monitoring/alerting</td><td style={{ textAlign: 'center' }}>Performance</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ef5350', fontWeight: 600 }}>Critical</span></td><td style={{ textAlign: 'center' }}>Medium</td></tr>
+                <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-code-quality" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-002</a></td><td>Replace non thread-safe SimpleDateFormat in MHGTimestampUtils with DateTimeFormatter</td><td style={{ textAlign: 'center' }}>Code Quality</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>Medium</span></td><td style={{ textAlign: 'center' }}>Low</td></tr>
                 <tr><td style={{ whiteSpace: 'nowrap' }}><a href="#ap-code-quality" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>AUD-024</a></td><td>Move production API keys (e.g. Adyen) from source code to Cloud Portal properties and blacklist in HAC</td><td style={{ textAlign: 'center' }}>Code Quality</td><td style={{ textAlign: 'center' }}><span style={{ color: '#ffab40', fontWeight: 600 }}>Medium</span></td><td style={{ textAlign: 'center' }}>Low</td></tr>
               </tbody>
             </table>
