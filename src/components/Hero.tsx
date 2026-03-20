@@ -31,9 +31,9 @@ export default function Hero({ title, subtitle, scrollLabel = 'Explore' }: HeroP
           className="logo-vm"
           src={client.logoUrl}
           alt={client.name}
-          style={{ height: 120 }}
+          style={{ height: 160 }}
         />
-        <div className="logo-sep" style={{ height: 72 }} />
+        <div className="logo-sep" style={{ height: 80 }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="logo-kps"
