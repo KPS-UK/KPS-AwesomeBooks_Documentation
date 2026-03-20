@@ -17,7 +17,7 @@ export const client = {
   /** Short name for tight spaces */
   shortName: 'Meridian',
   /** Client logo URL (white version for dark backgrounds) */
-  logoUrl: 'https://storage.googleapis.com/kps-logos/kps-brand-logos/other-assets/placeholder-client-logo-white.png',
+  logoUrl: 'https://storage.googleapis.com/kps-logos/test-logos/meridian-home-and-garden/Logo%20maker%20project.png',
   /** Primary website URL */
   primaryWebsite: 'https://www.meridianhomeandgarden.com',
   /** Secondary / headless website URL (if applicable) */

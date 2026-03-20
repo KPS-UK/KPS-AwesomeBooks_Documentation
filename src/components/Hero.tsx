@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useRef } from 'react';
 import ParticleField from './ParticleField';
+import { client, kps } from '@/data/client-config';
 
 interface HeroProps {
   title: React.ReactNode;
@@ -28,15 +29,15 @@ export default function Hero({ title, subtitle, scrollLabel = 'Explore' }: HeroP
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="logo-vm"
-          src="https://storage.googleapis.com/kps-logos/external-brand-logos/customers-prospects/van-marcke/van-marcke-logo-white.png"
-          alt="Van Marcke"
+          src={client.logoUrl}
+          alt={client.name}
           style={{ height: 120 }}
         />
         <div className="logo-sep" style={{ height: 72 }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="logo-kps"
-          src="https://storage.googleapis.com/kps-logos/kps-brand-logos/kps-logo-white-orange-dot.png"
+          src={kps.logoUrl}
           alt="KPS"
           style={{ height: 88 }}
         />
