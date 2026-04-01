@@ -317,13 +317,13 @@ const deliverables: Deliverable[] = [
     contents: ['System-by-system integration spec (Algolia, Klaviyo, AB Tasty, ERP, etc.)', 'Data flow diagrams per integration', 'Ownership model: which system is master for each data entity', 'Real-time vs batch classification per integration', 'API contract expectations and error handling'],
   },
   {
-    id: 'mvp', title: 'MVP Scope & Phased Roadmap', color: 'var(--pink)',
+    id: 'mvp', title: 'MVP Scope & Phased Roadmap', color: 'var(--gold)',
     desc: 'A clear line between what ships first and what comes later. Costed, sequenced, with dependencies mapped and risks quantified.',
     feedingSessions: [1, 3, 5, 10],
     contents: ['MVP feature list prioritised using MoSCoW', 'Phase 2 backlog with priority ranking', 'Sprint-level delivery plan', 'Dependency map and critical path', 'Risk-adjusted cost estimate (fixed price)'],
   },
   {
-    id: 'opmodel', title: 'Operating Model', color: 'var(--gold)',
+    id: 'opmodel', title: 'Operating Model', color: 'var(--cyan)',
     desc: 'Roles, responsibilities, release processes, and governance. How the platform will be built, maintained, and evolved after launch.',
     feedingSessions: [4, 10],
     contents: ['RACI for build and run phases', 'Release and deployment process', 'Sprint cadence and ceremony schedule', 'Escalation paths and decision-making framework', 'Transition plan from KPS delivery to BAU'],
