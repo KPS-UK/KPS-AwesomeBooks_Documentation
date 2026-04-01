@@ -320,7 +320,7 @@ const deliverables: Deliverable[] = [
     id: 'mvp', title: 'MVP Scope & Phased Roadmap', color: 'var(--pink)',
     desc: 'A clear line between what ships first and what comes later. Costed, sequenced, with dependencies mapped and risks quantified.',
     feedingSessions: [1, 3, 5, 10],
-    contents: ['MVP feature list with in/out classification', 'Phase 2 backlog with priority ranking', 'Sprint-level delivery plan', 'Dependency map and critical path', 'Risk-adjusted cost estimate (fixed price)'],
+    contents: ['MVP feature list prioritised using MoSCoW', 'Phase 2 backlog with priority ranking', 'Sprint-level delivery plan', 'Dependency map and critical path', 'Risk-adjusted cost estimate (fixed price)'],
   },
   {
     id: 'opmodel', title: 'Operating Model', color: 'var(--gold)',
