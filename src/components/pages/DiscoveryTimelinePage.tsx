@@ -498,12 +498,18 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
 
               {/* Workstream bars */}
               <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
-                {workstreams.map((ws) => {
+                {workstreams.map((ws, wsIdx) => {
                   const isPlayback = ws.type === 'playback';
                   const isWsActive = activeWorkstream === ws.id;
                   const barColor = ws.type === 'writeup' ? 'var(--gold)' : 'var(--pink)';
+                  // Add gap before playback (after Project Estimation which is index 2)
+                  const showGapBefore = isPlayback;
                   return (
                   <div key={ws.id} style={{ display: 'contents' }}>
+                    {showGapBefore && <>
+                      <div style={{ height: 8 }} />
+                      {weekHeaders.map((_, gi) => <div key={`gap-${gi}`} style={{ height: 8 }} />)}
+                    </>}
                     <div
                       onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                       style={{
@@ -540,17 +546,19 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             <div
                               onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                               style={{
-                                width: '100%', height: isPlayback ? 36 : 22,
-                                background: barColor,
-                                opacity: isWsActive ? 1 : 0.7,
+                                width: '100%', height: isPlayback ? 36 : 24,
+                                background: 'transparent',
                                 borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
                                 cursor: 'pointer',
-                                transition: 'opacity 0.2s',
-                                border: isWsActive ? `1px solid ${barColor}` : '1px solid transparent',
+                                transition: 'all 0.2s',
+                                border: `1.5px solid ${barColor}`,
+                                borderLeftWidth: isStart ? '1.5px' : '0',
+                                borderRightWidth: isEnd ? '1.5px' : '0',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 fontSize: isPlayback ? 14 : 10,
                                 fontWeight: 700,
-                                color: isPlayback ? 'var(--white)' : 'rgba(0,0,0,0.7)',
+                                color: barColor,
+                                opacity: isWsActive ? 1 : 0.7,
                               }}
                             >
                               {ws.date && isStart ? ws.date : ''}
