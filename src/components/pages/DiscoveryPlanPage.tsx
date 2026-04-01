@@ -677,7 +677,6 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                 { color: 'var(--cyan)', label: 'Workshop sessions', opacity: 0.85 },
                 { color: 'var(--gold)', label: 'Write-up / design', opacity: 0.85 },
                 { color: 'var(--pink)', label: 'Playback / sign-off', opacity: 0.85 },
-                { color: 'rgba(255,255,255,0.15)', label: 'Preparation', opacity: 1 },
               ].map(l => (
                 <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--grey-light)' }}>
                   <div style={{ width: 14, height: 14, borderRadius: 3, background: l.color, opacity: l.opacity }} />
