@@ -406,19 +406,22 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
 
   const toggleSession = (id: string) => {
     setHasInteracted(true);
+    setActiveWorkstream(null);
     setActiveSession(prev => prev === id ? null : id);
   };
 
   // Scroll detail into view when expanded
   useEffect(() => {
-    if (activeSession && detailRef.current) {
+    if ((activeSession || activeWorkstream) && detailRef.current) {
       setTimeout(() => {
         detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 100);
     }
-  }, [activeSession]);
+  }, [activeSession, activeWorkstream]);
 
   const activeData = activeSession ? sessions.find(s => s.id === activeSession) : null;
+  const activeWsData = activeWorkstream ? workstreams.find(w => w.id === activeWorkstream) : null;
+  const showDetail = activeData || activeWsData;
 
   return (
     <>
@@ -582,7 +585,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       {weekHeaders.map((_, gi) => <div key={`gap-${gi}`} style={{ height: 8 }} />)}
                     </>}
                     <div
-                      onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
+                      onClick={() => { setActiveSession(null); setActiveWorkstream(prev => prev === ws.id ? null : ws.id); }}
                       style={{
                         padding: isPlayback ? '10px 10px 10px 0' : '6px 10px 6px 0',
                         fontSize: isPlayback ? 14 : 13,
@@ -615,7 +618,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                         >
                           {inRange && (
                             <div
-                              onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
+                              onClick={() => { setActiveSession(null); setActiveWorkstream(prev => prev === ws.id ? null : ws.id); }}
                               style={{
                                 width: '100%', height: isPlayback ? 36 : 24,
                                 background: isPlayback ? barColor : 'transparent',
@@ -643,49 +646,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                 })}
               </div>
 
-              {/* Workstream detail panel */}
-              {(() => {
-                const activeWs = activeWorkstream ? workstreams.find(w => w.id === activeWorkstream) : null;
-                const panelColor = activeWs?.type === 'playback' ? 'rgba(232,30,97' : 'rgba(255,180,0';
-                const accentColor = activeWs?.type === 'playback' ? 'var(--pink)' : 'var(--gold)';
-                return (
-                  <div style={{
-                    maxHeight: activeWs ? 600 : 0,
-                    opacity: activeWs ? 1 : 0,
-                    overflow: 'hidden',
-                    transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
-                  }}>
-                    {activeWs && (
-                      <div style={{
-                        background: `${panelColor},0.05)`, border: `1px solid ${panelColor},0.15)`,
-                        borderRadius: 10, padding: '24px 28px', marginTop: 12,
-                      }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: accentColor, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                            {activeWs.label}
-                          </div>
-                          {activeWs.date && (
-                            <span style={{ fontSize: 12, color: accentColor, fontWeight: 600 }}>{activeWs.date}</span>
-                          )}
-                        </div>
-                        <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.7, marginBottom: 16 }}>
-                          {activeWs.summary}
-                        </p>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
-                          {activeWs.details.map((col, ci) => (
-                            <div key={ci}>
-                              <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: col.color, marginBottom: 8, opacity: 0.8 }}>{col.heading}</div>
-                              {col.items.map((item, k) => (
-                                <div key={k} style={{ padding: '4px 0', borderBottom: `1px solid ${panelColor},0.06)`, fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
-                              ))}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })()}
+              {/* Workstream detail panel removed - renders in shared detail area below */}
 
               {/* Legend */}
               <div style={{ display: 'flex', gap: 24, marginTop: 16, flexWrap: 'wrap' }}>
@@ -704,132 +665,150 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
           </div>
         </Reveal>
 
-        {/* ── EXPANDED SESSION DETAIL ── */}
-        <div
-          ref={detailRef}
-          style={{
-            maxHeight: activeData ? 1200 : 0,
-            opacity: activeData ? 1 : 0,
-            overflow: 'hidden',
-            transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',
-            marginTop: activeData ? 24 : 0,
-          }}
-        >
-          {activeData && (
-            <div style={{
-              background: 'rgba(40,220,202,0.04)',
-              border: '1px solid rgba(40,220,202,0.15)',
-              borderRadius: 12,
-              padding: '28px 32px',
-            }}>
-              {/* Header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-                <div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--cyan)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
-                    Session {activeData.num} - {activeData.date}
-                  </div>
-                  <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--white)', margin: 0 }}>{activeData.title}</h3>
-                  <p style={{ fontSize: 14, color: 'var(--grey-light)', marginTop: 6 }}>{activeData.goal}</p>
-                </div>
+        {/* ── EXPANDED DETAIL (sessions + workstreams) ── */}
+        {(() => {
+          const accentColor = activeWsData ? (activeWsData.type === 'playback' ? 'var(--pink)' : 'var(--gold)') : 'var(--cyan)';
+          const panelBg = activeWsData ? (activeWsData.type === 'playback' ? 'rgba(232,30,97,0.04)' : 'rgba(255,180,0,0.04)') : 'rgba(40,220,202,0.04)';
+          const panelBorder = activeWsData ? (activeWsData.type === 'playback' ? 'rgba(232,30,97,0.15)' : 'rgba(255,180,0,0.15)') : 'rgba(40,220,202,0.15)';
+          return (
+            <div
+              ref={detailRef}
+              style={{
+                maxHeight: showDetail ? 1200 : 0,
+                opacity: showDetail ? 1 : 0,
+                overflow: 'hidden',
+                transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',
+                marginTop: showDetail ? 24 : 0,
+              }}
+            >
+              {showDetail && (
                 <div style={{
-                  padding: '4px 14px', borderRadius: 20,
-                  background: 'rgba(40,220,202,0.15)', color: 'var(--cyan)',
-                  fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 16,
+                  background: panelBg,
+                  border: `1px solid ${panelBorder}`,
+                  borderRadius: 12,
+                  padding: '28px 32px',
                 }}>
-                  {activeData.duration}
-                </div>
-              </div>
-
-              {/* Activities */}
-              <div style={{ marginBottom: 24 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.6 }}>Agenda</div>
-                <div style={{ display: 'grid', gap: 2 }}>
-                  {activeData.activities.filter(a => a.type !== 'break').map((a, i) => (
-                    <div key={i} style={{
-                      display: 'grid', gridTemplateColumns: '70px 1fr',
-                      padding: '7px 0',
-                      borderBottom: '1px solid rgba(255,255,255,0.04)',
-                    }}>
-                      <span style={{ fontSize: 12, color: 'var(--cyan)', fontWeight: 600 }}>{a.dur}</span>
-                      <span style={{ fontSize: 13, color: 'var(--white)' }}>{a.activity}</span>
+                  {/* Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: accentColor, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+                        {activeData ? `Session ${activeData.num} - ${activeData.date}` : activeWsData?.label}
+                      </div>
+                      <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--white)', margin: 0 }}>
+                        {activeData?.title ?? activeWsData?.label}
+                      </h3>
+                      <p style={{ fontSize: 14, color: 'var(--grey-light)', marginTop: 6 }}>
+                        {activeData?.goal ?? activeWsData?.summary}
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    {activeData && (
+                      <div style={{
+                        padding: '4px 14px', borderRadius: 20,
+                        background: 'rgba(40,220,202,0.15)', color: 'var(--cyan)',
+                        fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 16,
+                      }}>
+                        {activeData.duration}
+                      </div>
+                    )}
+                    {activeWsData?.date && (
+                      <div style={{
+                        padding: '4px 14px', borderRadius: 20,
+                        background: `${activeWsData.type === 'playback' ? 'rgba(232,30,97,0.15)' : 'rgba(255,180,0,0.15)'}`,
+                        color: accentColor,
+                        fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 16,
+                      }}>
+                        {activeWsData.date}
+                      </div>
+                    )}
+                  </div>
 
-              {/* 2x2 detail grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-                {/* AB Attendees */}
-                <div style={{ background: 'rgba(40,220,202,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(40,220,202,0.1)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>{client.shortName} Attendees</div>
-                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <tbody>
-                      {activeData.stakeholders.map((s, k) => {
-                        const parts = s.split(' - ');
-                        return (
-                          <tr key={k}>
-                            <td style={{ padding: '5px 0', borderBottom: k < activeData.stakeholders.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
-                            <td style={{ padding: '5px 0 5px 12px', borderBottom: k < activeData.stakeholders.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                  {/* Session: Activities */}
+                  {activeData && (
+                    <div style={{ marginBottom: 24 }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.6 }}>Agenda</div>
+                      <div style={{ display: 'grid', gap: 2 }}>
+                        {activeData.activities.filter(a => a.type !== 'break').map((a, i) => (
+                          <div key={i} style={{
+                            display: 'grid', gridTemplateColumns: '70px 1fr',
+                            padding: '7px 0',
+                            borderBottom: '1px solid rgba(255,255,255,0.04)',
+                          }}>
+                            <span style={{ fontSize: 12, color: 'var(--cyan)', fontWeight: 600 }}>{a.dur}</span>
+                            <span style={{ fontSize: 13, color: 'var(--white)' }}>{a.activity}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-                {/* KPS Team */}
-                <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.7 }}>KPS Team</div>
-                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <tbody>
-                      {activeData.kpsTeam.map((s, k) => {
-                        const parts = s.split(' - ');
-                        return (
-                          <tr key={k}>
-                            <td style={{ padding: '5px 0', borderBottom: k < activeData.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
-                            <td style={{ padding: '5px 0 5px 12px', borderBottom: k < activeData.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                  {/* Session: 2x2 grid */}
+                  {activeData && (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+                      <div style={{ background: 'rgba(40,220,202,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(40,220,202,0.1)' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>{client.shortName} Attendees</div>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}><tbody>
+                          {activeData.stakeholders.map((s, k) => { const parts = s.split(' - '); return (
+                            <tr key={k}><td style={{ padding: '5px 0', borderBottom: k < activeData.stakeholders.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td><td style={{ padding: '5px 0 5px 12px', borderBottom: k < activeData.stakeholders.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td></tr>
+                          ); })}
+                        </tbody></table>
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.7 }}>KPS Team</div>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}><tbody>
+                          {activeData.kpsTeam.map((s, k) => { const parts = s.split(' - '); return (
+                            <tr key={k}><td style={{ padding: '5px 0', borderBottom: k < activeData.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td><td style={{ padding: '5px 0 5px 12px', borderBottom: k < activeData.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td></tr>
+                          ); })}
+                        </tbody></table>
+                      </div>
+                      <div style={{ background: 'rgba(255,180,0,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,180,0,0.1)' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Client Preparation</div>
+                        {activeData.preparation.map((p, k) => (
+                          <div key={k} style={{ padding: '5px 0', borderBottom: k < activeData.preparation.length - 1 ? '1px solid rgba(255,180,0,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{p}</div>
+                        ))}
+                      </div>
+                      <div style={{ background: 'rgba(94,240,224,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(94,240,224,0.1)' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#5ef0e0', marginBottom: 10, opacity: 0.8 }}>Outputs</div>
+                        {activeData.outputs.map((o, k) => (
+                          <div key={k} style={{ padding: '5px 0', borderBottom: k < activeData.outputs.length - 1 ? '1px solid rgba(94,240,224,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{o}</div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-                {/* Preparation */}
-                <div style={{ background: 'rgba(255,180,0,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,180,0,0.1)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Client Preparation</div>
-                  {activeData.preparation.map((p, k) => (
-                    <div key={k} style={{ padding: '5px 0', borderBottom: k < activeData.preparation.length - 1 ? '1px solid rgba(255,180,0,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{p}</div>
-                  ))}
-                </div>
+                  {/* Workstream: 2-column detail */}
+                  {activeWsData && (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+                      {activeWsData.details.map((col, ci) => (
+                        <div key={ci}>
+                          <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: col.color, marginBottom: 10, opacity: 0.8 }}>{col.heading}</div>
+                          {col.items.map((item, k) => (
+                            <div key={k} style={{ padding: '5px 0', borderBottom: k < col.items.length - 1 ? `1px solid ${panelBorder}` : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                {/* Outputs */}
-                <div style={{ background: 'rgba(94,240,224,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(94,240,224,0.1)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#5ef0e0', marginBottom: 10, opacity: 0.8 }}>Outputs</div>
-                  {activeData.outputs.map((o, k) => (
-                    <div key={k} style={{ padding: '5px 0', borderBottom: k < activeData.outputs.length - 1 ? '1px solid rgba(94,240,224,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{o}</div>
-                  ))}
+                  {/* Close button */}
+                  <div style={{ textAlign: 'center', marginTop: 20 }}>
+                    <button
+                      onClick={() => { setActiveSession(null); setActiveWorkstream(null); }}
+                      style={{
+                        background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)',
+                        color: 'var(--grey-light)', padding: '6px 20px', borderRadius: 6,
+                        fontSize: 12, cursor: 'pointer', transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
-              </div>
-
-              {/* Close button */}
-              <div style={{ textAlign: 'center', marginTop: 20 }}>
-                <button
-                  onClick={() => setActiveSession(null)}
-                  style={{
-                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)',
-                    color: 'var(--grey-light)', padding: '6px 20px', borderRadius: 6,
-                    fontSize: 12, cursor: 'pointer', transition: 'all 0.2s',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
-                >
-                  Close
-                </button>
-              </div>
+              )}
             </div>
-          )}
-        </div>
+          );
+        })()}
 
         {/* ── Deliverables ── */}
         <section style={{ marginTop: 80 }}>
