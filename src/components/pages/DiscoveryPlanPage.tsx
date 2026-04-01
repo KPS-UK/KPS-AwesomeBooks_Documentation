@@ -605,7 +605,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
             <span className="section-label">Schedule</span>
             <h2>Timeline Overview</h2>
             <p className="section-intro">
-              Workshops run at <span className="hl">3-4 sessions per week</span> during weeks 1-4, reducing to 2-3 per week in weeks 5-6. Write-up runs in parallel from week 4. Final playback and sign-off targets week 7-8.
+              Ten sessions across <span className="hl">six weeks</span>, front-loaded so the big decisions land early. BRD and solution design run in parallel once enough ground has been covered, and a formal playback closes the phase before build begins.
             </p>
           </Reveal>
 
