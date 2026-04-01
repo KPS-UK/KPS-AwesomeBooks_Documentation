@@ -623,14 +623,6 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                             ))}
                           </div>
                         )}
-                        {session.risks && (
-                          <div style={{ background: 'rgba(232,30,97,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(232,30,97,0.1)', gridColumn: 'span 2' }}>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--pink)', marginBottom: 10, opacity: 0.8 }}>Key Risks</div>
-                            {session.risks.map((r, k) => (
-                              <div key={k} style={{ padding: '5px 0', borderBottom: k < session.risks!.length - 1 ? '1px solid rgba(232,30,97,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{r}</div>
-                            ))}
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
