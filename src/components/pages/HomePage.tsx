@@ -90,7 +90,7 @@ export default function HomePage({ navigateTo }: HomePageProps) {
         <Reveal>
           <div className="doc-rows">
             <div className="doc-row" onClick={() => navigateTo('discovery-timeline')}>
-              <div className="doc-row__badge doc-row__badge--scope"><span className="badge-dot" />Discovery</div>
+              <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Discovery</div>
               <div className="doc-row__body">
                 <h3>Discovery Timeline</h3>
                 <p>Interactive timeline of all 10 sessions, deliverables, and success factors. Click any session to explore.</p>
