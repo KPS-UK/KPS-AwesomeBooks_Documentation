@@ -547,17 +547,17 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                               style={{
                                 width: '100%', height: isPlayback ? 36 : 24,
-                                background: 'transparent',
+                                background: isPlayback ? barColor : 'transparent',
                                 borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
                                 cursor: 'pointer',
                                 transition: 'all 0.2s',
-                                border: `1.5px solid ${barColor}`,
-                                borderLeftWidth: isStart ? '1.5px' : '0',
-                                borderRightWidth: isEnd ? '1.5px' : '0',
+                                border: isPlayback ? 'none' : `1.5px solid ${barColor}`,
+                                borderLeftWidth: isPlayback ? '0' : isStart ? '1.5px' : '0',
+                                borderRightWidth: isPlayback ? '0' : isEnd ? '1.5px' : '0',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 fontSize: isPlayback ? 14 : 10,
                                 fontWeight: 700,
-                                color: barColor,
+                                color: isPlayback ? 'var(--white)' : barColor,
                                 opacity: isWsActive ? 1 : 0.7,
                               }}
                             >
