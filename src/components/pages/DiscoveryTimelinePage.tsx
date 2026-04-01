@@ -868,7 +868,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                         <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 3 }}>{d.desc}</div>
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-                        <span style={{ fontSize: 11, color: d.color, fontWeight: 600, opacity: 0.8 }}>
+                        <span style={{ fontSize: 11, color: 'var(--cyan)', fontWeight: 600, opacity: 0.8 }}>
                           {d.feedingSessions.length} sessions
                         </span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDelActive ? d.color : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
