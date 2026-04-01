@@ -28,7 +28,8 @@ interface Session {
   title: string;
   goal: string;
   duration: string;
-  week: string;
+  date: string;
+  kpsTeam: string[];
   activities: Activity[];
   stakeholders?: string[];
   preparation?: string[];
@@ -41,7 +42,8 @@ const sessions: Session[] = [
     id: 's1', num: 1,
     title: 'Vision, Goals & Customer Journeys',
     goal: 'Align on commercial objectives and how customers interact with the brand.',
-    duration: '~3 hrs', week: 'Week 1',
+    duration: '2-3 hrs', date: '14 Apr',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '15 min', activity: 'Welcome, introductions, agenda walkthrough', type: 'prep', facilitator: 'PM', notes: 'Set the tone, confirm attendees' },
       { dur: '30 min', activity: 'Revenue targets, growth trajectory, commercial vision', type: 'workshop', facilitator: 'SA', notes: 'Capture current revenue baseline and ambition' },
@@ -52,7 +54,7 @@ const sessions: Session[] = [
       { dur: '15 min', activity: 'Checkout performance: what % of revenue is impacted today?', type: 'decision', facilitator: 'SA', notes: 'Quantify the checkout problem' },
       { dur: '15 min', activity: 'Agree primary success metrics and priority journeys for MVP', type: 'decision', facilitator: 'SA / PM', notes: 'Formal decision capture' },
     ],
-    stakeholders: ['CMO / Head of Ecommerce', 'UX/UI lead', 'Customer support lead'],
+    stakeholders: ['CTO / Head of Ecommerce', 'UX/UI lead', 'Customer support lead'],
     preparation: ['Current revenue and KPI data', 'Existing customer journey documentation (if any)', 'Known pain points and support ticket themes'],
     outputs: ['Success metrics framework', 'Journey maps (draft)'],
   },
@@ -60,7 +62,8 @@ const sessions: Session[] = [
     id: 's2', num: 2,
     title: 'Product Model, Search & Discovery',
     goal: 'Define how customers find and explore products.',
-    duration: '~3.5 hrs', week: 'Week 1-2',
+    duration: '3-4 hrs', date: '15 Apr',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '15 min', activity: 'Recap Session 1 decisions; set agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '35 min', activity: 'Product structure deep-dive: editions, condition, variants', type: 'workshop', facilitator: 'SA', notes: 'Explore whether variants or separate products suit the catalogue' },
@@ -72,7 +75,7 @@ const sessions: Session[] = [
       { dur: '20 min', activity: 'Decision: product model structure (variants vs separate products)', type: 'decision', facilitator: 'SA', notes: '' },
       { dur: '20 min', activity: 'Decision: search approach and ranking/merchandising strategy', type: 'decision', facilitator: 'SA', notes: '' },
     ],
-    stakeholders: ['Merchandising team', 'Product/data owner', 'Ecommerce lead'],
+    stakeholders: ['Merchandising / Product Owner', 'Head of Ecommerce'],
     preparation: ['Product data export / sample', 'Current catalogue size and growth projections', 'Existing taxonomy and tagging approach'],
     outputs: ['Product data model (draft)', 'Search strategy recommendation'],
     risks: ['Inadequate product modelling limiting search and recommendations', 'Handling the size of the product dataset within platform limits'],
@@ -81,7 +84,8 @@ const sessions: Session[] = [
     id: 's3', num: 3,
     title: 'Promotions, Pricing & Loyalty',
     goal: 'Define commercial levers that drive revenue.',
-    duration: '~2.5 hrs', week: 'Week 2',
+    duration: '2.5-3 hrs', date: '16 Apr',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Promotion types: bundles, series-based, cohort-based', type: 'workshop', facilitator: 'SA', notes: 'Map current promotions and frequency' },
@@ -92,16 +96,35 @@ const sessions: Session[] = [
       { dur: '15 min', activity: 'Wholesale vs D2C pricing differences', type: 'workshop', facilitator: 'SA', notes: 'Are these separate storefronts or segments?' },
       { dur: '10 min', activity: 'Decisions: MVP promotion types, complexity limits, native vs app', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['Marketing team', 'CRM owner', 'Ecommerce manager'],
+    stakeholders: ['Marketing / CRM', 'Head of Ecommerce'],
     preparation: ['List of current promotion types and rules', 'CRM setup and current automations', 'Loyalty programme details'],
     outputs: ['Promotions capability map', 'Loyalty integration approach'],
     risks: ['Over-complex promotions exceeding platform capability'],
   },
   {
+    id: 's10', num: 10,
+    title: 'Ways of Working',
+    goal: 'Establish roles, responsibilities, and delivery approach.',
+    duration: '2-3 hrs', date: 'W/C 20 Apr',
+    kpsTeam: ['Simon', 'Leigh D', 'Ro', 'Luke'],
+    activities: [
+      { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
+      { dur: '30 min', activity: 'Roles and responsibilities: marketing vs development ownership', type: 'workshop', facilitator: 'PM', notes: '' },
+      { dur: '30 min', activity: 'Delivery approach: sprints, cadence, tooling', type: 'workshop', facilitator: 'PM', notes: '' },
+      { dur: '15 min', activity: 'Break', type: 'break', facilitator: '', notes: '' },
+      { dur: '30 min', activity: 'Communication channels, escalation paths, decision-making', type: 'workshop', facilitator: 'PM', notes: '' },
+      { dur: '20 min', activity: 'Definition of done, QA process, release management', type: 'workshop', facilitator: 'PM', notes: '' },
+      { dur: '15 min', activity: 'Decisions: delivery model, sprint cadence, governance', type: 'decision', facilitator: 'PM', notes: '' },
+    ],
+    stakeholders: ['Core Team'],
+    outputs: ['Ways of working document', 'Delivery approach agreement'],
+  },
+  {
     id: 's4', num: 4,
     title: 'Personalisation, AI & CRM',
     goal: 'Define how experiences are tailored to users.',
-    duration: '~2.5 hrs', week: 'Week 2-3',
+    duration: '3 hrs', date: '28 Apr',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '25 min', activity: 'Segmentation strategy: cohorts, behavioural triggers', type: 'workshop', facilitator: 'SA', notes: 'What data exists today?' },
@@ -112,7 +135,7 @@ const sessions: Session[] = [
       { dur: '15 min', activity: 'Decision: personalisation ownership (tools vs custom)', type: 'decision', facilitator: 'SA', notes: '' },
       { dur: '15 min', activity: 'Decision: MVP vs future-state scope; data sources for segmentation', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['CRM / marketing automation lead', 'Data team', 'Ecommerce lead', 'Customer support'],
+    stakeholders: ['CRM / Data'],
     outputs: ['Personalisation framework', 'Data requirements document'],
     risks: ['Personalisation ambition exceeding available data and tooling'],
   },
@@ -120,7 +143,8 @@ const sessions: Session[] = [
     id: 's5', num: 5,
     title: 'CMS, Content & Experimentation',
     goal: 'Define how marketing teams manage and optimise content.',
-    duration: '~2.5 hrs', week: 'Week 3',
+    duration: '2-2.5 hrs', date: '30 Apr',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '25 min', activity: 'Page creation workflows: current process and pain points', type: 'workshop', facilitator: 'SA', notes: '' },
@@ -131,14 +155,15 @@ const sessions: Session[] = [
       { dur: '15 min', activity: 'Decision: CMS approach (native vs headless)', type: 'decision', facilitator: 'SA', notes: '' },
       { dur: '10 min', activity: 'Decision: marketing autonomy vs governance; experimentation tooling', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['Marketing / content team', 'Ecommerce manager', 'UX lead'],
+    stakeholders: ['Marketing', 'UX Lead'],
     outputs: ['CMS approach recommendation', 'Experimentation framework'],
   },
   {
     id: 's6', num: 6,
     title: 'Third-Party Ecosystem & Integrations',
     goal: 'Define how the platform operates within the wider commerce ecosystem.',
-    duration: '~3.5 hrs', week: 'Week 3-4',
+    duration: '3-4 hrs', date: '1 May',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '35 min', activity: 'Full ecosystem mapping: platform + all third-party systems', type: 'workshop', facilitator: 'SA', notes: 'Whiteboard/Miro exercise: map every system' },
@@ -150,15 +175,16 @@ const sessions: Session[] = [
       { dur: '20 min', activity: 'Decision: system ownership per capability', type: 'decision', facilitator: 'SA', notes: '' },
       { dur: '20 min', activity: 'Decision: integration approach per platform; acceptable app reliance', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['CTO / Technical Architect', 'Data/analytics team', 'CRM / marketing automation lead', 'Ecommerce lead'],
+    stakeholders: ['CTO', 'Head of Ecommerce', 'SysOps'],
     outputs: ['Ecosystem architecture view', 'Integration ownership model', 'High-level data flow diagrams'],
     risks: ['Fragmented architecture from unclear ownership across tools', 'Over-reliance on apps impacting performance and maintainability', 'Conflicting logic across platforms (e.g. personalisation vs promotions)'],
   },
   {
     id: 's7', num: 7,
-    title: 'Architecture, ERP & Data',
+    title: 'Architecture, ERP & Data (+ Checkout & Payments)',
     goal: 'Define the technical backbone of the platform.',
-    duration: '~3.5 hrs', week: 'Week 4',
+    duration: '3-4 hrs', date: '6 May',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Order lifecycle walkthrough: end-to-end', type: 'workshop', facilitator: 'SA', notes: 'Map the full order journey from basket to fulfilment' },
@@ -170,7 +196,7 @@ const sessions: Session[] = [
       { dur: '20 min', activity: 'Decision: system ownership of orders, inventory, pricing', type: 'decision', facilitator: 'SA', notes: '' },
       { dur: '20 min', activity: 'Decision: integration architecture; core vs app-based capabilities', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['CTO / Tech lead', 'ERP team', 'Data/analytics team', 'Operations / fulfilment'],
+    stakeholders: ['CTO', 'SysOps'],
     outputs: ['Architecture definition (draft)', 'Integration model'],
     risks: ['ERP uncertainty impacting architecture decisions', 'Over-reliance on apps creating fragmented architecture'],
   },
@@ -178,7 +204,8 @@ const sessions: Session[] = [
     id: 's8', num: 8,
     title: 'Checkout & Payments Deep Dive',
     goal: 'Nail down the checkout experience and payment flows.',
-    duration: '~3 hrs', week: 'Week 4-5',
+    duration: '2-3 hrs', date: '7 May',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Checkout experience: express checkout, guest vs logged-in, mobile', type: 'workshop', facilitator: 'SA', notes: '' },
@@ -189,7 +216,7 @@ const sessions: Session[] = [
       { dur: '20 min', activity: 'Integration impact on checkout performance', type: 'workshop', facilitator: 'SA', notes: 'Script audit, third-party load times' },
       { dur: '20 min', activity: 'Decisions: capture strategy, complex basket handling, checkout priorities, fraud approach', type: 'decision', facilitator: 'SA / PM', notes: '' },
     ],
-    stakeholders: ['Finance', 'Ecommerce lead', 'Technical architect', 'Operations / fulfilment'],
+    stakeholders: ['CTO', 'Head of Ecommerce'],
     outputs: ['Checkout experience specification', 'Payment flow diagrams'],
     risks: ['Poor checkout performance impacting conversion', 'Misalignment between payment flows and fulfilment/ERP', 'Inability to support complex order scenarios (split, pre-order)'],
   },
@@ -197,7 +224,8 @@ const sessions: Session[] = [
     id: 's9', num: 9,
     title: 'Operating Model, MVP Scope & Playback',
     goal: 'Align on how the platform will be delivered and operated.',
-    duration: '~3 hrs', week: 'Week 5-6',
+    duration: '2-3 hrs', date: '12 May',
+    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
       { dur: '15 min', activity: 'Full discovery recap: key decisions and open items', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Roles and responsibilities: marketing vs development ownership', type: 'workshop', facilitator: 'PM / SA', notes: '' },
@@ -208,7 +236,7 @@ const sessions: Session[] = [
       { dur: '20 min', activity: 'Decision: final MVP scope, phased roadmap, governance model', type: 'decision', facilitator: 'SA / PM', notes: '' },
       { dur: '20 min', activity: 'Playback of all discovery findings to senior stakeholders', type: 'output', facilitator: 'SA / PM', notes: 'Formal presentation and sign-off' },
     ],
-    stakeholders: ['Senior stakeholders (C-level)', 'Ecommerce lead', 'Engineering lead', 'Delivery / PMO'],
+    stakeholders: ['Core Team'],
     outputs: ['Operating model', 'Final MVP scope', 'Validated discovery findings', 'Phased roadmap'],
   },
 ];
@@ -221,28 +249,28 @@ interface ScheduleRow {
 }
 
 const scheduleRows: ScheduleRow[] = [
-  { label: 'S1: Vision, Goals & Journeys', weeks: ['prep', 'workshop', '', '', '', '', '', '', ''] },
-  { label: 'S2: Product Model & Search', weeks: ['prep', 'workshop', 'workshop', '', '', '', '', '', ''] },
-  { label: 'S3: Promotions & Loyalty', weeks: ['', '', 'workshop', '', '', '', '', '', ''] },
-  { label: 'S4: Personalisation & CRM', weeks: ['', '', 'workshop', 'workshop', '', '', '', '', ''] },
-  { label: 'S5: CMS & Content', weeks: ['', '', '', 'workshop', '', '', '', '', ''] },
-  { label: 'S6: Ecosystem & Integrations', weeks: ['', '', '', 'workshop', 'workshop', '', '', '', ''] },
-  { label: 'S7: Architecture & ERP', weeks: ['', '', '', '', 'workshop', '', '', '', ''] },
-  { label: 'S8: Checkout & Payments', weeks: ['', '', '', '', 'workshop', 'workshop', '', '', ''] },
-  { label: 'S9: Operating Model & MVP', weeks: ['', '', '', '', '', 'workshop', 'workshop', '', ''] },
-  { label: 'Mop-up Sessions', weeks: ['', '', '', '', '', '', 'workshop', '', ''] },
-  { label: 'BRD Write-up', bold: true, weeks: ['', '', '', '', 'writeup', 'writeup', 'writeup', 'writeup', ''] },
-  { label: 'Solution Design', bold: true, weeks: ['', '', '', '', '', 'writeup', 'writeup', 'writeup', ''] },
-  { label: 'Project Estimation', bold: true, weeks: ['', '', '', '', '', '', 'writeup', 'writeup', ''] },
-  { label: 'Scope Playback', bold: true, weeks: ['', '', '', '', '', 'playback', '', '', ''] },
-  { label: 'Full Playback & Sign-off', bold: true, weeks: ['', '', '', '', '', '', '', 'playback', 'playback'] },
+  { label: 'S1: Vision, Goals & Journeys', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S2: Product Model & Search', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S3: Promotions & Loyalty', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S10: Ways of Working', weeks: ['', 'workshop', '', '', '', ''] },
+  { label: 'S4: Personalisation & CRM', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S5: CMS & Content', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S6: Ecosystem & Integrations', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S7: Architecture, ERP & Data', weeks: ['', '', '', 'workshop', '', ''] },
+  { label: 'S8: Checkout & Payments', weeks: ['', '', '', 'workshop', '', ''] },
+  { label: 'S9: Operating Model & MVP', weeks: ['', '', '', '', 'workshop', ''] },
+  { label: 'BRD Write-up', bold: true, weeks: ['', '', 'writeup', 'writeup', 'writeup', 'writeup'] },
+  { label: 'Solution Design', bold: true, weeks: ['', '', '', 'writeup', 'writeup', 'writeup'] },
+  { label: 'Project Estimation', bold: true, weeks: ['', '', '', '', 'writeup', 'writeup'] },
+  { label: 'Scope Playback', bold: true, weeks: ['', '', '', 'playback', '', ''] },
+  { label: 'Full Playback & Sign-off', bold: true, weeks: ['', '', '', '', '', 'playback'] },
 ];
 
-const weekHeaders = ['Prep', 'Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6', 'Wk 7', 'Wk 8'];
+const weekHeaders = ['14 Apr', '21 Apr', '28 Apr', '5 May', '12 May', '19 May'];
 
 /* ── Deliverables ── */
 const deliverables = [
-  { title: 'Business Requirements Document', desc: 'Gap analysis of current vs future state, prioritised by business impact. A focused scope for what needs to change, validated by stakeholders across all 9 sessions.' },
+  { title: 'Business Requirements Document', desc: 'Gap analysis of current vs future state, prioritised by business impact. A focused scope for what needs to change, validated by stakeholders across all 10 sessions.' },
   { title: 'Solution Architecture', desc: 'Target architecture, integration patterns, and technology recommendations grounded in evidence and trade-off analysis. Defensible decisions the team can own.' },
   { title: 'Integration Catalogue', desc: 'Complete mapping of every third-party system, data flow, ownership model, and integration pattern. The single source of truth for how the ecosystem connects.' },
   { title: 'MVP Scope & Phased Roadmap', desc: 'A clear line between what ships first and what comes later. Costed, sequenced, with dependencies mapped and risks quantified.' },
@@ -254,7 +282,7 @@ const keyRisks = [
   { risk: 'ERP integration uncertainty', desc: 'Current ERP landscape is evolving. Architecture decisions depend on understanding where inventory, pricing, and order truth lives.', mitigation: 'Dedicated Session 7 focus; require ERP documentation before the session; design for abstraction at the integration layer.' },
   { risk: 'Product data complexity', desc: 'Large catalogue with complex relationships (editions, authors, series) may exceed platform-native limits or require external tooling.', mitigation: 'Session 2 product data assessment; early prototype of data model; search strategy decision before build phase.' },
   { risk: 'Scope creep in personalisation', desc: 'Ambition for personalised experiences may outstrip available data, tooling, and team capacity.', mitigation: 'Session 4 explicitly separates MVP from future-state; decisions captured and signed off before build.' },
-  { risk: 'Stakeholder availability', desc: 'Discovery sessions require key decision-makers. Gaps in attendance delay decisions and create rework.', mitigation: 'Pre-schedule all 9 sessions in prep week; confirm attendees; provide async decision capture for unavoidable conflicts.' },
+  { risk: 'Stakeholder availability', desc: 'Discovery sessions require key decision-makers. Gaps in attendance delay decisions and create rework.', mitigation: 'Pre-schedule all 10 sessions in prep week; confirm attendees; provide async decision capture for unavoidable conflicts.' },
 ];
 
 /* ── Type badge component ── */
@@ -333,7 +361,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
     <>
       <Hero
         title={<>Discovery<br /><span className="accent">Plan</span></>}
-        subtitle={`A structured 6-8 week discovery phase for ${client.name}, covering 9 facilitated sessions from commercial vision through to MVP scope and sign-off.`}
+        subtitle={`A structured 6-8 week discovery phase for ${client.name}, covering 10 facilitated sessions from commercial vision through to MVP scope and sign-off.`}
       />
 
       <StickyNav
@@ -352,6 +380,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
         { id: 'dp-s1', label: '1. Vision & Goals' },
         { id: 'dp-s2', label: '2. Product & Search' },
         { id: 'dp-s3', label: '3. Promotions' },
+        { id: 'dp-s10', label: '10. Ways of Working' },
         { id: 'dp-s4', label: '4. Personalisation' },
         { id: 'dp-s5', label: '5. CMS & Content' },
         { id: 'dp-s6', label: '6. Integrations' },
@@ -381,7 +410,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
                   </svg>
                 </div>
-                <div className="stat-label">9</div>
+                <div className="stat-label">10</div>
                 <div className="stat-desc">Discovery sessions</div>
               </div>
               <div className="stat-box">
@@ -436,7 +465,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
         <section className="section" id="dp-sessions">
           <Reveal>
             <span className="section-label">Discovery Sessions</span>
-            <h2>9 Structured Sessions</h2>
+            <h2>10 Structured Sessions</h2>
             <p className="section-intro">
               Each session is designed around <span className="hl">specific decisions</span> that need to be made. Click any session to see the detailed agenda, stakeholders, and outputs.
             </p>
@@ -493,7 +522,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
                       <span style={{ fontSize: 12, color: 'var(--cyan)', fontWeight: 600 }}>{session.duration}</span>
-                      <span style={{ fontSize: 12, color: 'var(--gold)', fontWeight: 600 }}>{session.week}</span>
+                      <span style={{ fontSize: 12, color: 'var(--gold)', fontWeight: 600 }}>{session.date}</span>
                       <Chevron open={isOpen} />
                     </div>
                   </button>
@@ -547,9 +576,22 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
 
                       {/* Sub-sections grid */}
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, marginTop: 20 }}>
+                        {session.kpsTeam && (
+                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
+                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--white)', marginBottom: 8 }}>KPS Team</div>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                              {session.kpsTeam.map((s, k) => (
+                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
+                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: 'var(--white)' }} />
+                                  {s}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         {session.stakeholders && (
                           <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--cyan)', marginBottom: 8 }}>Stakeholders Required</div>
+                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--cyan)', marginBottom: 8 }}>{client.shortName} Attendees</div>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                               {session.stakeholders.map((s, k) => (
                                 <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
