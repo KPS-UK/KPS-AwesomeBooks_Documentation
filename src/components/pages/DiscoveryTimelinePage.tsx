@@ -32,7 +32,7 @@ interface Session {
   activities: Activity[];
   stakeholders: string[];
   preparation: string[];
-  outputs: string[];
+  outputs: { label: string; deliverableId: string }[];
 }
 
 const sessions: Session[] = [
@@ -54,7 +54,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Current revenue and KPI data', 'Existing customer journey documentation (if any)', 'Known pain points and support ticket themes'],
-    outputs: ['Success metrics framework', 'Journey maps (draft)'],
+    outputs: [{ label: 'Success metrics framework', deliverableId: 'brd' }, { label: 'Journey maps (draft)', deliverableId: 'brd' }],
   },
   {
     id: 's2', num: 2, shortTitle: 'Product & Search',
@@ -75,7 +75,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Product data export / sample', 'Current catalogue size and growth projections', 'Existing taxonomy and tagging approach'],
-    outputs: ['Product data model (draft)', 'Search strategy recommendation'],
+    outputs: [{ label: 'Product data model (draft)', deliverableId: 'architecture' }, { label: 'Search strategy recommendation', deliverableId: 'architecture' }],
   },
   {
     id: 's3', num: 3, shortTitle: 'Promotions',
@@ -95,7 +95,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['List of current promotion types and rules', 'CRM setup and current automations', 'Loyalty programme details'],
-    outputs: ['Promotions capability map', 'Loyalty integration approach'],
+    outputs: [{ label: 'Promotions capability map', deliverableId: 'brd' }, { label: 'Loyalty integration approach', deliverableId: 'integrations' }],
   },
   {
     id: 's4', num: 4, shortTitle: 'Ways of Working',
@@ -114,7 +114,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Current team structure and roles', 'Preferred tools for project management and communication', 'Any existing delivery processes or constraints'],
-    outputs: ['Ways of working document', 'Delivery approach agreement'],
+    outputs: [{ label: 'Ways of working document', deliverableId: 'opmodel' }, { label: 'Delivery approach agreement', deliverableId: 'opmodel' }],
   },
   {
     id: 's5', num: 5, shortTitle: 'Personalisation',
@@ -134,7 +134,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Current customer segmentation approach', 'Available data sources for personalisation', 'Examples of personalised experiences you admire'],
-    outputs: ['Personalisation framework', 'Data requirements document'],
+    outputs: [{ label: 'Personalisation framework', deliverableId: 'brd' }, { label: 'Data requirements document', deliverableId: 'architecture' }],
   },
   {
     id: 's6', num: 6, shortTitle: 'CMS & Content',
@@ -154,7 +154,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Current content creation workflow and pain points', 'Examples of page types and campaign content', 'Any A/B testing or experimentation done to date'],
-    outputs: ['CMS approach recommendation', 'Experimentation framework'],
+    outputs: [{ label: 'CMS approach recommendation', deliverableId: 'brd' }, { label: 'Experimentation framework', deliverableId: 'brd' }],
   },
   {
     id: 's7', num: 7, shortTitle: 'Integrations',
@@ -175,7 +175,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['List of all third-party systems and tools in use', 'Access credentials or documentation for key integrations', 'Known integration pain points or data quality issues'],
-    outputs: ['Ecosystem architecture view', 'Integration ownership model', 'High-level data flow diagrams'],
+    outputs: [{ label: 'Ecosystem architecture view', deliverableId: 'architecture' }, { label: 'Integration ownership model', deliverableId: 'integrations' }, { label: 'High-level data flow diagrams', deliverableId: 'integrations' }],
   },
   {
     id: 's8', num: 8, shortTitle: 'Architecture',
@@ -196,7 +196,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['ERP documentation and current integration approach', 'Order lifecycle overview from basket to fulfilment', 'Analytics and tracking setup (GA4, tag manager, etc.)'],
-    outputs: ['Architecture definition (draft)', 'Integration model'],
+    outputs: [{ label: 'Architecture definition (draft)', deliverableId: 'architecture' }, { label: 'Integration model', deliverableId: 'integrations' }],
   },
   {
     id: 's9', num: 9, shortTitle: 'Checkout',
@@ -216,7 +216,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Current payment provider details and configuration', 'Known checkout drop-off data or conversion metrics', 'Examples of complex order scenarios (split, pre-order, mixed)'],
-    outputs: ['Checkout experience specification', 'Payment flow diagrams'],
+    outputs: [{ label: 'Checkout experience specification', deliverableId: 'brd' }, { label: 'Payment flow diagrams', deliverableId: 'integrations' }],
   },
   {
     id: 's10', num: 10, shortTitle: 'MVP & Playback',
@@ -234,7 +234,7 @@ const sessions: Session[] = [
     ],
     stakeholders: ['Mubin Ahmed - General Director', 'Mikey Warner - Group Technology Director', 'Mark Booth - UX/UI Lead'],
     preparation: ['Draft feature list or wish-list for MVP', 'Internal view on team capacity and timelines', 'Any budget or deadline constraints'],
-    outputs: ['Operating model', 'Final MVP scope', 'Validated discovery findings', 'Phased roadmap'],
+    outputs: [{ label: 'Operating model', deliverableId: 'opmodel' }, { label: 'Final MVP scope', deliverableId: 'mvp' }, { label: 'Validated discovery findings', deliverableId: 'brd' }, { label: 'Phased roadmap', deliverableId: 'mvp' }],
   },
 ];
 
@@ -368,7 +368,7 @@ const keyRisks: KeyRisk[] = [
     id: 'checkout', risk: 'Delivering a checkout that converts better than today',
     desc: 'Shopify Checkout is a major opportunity. Discovery needs to ensure the checkout design, payment flows, and third-party integrations are optimised to improve conversion from day one.',
     addressedInSessions: [9],
-    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'KPS brings conversion benchmarks from similar Shopify Plus migrations', 'Every third-party script and app assessed for checkout performance impact', 'Checkout design validated against current performance baseline'],
+    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'Checkout design validated against current performance baseline'],
   },
 ];
 
@@ -783,9 +783,34 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       </div>
                       <div style={{ background: 'rgba(94,240,224,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(94,240,224,0.1)' }}>
                         <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#5ef0e0', marginBottom: 10, opacity: 0.8 }}>Outputs</div>
-                        {activeData.outputs.map((o, k) => (
-                          <div key={k} style={{ padding: '5px 0', borderBottom: k < activeData.outputs.length - 1 ? '1px solid rgba(94,240,224,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{o}</div>
-                        ))}
+                        {activeData.outputs.map((o, k) => {
+                          const targetDel = deliverables.find(d => d.id === o.deliverableId);
+                          return (
+                            <div key={k}
+                              onClick={() => {
+                                setActiveSession(null);
+                                setActiveDeliverable(o.deliverableId);
+                                setTimeout(() => {
+                                  document.getElementById('deliverables-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 100);
+                              }}
+                              style={{
+                                padding: '6px 10px', marginBottom: 4,
+                                background: 'rgba(94,240,224,0.06)',
+                                border: '1px solid rgba(94,240,224,0.12)',
+                                borderRadius: 6, cursor: 'pointer',
+                                fontSize: 13, color: 'var(--white)',
+                                transition: 'all 0.2s',
+                                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                              }}
+                              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(94,240,224,0.12)'; }}
+                              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(94,240,224,0.06)'; }}
+                            >
+                              <span>{o.label}</span>
+                              {targetDel && <span style={{ fontSize: 10, color: '#5ef0e0', opacity: 0.7, marginLeft: 8, whiteSpace: 'nowrap' }}>{targetDel.title} &rarr;</span>}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -826,7 +851,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         })()}
 
         {/* ── Deliverables ── */}
-        <section style={{ marginTop: 80 }}>
+        <section id="deliverables-section" style={{ marginTop: 80 }}>
           <Reveal>
             <span className="section-label">Outputs</span>
             <h2>Key Deliverables</h2>
