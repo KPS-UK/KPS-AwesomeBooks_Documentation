@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { client, kps, hiddenPages } from '@/data/client-config';
 
 interface HomePageProps {
-  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options' | 'discovery-plan') => void;
+  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options' | 'discovery-plan' | 'discovery-timeline') => void;
 }
 
 export default function HomePage({ navigateTo }: HomePageProps) {
@@ -98,6 +98,16 @@ export default function HomePage({ navigateTo }: HomePageProps) {
 
         <Reveal delay={0.1}>
           <div className="doc-rows">
+            {isVisible('discovery-timeline') && <div className="doc-row" onClick={() => navigateTo('discovery-timeline')}>
+              <div className="doc-row__badge doc-row__badge--phased"><span className="badge-dot" />Interactive</div>
+              <div className="doc-row__body">
+                <h3>Discovery Timeline</h3>
+                <p>Interactive timeline view of all 10 discovery sessions. Click any session to explore the detail.</p>
+              </div>
+              <div className="doc-row__date">Apr 2026</div>
+              <div className="doc-row__arrow">&rarr;</div>
+            </div>}
+
             {isVisible('discovery-plan') && <div className="doc-row" onClick={() => navigateTo('discovery-plan')}>
               <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Active</div>
               <div className="doc-row__body">
