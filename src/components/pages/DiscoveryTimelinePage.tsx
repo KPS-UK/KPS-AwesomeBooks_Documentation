@@ -861,7 +861,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     >
                       <div style={{
                         width: 4, height: 36, borderRadius: 2,
-                        background: d.color, flexShrink: 0,
+                        background: 'var(--cyan)', flexShrink: 0,
                       }} />
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)' }}>{d.title}</div>
@@ -947,7 +947,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <p className="section-intro">
               These are the risks identified before discovery begins. Each one is addressed by specific sessions.
             </p>
-            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--cyan)', fontSize: 16 }}>
+            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--pink)', fontSize: 16 }}>
               Click any risk to see how it will be mitigated and which sessions address it.
             </p>
           </Reveal>
