@@ -364,12 +364,6 @@ const keyRisks: KeyRisk[] = [
     addressedInSessions: [4, 10],
     mitigations: ['Every session ends with formal decision capture agreed by both teams', 'KPS writes up and shares decisions within 48 hours', 'Ways of working (Session 4) establishes governance and accountability', 'Full playback ensures every decision is reviewed and confirmed before build'],
   },
-  {
-    id: 'checkout', risk: 'Delivering a checkout that converts better than today',
-    desc: 'Shopify Checkout is a major opportunity. Discovery needs to ensure the checkout design, payment flows, and third-party integrations are optimised to improve conversion from day one.',
-    addressedInSessions: [9],
-    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'Checkout design validated against current performance baseline'],
-  },
 ];
 
 /* ── Helpers ── */
