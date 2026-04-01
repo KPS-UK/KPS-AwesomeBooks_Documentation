@@ -194,6 +194,7 @@ export const pageTitles: Record<string, string> = {
   factsheet: `Platform Factsheet - ${client.name} × KPS`,
   discovery: `Discovery & Technical Design - ${client.name} × KPS`,
   'consolidation-options': `Consolidation Options - ${client.name} × KPS`,
+  'discovery-plan': `Discovery Plan - ${client.name} × KPS`,
 };
 
 /**

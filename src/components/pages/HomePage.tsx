@@ -6,12 +6,12 @@ import Footer from '@/components/Footer';
 import { client, kps, metrics, platform, audit, hiddenPages } from '@/data/client-config';
 
 interface HomePageProps {
-  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options') => void;
+  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options' | 'discovery-plan') => void;
 }
 
 export default function HomePage({ navigateTo }: HomePageProps) {
   const allHidden = hiddenPages.length > 0 &&
-    ['rfp', 'audit', 'phased', 'qa', 'technical-audit-report', 'factsheet', 'discovery', 'consolidation-options']
+    ['rfp', 'audit', 'phased', 'qa', 'technical-audit-report', 'factsheet', 'discovery', 'consolidation-options', 'discovery-plan']
       .every(p => hiddenPages.includes(p));
   const isVisible = (page: string) => !hiddenPages.includes(page);
 
@@ -255,6 +255,16 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               <div className="doc-row__body">
                 <h3>Consolidation Options Explorer</h3>
                 <p>Interactive tool to explore how prioritising cost, agility, or BU autonomy affects the consolidation strategy.</p>
+              </div>
+              <div className="doc-row__date">&nbsp;</div>
+              <div className="doc-row__arrow">&rarr;</div>
+            </div>}
+
+            {isVisible('discovery-plan') && <div className="doc-row" onClick={() => navigateTo('discovery-plan')}>
+              <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Interactive</div>
+              <div className="doc-row__body">
+                <h3>Discovery Plan</h3>
+                <p>Detailed 9-session discovery plan with expandable agendas, schedule, deliverables, and risk mitigations.</p>
               </div>
               <div className="doc-row__date">&nbsp;</div>
               <div className="doc-row__arrow">&rarr;</div>
