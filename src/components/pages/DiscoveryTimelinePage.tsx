@@ -515,7 +515,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       style={{
                         padding: isPlayback ? '10px 10px 10px 0' : '6px 10px 6px 0',
                         fontSize: isPlayback ? 14 : 13,
-                        color: isPlayback ? 'var(--pink)' : isWsActive ? barColor : 'var(--grey-light)',
+                        color: barColor,
                         fontWeight: 600, display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.03)',
                         whiteSpace: 'nowrap',
