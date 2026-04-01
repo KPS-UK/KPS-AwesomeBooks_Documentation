@@ -361,7 +361,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
     <>
       <Hero
         title={<>Discovery<br /><span className="accent">Plan</span></>}
-        subtitle={`A structured 6-8 week discovery phase for ${client.name}, covering 10 facilitated sessions from commercial vision through to MVP scope and sign-off.`}
+        subtitle={`A structured 6-week discovery phase for ${client.name}, covering 10 facilitated sessions from commercial vision through to MVP scope and sign-off.`}
       />
 
       <StickyNav
@@ -419,7 +419,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                     <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
-                <div className="stat-label">6-8</div>
+                <div className="stat-label">6</div>
                 <div className="stat-desc">Weeks duration</div>
               </div>
               <div className="stat-box">
