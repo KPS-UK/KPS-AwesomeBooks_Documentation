@@ -341,40 +341,40 @@ interface KeyRisk {
 
 const keyRisks: KeyRisk[] = [
   {
-    id: 'erp', risk: 'ERP integration uncertainty',
-    desc: 'Current ERP landscape is evolving. Architecture decisions depend on understanding where inventory, pricing, and order truth lives.',
+    id: 'integration', risk: 'Integration complexity across multiple systems',
+    desc: 'Connecting Shopify to ERP, search, CRM, and payment systems requires careful architectural planning to avoid fragile, tightly-coupled integrations.',
     addressedInSessions: [7, 8],
-    mitigations: ['Dedicated Session 8 deep-dive on ERP integration', 'Require ERP documentation before the session', 'Design for abstraction at the integration layer', 'Identify fallback patterns if ERP landscape changes'],
+    mitigations: ['Full ecosystem mapping in Session 7 before any architecture decisions', 'Integration patterns defined per system with clear ownership', 'KPS designs for abstraction so individual systems can evolve independently', 'Middleware approach using AWS SQS validated during discovery'],
   },
   {
-    id: 'product', risk: 'Product data complexity',
-    desc: 'Large catalogue with complex relationships (editions, authors, series) may exceed platform-native limits or require external tooling.',
+    id: 'product', risk: 'Product model design for Shopify',
+    desc: 'Books have unique data relationships (editions, formats, authors, series) that need careful modelling within Shopify\'s product and variant structure.',
     addressedInSessions: [2],
-    mitigations: ['Session 2 product data assessment with real data samples', 'Early prototype of Shopify data model', 'Algolia configuration validated against dataset size', 'Decision captured before build phase begins'],
+    mitigations: ['Session 2 dedicated to product model with real data samples', 'KPS prototypes the Shopify data model before build begins', 'Algolia integration approach validated against the catalogue structure', 'Model decision captured and signed off before committing to build'],
   },
   {
-    id: 'personalisation', risk: 'Scope creep in personalisation',
-    desc: 'Ambition for personalised experiences may outstrip available data, tooling, and team capacity.',
+    id: 'scope', risk: 'MVP scope discipline',
+    desc: 'Platform migrations carry a natural risk of scope expansion. Every feature added to MVP delays time-to-value and increases cost.',
     addressedInSessions: [5, 10],
-    mitigations: ['Session 5 explicitly separates MVP from future-state', 'Decisions captured and signed off before build', 'MoSCoW applied to personalisation features in Session 10', 'Tooling decisions (Nosto, Rebuy, native) grounded in real data'],
+    mitigations: ['MoSCoW prioritisation applied across all feature areas', 'Session 10 draws a clear line between MVP and Phase 2', 'KPS provides fixed-price commitment based on agreed MVP scope', 'Phase 2 backlog captured so nothing is lost, just sequenced'],
   },
   {
-    id: 'datamigration', risk: 'Data migration risk',
-    desc: 'Migrating products, customers, and order history into Shopify requires clean source data, clear mapping rules, and validation. Bad data in means bad data out.',
+    id: 'datamigration', risk: 'Data migration continuity',
+    desc: 'Migrating products, customers, and order history to a new platform requires precise mapping, validation, and a tested cutover plan to avoid disruption.',
     addressedInSessions: [2, 8],
-    mitigations: ['Product data sample reviewed in Session 2 to surface quality issues early', 'Migration strategy defined as part of the solution design', 'Dry-run migration planned before go-live with automated validation', 'Rollback plan documented as part of the cutover checklist'],
+    mitigations: ['Product data reviewed early in Session 2 to inform the migration strategy', 'KPS defines a migration approach as part of the solution design', 'Dry-run migration with automated validation planned before go-live', 'Rollback plan documented as part of the cutover checklist'],
   },
   {
     id: 'thirdparty', risk: 'Third-party app dependency',
-    desc: 'Shopify\'s ecosystem relies on third-party apps for advanced functionality. Over-reliance on apps introduces performance, compatibility, and vendor lock-in risk.',
+    desc: 'Shopify\'s ecosystem relies on apps for advanced functionality. Over-reliance on apps can introduce performance, compatibility, and maintainability risk.',
     addressedInSessions: [7, 9],
-    mitigations: ['Full ecosystem mapping in Session 7 to quantify app reliance', 'Performance impact of every app assessed during checkout deep-dive', 'KPS recommends proven, enterprise-grade apps based on delivery experience', 'Custom development preferred where apps introduce unacceptable risk'],
+    mitigations: ['Full ecosystem mapping in Session 7 to assess every app', 'Performance impact of each app assessed during checkout deep-dive', 'KPS recommends proven, enterprise-grade apps from direct delivery experience', 'Custom development preferred where apps introduce unacceptable risk or lock-in'],
   },
   {
-    id: 'checkout', risk: 'Checkout conversion impact',
-    desc: 'Checkout is the highest-value page on the site. Any degradation in performance or user experience during migration directly impacts revenue.',
+    id: 'checkout', risk: 'Checkout performance during migration',
+    desc: 'Checkout is the highest-value page on the site. Maintaining or improving conversion performance during migration is critical.',
     addressedInSessions: [9],
-    mitigations: ['Dedicated Session 9 on checkout and payments', 'Shopify Checkout is a proven, conversion-optimised platform capability', 'Script audit and third-party load time assessment built into discovery', 'Performance benchmarking planned before and after migration'],
+    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'Shopify Checkout is a proven, conversion-optimised platform capability', 'Script audit and third-party load time assessment built into discovery', 'Performance benchmarking planned before and after migration to quantify improvement'],
   },
 ];
 
