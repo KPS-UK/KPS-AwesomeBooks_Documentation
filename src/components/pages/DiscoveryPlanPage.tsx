@@ -272,7 +272,7 @@ const scheduleRows: ScheduleRow[] = [
   { label: 'Full Playback & Sign-off', bold: true, weeks: ['', '', '', '', '', 'playback'] },
 ];
 
-const weekHeaders = ['14 Apr', '21 Apr', '28 Apr', '5 May', '12 May', '19 May'];
+const weekHeaders = ['w/c 13 April', 'w/c 20 April', 'w/c 27 April', 'w/c 4 May', 'w/c 11 May', 'w/c 18 May'];
 
 /* ── Deliverables ── */
 const deliverables = [
