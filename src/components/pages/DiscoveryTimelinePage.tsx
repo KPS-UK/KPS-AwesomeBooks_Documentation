@@ -353,10 +353,34 @@ const keyRisks: KeyRisk[] = [
     mitigations: ['Session 2 uses real product data so we validate the model against reality', 'KPS prototypes the Shopify data model during discovery so we can test it', 'Algolia integration approach validated against the actual catalogue', 'We make the decision together and sign it off before build begins'],
   },
   {
+    id: 'commercial', risk: 'Getting the commercial levers right from day one',
+    desc: 'Promotions, pricing, and loyalty are core revenue drivers. The Shopify implementation needs to support the commercial strategies that matter most, not just replicate what exists today.',
+    addressedInSessions: [3],
+    mitigations: ['Session 3 maps every promotion type, discount rule, and pricing model', 'Shopify-native capabilities assessed against actual commercial needs', 'Complexity ceiling identified early so we build what works, not what breaks', 'Loyalty and CRM integration approach agreed before build'],
+  },
+  {
+    id: 'personalisation', risk: 'Scoping personalisation that actually delivers',
+    desc: 'Personalisation is a huge opportunity, but only if it is grounded in available data and realistic tooling. We need to define what is achievable for launch and what comes later.',
+    addressedInSessions: [5],
+    mitigations: ['Session 5 separates MVP personalisation from future-state ambition', 'Tooling decisions grounded in real data availability, not aspirations', 'KPS evaluates native Shopify, Nosto, Rebuy, and custom options objectively', 'Segmentation strategy tied to data that actually exists today'],
+  },
+  {
+    id: 'content', risk: 'Empowering the marketing team on Shopify',
+    desc: 'The new platform needs to make the marketing team faster, not slower. Content management, campaign scheduling, and experimentation tools must work for the people who use them daily.',
+    addressedInSessions: [6],
+    mitigations: ['Session 6 starts with current pain points and workflows', 'Theme architecture designed for marketing autonomy using sections and blocks', 'AB Tasty integration approach defined so experimentation is built in from the start', 'Content ownership and editorial workflows agreed with the team who will use them'],
+  },
+  {
     id: 'scope', risk: 'Keeping the MVP focused on what drives revenue',
     desc: 'There will be plenty of good ideas across 10 sessions. The challenge is making sure the MVP delivers the highest-impact features first, and that everything else is captured for later.',
     addressedInSessions: [1, 10],
     mitigations: ['Session 1 anchors everything to commercial goals and KPIs', 'MoSCoW prioritisation applied jointly across every feature area', 'Session 10 formally draws the MVP line with senior sign-off from both sides', 'Phase 2 backlog captures every idea so nothing is lost, just sequenced'],
+  },
+  {
+    id: 'checkout', risk: 'Delivering a checkout that works harder',
+    desc: 'Checkout is where revenue is won or lost. Discovery needs to define a checkout experience that is fast, simple, and optimised for conversion on Shopify Plus.',
+    addressedInSessions: [9],
+    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'Shopify Checkout provides a proven, conversion-optimised foundation', 'Payment flows, edge cases, and complex scenarios all mapped during discovery', 'Checkout design validated against current baseline to ensure improvement'],
   },
   {
     id: 'decisions', risk: 'Making discovery decisions count',
