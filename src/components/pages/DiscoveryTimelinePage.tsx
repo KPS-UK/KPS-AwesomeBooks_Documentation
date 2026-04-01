@@ -556,44 +556,55 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             }}
                           >
                             {isSessionWeek && (
-                              <button
-                                onClick={() => toggleSession(session.id)}
-                                style={{
-                                  width: '100%',
-                                  padding: session.num === 1 && !hasInteracted ? '10px 10px' : '8px 10px',
-                                  borderRadius: 6,
-                                  border: isActive || isHighlighted ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
-                                  background: isActive
-                                    ? 'var(--cyan)'
-                                    : isHighlighted ? 'rgba(40,220,202,0.25)'
-                                    : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
-                                  color: isActive || (session.num === 1 && !hasInteracted) ? 'var(--navy)' : 'var(--white)',
-                                  cursor: 'pointer',
-                                  fontSize: 11,
-                                  fontWeight: 700,
-                                  textAlign: 'center',
-                                  transition: 'all 0.25s cubic-bezier(0.4,0,0.2,1)',
-                                  boxShadow: isActive || isHighlighted ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.2)' : 'none',
-                                  whiteSpace: 'nowrap',
-                                  overflow: 'hidden',
-                                  textOverflow: 'ellipsis',
-                                  animation: session.num === 1 && !hasInteracted ? 'sessionBounce 2s ease-in-out infinite' : 'none',
-                                }}
-                                onMouseEnter={e => {
-                                  if (!isActive && !(session.num === 1 && !hasInteracted)) {
-                                    e.currentTarget.style.background = 'rgba(40,220,202,0.2)';
-                                  }
-                                }}
-                                onMouseLeave={e => {
-                                  if (!isActive) {
-                                    const isBouncing = session.num === 1 && !hasInteracted;
-                                    e.currentTarget.style.background = isBouncing ? 'var(--cyan)' : isHighlighted ? 'rgba(40,220,202,0.25)' : 'rgba(40,220,202,0.12)';
-                                  }
-                                }}
-                              >
-                                <div>{session.date}</div>
-                                <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }`}</style>
-                              </button>
+                              <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                {session.num === 1 && !hasInteracted && <>
+                                  <div style={{ position: 'absolute', inset: -6, borderRadius: 10, border: '1.5px solid var(--cyan)', animation: 'echoRing1 2.5s ease-out infinite', pointerEvents: 'none' }} />
+                                  <div style={{ position: 'absolute', inset: -14, borderRadius: 14, border: '1px solid var(--cyan)', animation: 'echoRing2 2.5s ease-out infinite', pointerEvents: 'none' }} />
+                                  <style>{`
+                                    @keyframes echoRing1 { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 0; transform: scale(1.15); } }
+                                    @keyframes echoRing2 { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0; transform: scale(1.2); } }
+                                  `}</style>
+                                </>}
+                                <button
+                                  onClick={() => toggleSession(session.id)}
+                                  style={{
+                                    width: '100%',
+                                    padding: session.num === 1 && !hasInteracted ? '10px 10px' : '8px 10px',
+                                    borderRadius: 6,
+                                    border: isActive || isHighlighted ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
+                                    background: isActive
+                                      ? 'var(--cyan)'
+                                      : isHighlighted ? 'rgba(40,220,202,0.25)'
+                                      : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
+                                    color: isActive || (session.num === 1 && !hasInteracted) ? 'var(--navy)' : 'var(--white)',
+                                    cursor: 'pointer',
+                                    fontSize: 11,
+                                    fontWeight: 700,
+                                    textAlign: 'center',
+                                    transition: 'all 0.25s cubic-bezier(0.4,0,0.2,1)',
+                                    boxShadow: isActive || isHighlighted ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.3)' : 'none',
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    animation: session.num === 1 && !hasInteracted ? 'sessionBounce 2s ease-in-out infinite' : 'none',
+                                    position: 'relative', zIndex: 1,
+                                  }}
+                                  onMouseEnter={e => {
+                                    if (!isActive && !(session.num === 1 && !hasInteracted)) {
+                                      e.currentTarget.style.background = 'rgba(40,220,202,0.2)';
+                                    }
+                                  }}
+                                  onMouseLeave={e => {
+                                    if (!isActive) {
+                                      const isBouncing = session.num === 1 && !hasInteracted;
+                                      e.currentTarget.style.background = isBouncing ? 'var(--cyan)' : isHighlighted ? 'rgba(40,220,202,0.25)' : 'rgba(40,220,202,0.12)';
+                                    }
+                                  }}
+                                >
+                                  <div>{session.date}</div>
+                                  <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }`}</style>
+                                </button>
+                              </div>
                             )}
                           </div>
                         );
