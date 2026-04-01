@@ -499,6 +499,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               {/* Workstream bars */}
               <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
                 {workstreams.map((ws) => {
+                  const isPlayback = ws.type === 'playback';
                   const isWsActive = activeWorkstream === ws.id;
                   const barColor = ws.type === 'writeup' ? 'var(--gold)' : 'var(--pink)';
                   return (
@@ -506,8 +507,9 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     <div
                       onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                       style={{
-                        padding: '6px 10px 6px 0', fontSize: 13,
-                        color: isWsActive ? barColor : 'var(--grey-light)',
+                        padding: isPlayback ? '10px 10px 10px 0' : '6px 10px 6px 0',
+                        fontSize: isPlayback ? 14 : 13,
+                        color: isPlayback ? 'var(--pink)' : isWsActive ? barColor : 'var(--grey-light)',
                         fontWeight: 600, display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.03)',
                         whiteSpace: 'nowrap',
@@ -538,7 +540,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             <div
                               onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                               style={{
-                                width: '100%', height: 22,
+                                width: '100%', height: isPlayback ? 36 : 22,
                                 background: barColor,
                                 opacity: isWsActive ? 1 : 0.7,
                                 borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
@@ -546,7 +548,9 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 transition: 'opacity 0.2s',
                                 border: isWsActive ? `1px solid ${barColor}` : '1px solid transparent',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,0.7)',
+                                fontSize: isPlayback ? 14 : 10,
+                                fontWeight: 700,
+                                color: isPlayback ? 'var(--white)' : 'rgba(0,0,0,0.7)',
                               }}
                             >
                               {ws.date && isStart ? ws.date : ''}
