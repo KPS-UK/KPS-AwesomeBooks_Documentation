@@ -948,7 +948,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
             </p>
             <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--gold)', fontSize: 16 }}>
-              Click any area to see how we address it and which sessions are involved.
+              Click any area to see how we will tackle it together.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
