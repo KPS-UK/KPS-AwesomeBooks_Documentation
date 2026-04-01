@@ -626,7 +626,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               onClick={() => { setActiveSession(null); setActiveWorkstream(prev => prev === ws.id ? null : ws.id); }}
                               style={{
                                 width: '100%', height: isPlayback ? 36 : 24,
-                                background: isPlayback ? barColor : 'rgba(255,180,0,0.1)',
+                                background: isPlayback ? barColor : 'rgba(255,180,0,0.25)',
                                 borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
                                 cursor: 'pointer',
                                 transition: 'all 0.2s',
