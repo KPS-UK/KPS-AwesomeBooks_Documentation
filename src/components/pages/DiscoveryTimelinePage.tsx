@@ -431,6 +431,8 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   const toggleSession = (id: string) => {
     setHasInteracted(true);
     setActiveWorkstream(null);
+    setActiveDeliverable(null);
+    setActiveRisk(null);
     setActiveSession(prev => prev === id ? null : id);
   };
 
