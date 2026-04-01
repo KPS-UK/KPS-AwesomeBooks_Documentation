@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { client, kps } from '@/data/client-config';
 
 interface TocLink {
   id: string;
@@ -115,10 +116,10 @@ export default function TocSidebar({ links }: TocSidebarProps) {
       </ul>
       <div className={`toc-logos${footerVisible ? ' toc-logos--hidden' : ''}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://storage.googleapis.com/kps-logos/external-brand-logos/customers-prospects/van-marcke/van-marcke-logo-white.png" alt="Van Marcke" />
+        <img src={client.logoUrl} alt={client.shortName} />
         <div className="toc-logo-sep" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="https://storage.googleapis.com/kps-logos/kps-brand-logos/kps-logo-white-orange-dot.png" alt="KPS" />
+        <img src={kps.logoUrl} alt="KPS" />
       </div>
     </aside>
   );
