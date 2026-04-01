@@ -341,34 +341,34 @@ interface KeyRisk {
 
 const keyRisks: KeyRisk[] = [
   {
-    id: 'integration', risk: 'Uncovering the full integration landscape',
-    desc: 'Discovery needs to map every system, data flow, and integration point. Missing a connection means incomplete architecture decisions and gaps in the build scope.',
+    id: 'integration', risk: 'Ensuring Shopify connects cleanly to every system',
+    desc: 'For Shopify to deliver its full value, every integration needs to be mapped, understood, and designed properly during discovery. We do this together so nothing is missed.',
     addressedInSessions: [7, 8],
-    mitigations: ['Session 7 dedicated to full ecosystem mapping with all systems on the whiteboard', 'KPS brings a structured integration questionnaire from prior Shopify migrations', 'Each integration classified by pattern, ownership, and criticality', 'Architecture decisions deferred until the full picture is clear'],
+    mitigations: ['Session 7 maps the full ecosystem with both teams in the room', 'KPS brings a structured approach from prior Shopify migrations to guide the conversation', 'Each integration classified by pattern, ownership, and criticality', 'We agree the architecture together before committing to build'],
   },
   {
-    id: 'product', risk: 'Getting the product model right in discovery',
-    desc: 'Books have unique data relationships (editions, formats, authors, series). The product model decision in discovery directly shapes the build and must be validated with real data.',
+    id: 'product', risk: 'Making the book catalogue work brilliantly on Shopify',
+    desc: 'Books have unique relationships (editions, formats, authors, series) that need to translate into a Shopify model that powers great search, discovery, and recommendations.',
     addressedInSessions: [2],
-    mitigations: ['Session 2 works with real product data samples, not assumptions', 'KPS prototypes the Shopify data model during discovery', 'Algolia integration approach validated against the actual catalogue structure', 'Decision documented and signed off before build commitment'],
+    mitigations: ['Session 2 uses real product data so we validate the model against reality', 'KPS prototypes the Shopify data model during discovery so we can test it', 'Algolia integration approach validated against the actual catalogue', 'We make the decision together and sign it off before build begins'],
   },
   {
-    id: 'scope', risk: 'Maintaining scope clarity across 10 sessions',
-    desc: 'With 10 sessions covering broad ground, there is a risk of scope expanding incrementally. Clear boundaries need to be established and maintained throughout discovery.',
+    id: 'scope', risk: 'Keeping the MVP focused on what drives revenue',
+    desc: 'There will be plenty of good ideas across 10 sessions. The challenge is making sure the MVP delivers the highest-impact features first, and that everything else is captured for later.',
     addressedInSessions: [1, 10],
-    mitigations: ['Success metrics and priority journeys agreed in Session 1 as the anchor', 'MoSCoW applied to every feature area as sessions progress', 'Session 10 formally draws the MVP line with senior sign-off', 'KPS captures a Phase 2 backlog so ideas are parked, not lost'],
+    mitigations: ['Session 1 anchors everything to commercial goals and KPIs', 'MoSCoW prioritisation applied jointly across every feature area', 'Session 10 formally draws the MVP line with senior sign-off from both sides', 'Phase 2 backlog captures every idea so nothing is lost, just sequenced'],
   },
   {
-    id: 'decisions', risk: 'Capturing decisions that stick',
-    desc: 'Workshop decisions need to be documented, validated, and owned. Without rigour, decisions get revisited and discovery stalls.',
+    id: 'decisions', risk: 'Making discovery decisions count',
+    desc: 'Good discovery produces clear, owned decisions. We need to make sure that the work done in workshops translates into documented commitments that hold through to build.',
     addressedInSessions: [4, 10],
-    mitigations: ['Every session ends with formal decision capture', 'KPS writes up decisions within 48 hours of each session', 'Ways of working (Session 4) establishes the governance and sign-off process', 'Full playback at the end ensures all decisions are reviewed and confirmed'],
+    mitigations: ['Every session ends with formal decision capture agreed by both teams', 'KPS writes up and shares decisions within 48 hours', 'Ways of working (Session 4) establishes governance and accountability', 'Full playback ensures every decision is reviewed and confirmed before build'],
   },
   {
-    id: 'alignment', risk: 'Maintaining alignment between commercial and technical goals',
-    desc: 'Discovery covers both business strategy and technical architecture. These need to stay connected so that architecture decisions serve the commercial objectives.',
-    addressedInSessions: [1, 8, 10],
-    mitigations: ['Session 1 establishes commercial vision and KPIs as the foundation', 'Architecture sessions (S7, S8) are explicitly tied back to business requirements', 'KPS ensures traceability from business goals through to technical decisions', 'Final playback validates that the solution design serves the commercial case'],
+    id: 'checkout', risk: 'Delivering a checkout that converts better than today',
+    desc: 'Shopify Checkout is a major opportunity. Discovery needs to ensure the checkout design, payment flows, and third-party integrations are optimised to improve conversion from day one.',
+    addressedInSessions: [9],
+    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'KPS brings conversion benchmarks from similar Shopify Plus migrations', 'Every third-party script and app assessed for checkout performance impact', 'Checkout design validated against current performance baseline'],
   },
 ];
 
