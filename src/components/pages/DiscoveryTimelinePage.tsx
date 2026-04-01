@@ -552,10 +552,15 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   animation: session.num === 1 && !hasInteracted ? 'sessionBounce 2s ease-in-out infinite' : 'none',
                                 }}
                                 onMouseEnter={e => {
-                                  if (!isActive) e.currentTarget.style.background = 'rgba(40,220,202,0.2)';
+                                  if (!isActive && !(session.num === 1 && !hasInteracted)) {
+                                    e.currentTarget.style.background = 'rgba(40,220,202,0.2)';
+                                  }
                                 }}
                                 onMouseLeave={e => {
-                                  if (!isActive && !(session.num === 1 && !hasInteracted)) e.currentTarget.style.background = 'rgba(40,220,202,0.12)';
+                                  if (!isActive) {
+                                    const isBouncing = session.num === 1 && !hasInteracted;
+                                    e.currentTarget.style.background = isBouncing ? 'var(--cyan)' : isHighlighted ? 'rgba(40,220,202,0.25)' : 'rgba(40,220,202,0.12)';
+                                  }
                                 }}
                               >
                                 <div>{session.date}</div>
