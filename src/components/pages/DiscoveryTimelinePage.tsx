@@ -250,7 +250,6 @@ const workstreams: Workstream[] = [
   { label: 'BRD Write-up', startWeek: 2, endWeek: 5, type: 'writeup' },
   { label: 'Solution Design', startWeek: 3, endWeek: 5, type: 'writeup' },
   { label: 'Project Estimation', startWeek: 4, endWeek: 5, type: 'writeup' },
-  { label: 'Scope Playback', startWeek: 3, endWeek: 3, type: 'playback' },
   { label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback' },
 ];
 
@@ -300,6 +299,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   const [activeSession, setActiveSession] = useState<string | null>(null);
   const [hoveredWeek, setHoveredWeek] = useState<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [playbackOpen, setPlaybackOpen] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
   const currentWeekIdx = getCurrentWeekIdx();
 
@@ -340,7 +340,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               Before we commit to build timelines, we invest in a <span className="hl">structured discovery phase</span> to make sure every decision is grounded in evidence. Over six weeks, KPS and {client.shortName} will work through 10 facilitated sessions covering everything from commercial vision and product data through to architecture, checkout, and MVP scope.
             </p>
             <p style={{ marginTop: 12 }}>
-              The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence. Click any session below to see what we will cover.
+              The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence.
+            </p>
+            <p style={{ marginTop: 12 }}>
+              Click any session below to see what we will cover.
             </p>
           </div>
         </Reveal>
@@ -476,14 +479,22 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
 
               {/* Workstream bars */}
               <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
-                {workstreams.map((ws, i) => (
+                {workstreams.map((ws, i) => {
+                  const isPlayback = ws.type === 'playback';
+                  return (
                   <div key={i} style={{ display: 'contents' }}>
-                    <div style={{
-                      padding: '6px 10px 6px 0', fontSize: 13, color: 'var(--grey-light)',
-                      fontWeight: 600, display: 'flex', alignItems: 'center',
-                      borderBottom: '1px solid rgba(255,255,255,0.03)',
-                      whiteSpace: 'nowrap',
-                    }}>
+                    <div
+                      onClick={isPlayback ? () => setPlaybackOpen(p => !p) : undefined}
+                      style={{
+                        padding: '6px 10px 6px 0', fontSize: 13,
+                        color: isPlayback && playbackOpen ? 'var(--pink)' : 'var(--grey-light)',
+                        fontWeight: 600, display: 'flex', alignItems: 'center',
+                        borderBottom: '1px solid rgba(255,255,255,0.03)',
+                        whiteSpace: 'nowrap',
+                        cursor: isPlayback ? 'pointer' : 'default',
+                        transition: 'color 0.2s',
+                      }}
+                    >
                       {ws.label}
                     </div>
                     {weekHeaders.map((_, weekIdx) => {
@@ -516,7 +527,42 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       );
                     })}
                   </div>
-                ))}
+                  );
+                })}
+              </div>
+
+              {/* Full Playback info panel */}
+              <div style={{
+                maxHeight: playbackOpen ? 600 : 0,
+                opacity: playbackOpen ? 1 : 0,
+                overflow: 'hidden',
+                transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
+              }}>
+                <div style={{
+                  background: 'rgba(232,30,97,0.05)', border: '1px solid rgba(232,30,97,0.15)',
+                  borderRadius: 10, padding: '24px 28px', marginTop: 12,
+                }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--pink)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
+                    Full Playback & Sign-off
+                  </div>
+                  <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.7, marginBottom: 16 }}>
+                    A formal presentation to senior stakeholders summarising everything discovered, decided, and designed across the 10 sessions. This is the gate to the build phase.
+                  </p>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+                    <div>
+                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--pink)', marginBottom: 8, opacity: 0.8 }}>Agenda</div>
+                      {['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'].map((item, k) => (
+                        <div key={k} style={{ padding: '4px 0', borderBottom: '1px solid rgba(232,30,97,0.06)', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
+                      ))}
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 8, opacity: 0.8 }}>What KPS expects from {client.shortName}</div>
+                      {['Senior decision-makers in the room (Mubin, Mikey, Mark)', 'Authority to approve MVP scope and sign off on build phase', 'Any outstanding data, access, or documentation provided before the session', 'Commitment to the delivery timeline and ways of working agreed in Session 4', 'Readiness to mobilise internal resources for the build phase'].map((item, k) => (
+                        <div key={k} style={{ padding: '4px 0', borderBottom: '1px solid rgba(40,220,202,0.06)', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Legend */}
