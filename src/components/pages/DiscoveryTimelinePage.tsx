@@ -1032,7 +1032,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             ))}
                           </div>
                           <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Addressed in these sessions</div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Where we tackle this</div>
                             {r.addressedInSessions.map(sNum => {
                               const s = sessions.find(sess => sess.num === sNum);
                               return s ? (
