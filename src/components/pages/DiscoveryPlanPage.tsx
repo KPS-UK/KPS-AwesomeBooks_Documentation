@@ -203,7 +203,7 @@ const sessions: Session[] = [
   {
     id: 's8', num: 8,
     title: 'Checkout & Payments Deep Dive',
-    goal: 'Nail down the checkout experience and payment flows.',
+    goal: 'Define the checkout experience and payment flows.',
     duration: '2-3 hrs', date: '7 May',
     kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
     activities: [
