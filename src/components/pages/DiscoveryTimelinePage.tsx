@@ -924,6 +924,117 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
           );
         })()}
 
+        {/* ── Key Risks ── */}
+        <section id="success-factors-section" style={{ marginTop: 64, paddingBottom: 80 }}>
+          <Reveal>
+            <span className="section-label" style={{ color: 'var(--gold)' }}>Success Factors</span>
+            <h2 style={{ fontSize: 28 }}>Our Focus</h2>
+            <p className="section-intro">
+              The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
+            </p>
+            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--gold)', fontSize: 16 }}>
+              Click any area to see how we will tackle it together.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div style={{ display: 'grid', gap: 12 }}>
+              {keyRisks.map((r) => {
+                const isRiskActive = activeRisk === r.id;
+                return (
+                  <div key={r.id}>
+                    <button
+                      onClick={() => {
+                        setActiveRisk(prev => prev === r.id ? null : r.id);
+                        setActiveDeliverable(null);
+                        setActiveSession(null);
+                      }}
+                      style={{
+                        width: '100%', textAlign: 'left', cursor: 'pointer',
+                        padding: '18px 22px',
+                        background: isRiskActive ? 'rgba(255,180,0,0.08)' : 'rgba(255,255,255,0.03)',
+                        border: `1px solid ${isRiskActive ? 'var(--gold)' : 'rgba(255,255,255,0.08)'}`,
+                        borderRadius: isRiskActive ? '10px 10px 0 0' : 10,
+                        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
+                        display: 'flex', alignItems: 'center', gap: 16,
+                      }}
+                    >
+                      <div style={{
+                        width: 4, height: 36, borderRadius: 2,
+                        background: 'var(--gold)', flexShrink: 0,
+                      }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)' }}>{r.risk}</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 3 }}>{r.desc}</div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                        <span style={{ fontSize: 11, color: 'var(--gold)', fontWeight: 600, opacity: 0.8 }}>
+                          {r.addressedInSessions.length} {r.addressedInSessions.length === 1 ? 'session' : 'sessions'}
+                        </span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isRiskActive ? 'var(--gold)' : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                          style={{ transition: 'transform 0.3s', transform: isRiskActive ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </div>
+                    </button>
+
+                    <div style={{
+                      maxHeight: isRiskActive ? 600 : 0,
+                      opacity: isRiskActive ? 1 : 0,
+                      overflow: 'hidden',
+                      transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
+                    }}>
+                      <div style={{
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid var(--gold)',
+                        borderTop: 'none',
+                        borderRadius: '0 0 10px 10px',
+                        padding: '20px 24px',
+                      }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Our approach</div>
+                            {r.mitigations.map((m, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < r.mitigations.length - 1 ? '1px solid rgba(40,220,202,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{m}</div>
+                            ))}
+                          </div>
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Where we'll focus on this</div>
+                            {r.addressedInSessions.map(sNum => {
+                              const s = sessions.find(sess => sess.num === sNum);
+                              return s ? (
+                                <div key={sNum}
+                                  onClick={() => { setActiveRisk(null); toggleSession(s.id); }}
+                                  style={{
+                                    padding: '6px 10px', marginBottom: 4,
+                                    background: 'rgba(255,180,0,0.08)',
+                                    border: '1px solid rgba(255,180,0,0.15)',
+                                    borderRadius: 6, cursor: 'pointer',
+                                    fontSize: 13, color: 'var(--white)',
+                                    transition: 'all 0.2s',
+                                    display: 'flex', alignItems: 'center', gap: 8,
+                                  }}
+                                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.15)'; }}
+                                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.08)'; }}
+                                >
+                                  <span style={{ fontSize: 11, color: 'var(--gold)', fontWeight: 700 }}>{sNum}</span>
+                                  {s.shortTitle}
+                                </div>
+                              ) : null;
+                            })}
+                            <div style={{ marginTop: 8, fontSize: 11, color: 'var(--grey-light)', opacity: 0.6 }}>
+                              Click a session to jump to its detail above
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </section>
+
         {/* ── Deliverables ── */}
         <section id="deliverables-section" style={{ marginTop: 80 }}>
           <Reveal>
@@ -1020,117 +1131,6 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   onMouseLeave={e => { e.currentTarget.style.background = 'rgba(40,220,202,0.08)'; }}
                                 >
                                   <span style={{ fontSize: 11, color: 'var(--cyan)', fontWeight: 700 }}>{sNum}</span>
-                                  {s.shortTitle}
-                                </div>
-                              ) : null;
-                            })}
-                            <div style={{ marginTop: 8, fontSize: 11, color: 'var(--grey-light)', opacity: 0.6 }}>
-                              Click a session to jump to its detail above
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── Key Risks ── */}
-        <section id="success-factors-section" style={{ marginTop: 64, paddingBottom: 80 }}>
-          <Reveal>
-            <span className="section-label" style={{ color: 'var(--gold)' }}>Success Factors</span>
-            <h2 style={{ fontSize: 28 }}>Our Focus</h2>
-            <p className="section-intro">
-              The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
-            </p>
-            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--gold)', fontSize: 16 }}>
-              Click any area to see how we will tackle it together.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div style={{ display: 'grid', gap: 12 }}>
-              {keyRisks.map((r) => {
-                const isRiskActive = activeRisk === r.id;
-                return (
-                  <div key={r.id}>
-                    <button
-                      onClick={() => {
-                        setActiveRisk(prev => prev === r.id ? null : r.id);
-                        setActiveDeliverable(null);
-                        setActiveSession(null);
-                      }}
-                      style={{
-                        width: '100%', textAlign: 'left', cursor: 'pointer',
-                        padding: '18px 22px',
-                        background: isRiskActive ? 'rgba(255,180,0,0.08)' : 'rgba(255,255,255,0.03)',
-                        border: `1px solid ${isRiskActive ? 'var(--gold)' : 'rgba(255,255,255,0.08)'}`,
-                        borderRadius: isRiskActive ? '10px 10px 0 0' : 10,
-                        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
-                        display: 'flex', alignItems: 'center', gap: 16,
-                      }}
-                    >
-                      <div style={{
-                        width: 4, height: 36, borderRadius: 2,
-                        background: 'var(--gold)', flexShrink: 0,
-                      }} />
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)' }}>{r.risk}</div>
-                        <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 3 }}>{r.desc}</div>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-                        <span style={{ fontSize: 11, color: 'var(--gold)', fontWeight: 600, opacity: 0.8 }}>
-                          {r.addressedInSessions.length} {r.addressedInSessions.length === 1 ? 'session' : 'sessions'}
-                        </span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isRiskActive ? 'var(--gold)' : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                          style={{ transition: 'transform 0.3s', transform: isRiskActive ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
-                      </div>
-                    </button>
-
-                    <div style={{
-                      maxHeight: isRiskActive ? 600 : 0,
-                      opacity: isRiskActive ? 1 : 0,
-                      overflow: 'hidden',
-                      transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
-                    }}>
-                      <div style={{
-                        background: 'rgba(255,255,255,0.02)',
-                        border: '1px solid var(--gold)',
-                        borderTop: 'none',
-                        borderRadius: '0 0 10px 10px',
-                        padding: '20px 24px',
-                      }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-                          <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Our approach</div>
-                            {r.mitigations.map((m, k) => (
-                              <div key={k} style={{ padding: '5px 0', borderBottom: k < r.mitigations.length - 1 ? '1px solid rgba(40,220,202,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{m}</div>
-                            ))}
-                          </div>
-                          <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Where we'll focus on this</div>
-                            {r.addressedInSessions.map(sNum => {
-                              const s = sessions.find(sess => sess.num === sNum);
-                              return s ? (
-                                <div key={sNum}
-                                  onClick={() => { setActiveRisk(null); toggleSession(s.id); }}
-                                  style={{
-                                    padding: '6px 10px', marginBottom: 4,
-                                    background: 'rgba(255,180,0,0.08)',
-                                    border: '1px solid rgba(255,180,0,0.15)',
-                                    borderRadius: 6, cursor: 'pointer',
-                                    fontSize: 13, color: 'var(--white)',
-                                    transition: 'all 0.2s',
-                                    display: 'flex', alignItems: 'center', gap: 8,
-                                  }}
-                                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.15)'; }}
-                                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.08)'; }}
-                                >
-                                  <span style={{ fontSize: 11, color: 'var(--gold)', fontWeight: 700 }}>{sNum}</span>
                                   {s.shortTitle}
                                 </div>
                               ) : null;

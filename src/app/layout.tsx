@@ -11,9 +11,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `${client.name} × KPS - Headless Commerce Transformation`,
+  title: `${client.name} × KPS - Shopify Plus Migration`,
   description:
-    `KPS is partnering with ${client.name} to modernise the customer-facing digital experience, transitioning from SAP Commerce Accelerator to a composable, headless architecture.`,
+    `KPS is partnering with ${client.name} to build a modern Shopify Plus storefront, from discovery through to launch.`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
