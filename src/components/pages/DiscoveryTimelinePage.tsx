@@ -943,7 +943,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         <section style={{ marginTop: 64, paddingBottom: 80 }}>
           <Reveal>
             <span className="section-label" style={{ color: 'var(--gold)' }}>Success Factors</span>
-            <h2>What We Need to Get Right</h2>
+            <h2 style={{ fontSize: 28 }}>What We Need to Get Right</h2>
             <p className="section-intro">
               The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
             </p>
@@ -1007,7 +1007,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       }}>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                           <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>How we mitigate this</div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Our approach</div>
                             {r.mitigations.map((m, k) => (
                               <div key={k} style={{ padding: '5px 0', borderBottom: k < r.mitigations.length - 1 ? '1px solid rgba(40,220,202,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{m}</div>
                             ))}
