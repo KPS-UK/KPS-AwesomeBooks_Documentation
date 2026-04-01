@@ -342,7 +342,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <p style={{ marginTop: 12 }}>
               The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence.
             </p>
-            <p style={{ marginTop: 12 }}>
+            <p style={{ marginTop: 12, color: 'var(--pink)', fontWeight: 700 }}>
               Click any session below to see what we will cover.
             </p>
           </div>
@@ -422,7 +422,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
                             }}
                           >
-                            {isSessionWeek && (<>
+                            {isSessionWeek && (
                               <button
                                 onClick={() => toggleSession(session.id)}
                                 style={{
@@ -453,9 +453,9 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               >
                                 <div>{session.date}</div>
                                 {session.num === 1 && !hasInteracted && (
-                                  <div style={{ fontSize: 9, marginTop: 2, opacity: 0.8, letterSpacing: '0.03em', animation: 'clickHint 2s ease-in-out infinite' }}>
+                                  <div style={{ fontSize: 9, marginTop: 3, letterSpacing: '0.03em', animation: 'clickHint 1.8s ease-in-out infinite' }}>
                                     Click to explore &darr;
-                                    <style>{`@keyframes clickHint { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }`}</style>
+                                    <style>{`@keyframes clickHint { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(2px); opacity: 1; } }`}</style>
                                   </div>
                                 )}
                               </button>
