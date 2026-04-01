@@ -451,24 +451,15 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   if (!isActive) e.currentTarget.style.background = 'rgba(40,220,202,0.12)';
                                 }}
                               >
-                                {session.date}
+                                <div>{session.date}</div>
+                                {session.num === 1 && !hasInteracted && (
+                                  <div style={{ fontSize: 9, marginTop: 2, opacity: 0.8, letterSpacing: '0.03em', animation: 'clickHint 2s ease-in-out infinite' }}>
+                                    Click to explore &darr;
+                                    <style>{`@keyframes clickHint { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }`}</style>
+                                  </div>
+                                )}
                               </button>
-                              {session.num === 1 && !hasInteracted && (
-                                <div style={{
-                                  marginTop: 8, padding: '5px 14px', borderRadius: 12,
-                                  background: 'rgba(40,220,202,0.15)', border: '1px solid rgba(40,220,202,0.3)',
-                                  fontSize: 12, color: 'var(--cyan)', fontWeight: 700,
-                                  textAlign: 'center', letterSpacing: '0.03em',
-                                  animation: 'clickHint 2s ease-in-out infinite',
-                                  cursor: 'pointer',
-                                }}
-                                  onClick={() => toggleSession(session.id)}
-                                >
-                                  Click to explore &darr;
-                                  <style>{`@keyframes clickHint { 0%, 100% { transform: translateY(0); opacity: 0.7; } 50% { transform: translateY(3px); opacity: 1; } }`}</style>
-                                </div>
-                              )}
-                            </>)}
+                            )}
                           </div>
                         );
                       })}
