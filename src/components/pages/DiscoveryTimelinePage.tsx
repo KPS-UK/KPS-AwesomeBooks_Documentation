@@ -839,7 +839,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <p className="section-intro">
               Discovery produces <span className="hl">5 core deliverables</span> that form the foundation for the build phase.
             </p>
-            <p style={{ marginTop: 8, color: 'var(--cyan)', fontSize: 16 }}>
+            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--cyan)', fontSize: 16 }}>
               Click any deliverable to see what it contains and which sessions feed into it.
             </p>
           </Reveal>
@@ -953,7 +953,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <p className="section-intro">
               These are the risks identified before discovery begins. Each one is addressed by specific sessions.
             </p>
-            <p style={{ marginTop: 8, color: 'var(--cyan)', fontSize: 16 }}>
+            <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--cyan)', fontSize: 16 }}>
               Click any risk to see how it will be mitigated and which sessions address it.
             </p>
           </Reveal>

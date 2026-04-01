@@ -12,11 +12,10 @@ import AuditFindingsPage from './pages/AuditFindingsPage';
 import FactsheetPage from './pages/FactsheetPage';
 import DiscoveryPage from './pages/DiscoveryPage';
 import ConsolidationOptionsPage from './pages/ConsolidationOptionsPage';
-import DiscoveryPlanPage from './pages/DiscoveryPlanPage';
 import DiscoveryTimelinePage from './pages/DiscoveryTimelinePage';
 import { pageTitles } from '@/data/client-config';
 
-type PageId = 'home' | 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'sonar-detail' | 'audit-findings' | 'factsheet' | 'discovery' | 'consolidation-options' | 'discovery-plan' | 'discovery-timeline';
+type PageId = 'home' | 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'sonar-detail' | 'audit-findings' | 'factsheet' | 'discovery' | 'consolidation-options' | 'discovery-timeline';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -44,7 +43,7 @@ export default function SiteShell() {
   const pendingScroll = useRef<number | null>(null);
   const rafRef = useRef<number>(0);
 
-  const valid: PageId[] = ['home', 'rfp', 'audit', 'phased', 'qa', 'technical-audit-report', 'sonar-detail', 'audit-findings', 'factsheet', 'discovery', 'consolidation-options', 'discovery-plan', 'discovery-timeline'];
+  const valid: PageId[] = ['home', 'rfp', 'audit', 'phased', 'qa', 'technical-audit-report', 'sonar-detail', 'audit-findings', 'factsheet', 'discovery', 'consolidation-options', 'discovery-timeline'];
 
   const pageFromPath = useCallback((pathname: string): PageId => {
     const slug = pathname.replace(/^\//, '') || 'home';
@@ -176,7 +175,7 @@ export default function SiteShell() {
           {currentPage === 'factsheet' && <FactsheetPage navigateTo={navigateTo} goHome={() => goHome('factsheet')} />}
           {currentPage === 'discovery' && <DiscoveryPage navigateTo={navigateTo} goHome={() => goHome('discovery')} />}
           {currentPage === 'consolidation-options' && <ConsolidationOptionsPage navigateTo={navigateTo} goHome={() => goHome('consolidation-options')} />}
-          {currentPage === 'discovery-plan' && <DiscoveryPlanPage navigateTo={navigateTo} goHome={() => goHome('discovery-plan')} />}
+
           {currentPage === 'discovery-timeline' && <DiscoveryTimelinePage navigateTo={navigateTo} goHome={() => goHome('discovery-timeline')} />}
         </motion.div>
       </AnimatePresence>

@@ -13,7 +13,6 @@ export function generateStaticParams() {
     { slug: ['factsheet'] },
     { slug: ['discovery'] },
     { slug: ['consolidation-options'] },
-    { slug: ['discovery-plan'] },
     { slug: ['discovery-timeline'] },
   ];
 }
