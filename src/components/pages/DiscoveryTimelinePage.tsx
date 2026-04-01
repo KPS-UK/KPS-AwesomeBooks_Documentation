@@ -942,13 +942,13 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         {/* ── Key Risks ── */}
         <section style={{ marginTop: 64, paddingBottom: 80 }}>
           <Reveal>
-            <span className="section-label">Risk Management</span>
-            <h2>Key Risks & Mitigations</h2>
+            <span className="section-label">Success Factors</span>
+            <h2>What We Need to Get Right</h2>
             <p className="section-intro">
-              These are the risks identified before discovery begins. Each one is addressed by specific sessions.
+              The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
             </p>
             <p style={{ marginTop: 8, marginBottom: 24, color: 'var(--pink)', fontSize: 16 }}>
-              Click any risk to see how it will be mitigated and which sessions address it.
+              Click any area to see how we address it and which sessions are involved.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
