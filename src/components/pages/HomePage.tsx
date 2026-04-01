@@ -3,15 +3,13 @@
 import Reveal from '@/components/Reveal';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
-import { client, hiddenPages } from '@/data/client-config';
+import { client } from '@/data/client-config';
 
 interface HomePageProps {
   navigateTo: (page: string) => void;
 }
 
 export default function HomePage({ navigateTo }: HomePageProps) {
-  const isVisible = (page: string) => !hiddenPages.includes(page);
-
   return (
     <>
       <Hero title="" subtitle="" />
@@ -33,20 +31,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
             </p>
           </div>
         </Reveal>
-
-        <Reveal delay={0.15}>
-          <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
-            <button
-              className="sonar-export-btn"
-              onClick={() => navigateTo('discovery-timeline')}
-            >
-              Explore the Discovery Timeline
-            </button>
-          </div>
-        </Reveal>
       </section>
 
-      {/* ── The Journey ── */}
+      {/* ── The Journey (vertical timeline) ── */}
       <section className="section" id="journey">
         <Reveal>
           <span className="section-label">The Journey</span>
@@ -54,51 +41,63 @@ export default function HomePage({ navigateTo }: HomePageProps) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-            <div style={{
-              background: 'rgba(40,220,202,0.06)', border: '1px solid rgba(40,220,202,0.2)',
-              borderRadius: 10, padding: '24px 20px', position: 'relative',
-            }}>
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--cyan)', marginBottom: 8 }}>Phase 1</div>
-              <h4 style={{ color: 'var(--white)', fontSize: 18, margin: '0 0 8px' }}>Discovery & Design</h4>
-              <p style={{ fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>10 sessions, validated requirements, architecture decisions, and a fixed-price build plan.</p>
-              <div style={{ marginTop: 12, fontSize: 12, color: 'var(--cyan)', fontWeight: 700 }}>In progress</div>
+          <div style={{ position: 'relative', paddingLeft: 32, marginTop: 8 }}>
+            {/* Vertical line */}
+            <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 2, background: 'rgba(255,255,255,0.08)' }} />
+
+            {/* Phase 1 - Discovery (clickable) */}
+            <div
+              onClick={() => navigateTo('discovery-timeline')}
+              style={{ position: 'relative', marginBottom: 32, cursor: 'pointer' }}
+            >
+              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'var(--cyan)', border: '3px solid var(--navy)' }} />
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--cyan)', marginBottom: 4 }}>Phase 1</div>
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Discovery & Design</h3>
+              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: '0 0 10px' }}>10 sessions, validated requirements, architecture decisions, and a fixed-price build plan.</p>
+              <span style={{
+                display: 'inline-block', padding: '6px 16px', borderRadius: 6,
+                background: 'var(--cyan)', color: 'var(--navy)',
+                fontSize: 13, fontWeight: 700,
+                transition: 'all 0.2s',
+              }}>
+                Explore the Discovery Timeline &rarr;
+              </span>
             </div>
-            <div style={{
-              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 10, padding: '24px 20px',
-            }}>
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 8 }}>Phase 2</div>
-              <h4 style={{ color: 'var(--white)', fontSize: 18, margin: '0 0 8px' }}>Build</h4>
-              <p style={{ fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Sprint-based delivery: Shopify configuration, integrations, data migration, and storefront development.</p>
-              <div style={{ marginTop: 12, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600 }}>Up next</div>
+
+            {/* Phase 2 - Build */}
+            <div style={{ position: 'relative', marginBottom: 32 }}>
+              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '3px solid var(--navy)' }} />
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 4 }}>Phase 2</div>
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Build</h3>
+              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Sprint-based delivery: Shopify configuration, integrations, data migration, and storefront development.</p>
+              <div style={{ marginTop: 8, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600, opacity: 0.6 }}>Up next</div>
             </div>
-            <div style={{
-              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 10, padding: '24px 20px',
-            }}>
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 8 }}>Phase 3</div>
-              <h4 style={{ color: 'var(--white)', fontSize: 18, margin: '0 0 8px' }}>Launch & Hypercare</h4>
-              <p style={{ fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Go-live, monitoring, stabilisation, and transition to continuous improvement.</p>
-              <div style={{ marginTop: 12, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600 }}>Planned</div>
+
+            {/* Phase 3 - Launch */}
+            <div style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '3px solid var(--navy)' }} />
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 4 }}>Phase 3</div>
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Launch & Hypercare</h3>
+              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Go-live, monitoring, stabilisation, and transition to continuous improvement.</p>
+              <div style={{ marginTop: 8, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600, opacity: 0.6 }}>Planned</div>
             </div>
           </div>
         </Reveal>
       </section>
 
-      {/* ── Documents ── */}
+      {/* ── Discovery link ── */}
       <section className="section" id="documents">
         <Reveal>
           <div className="doc-rows">
-            {isVisible('discovery-timeline') && <div className="doc-row" onClick={() => navigateTo('discovery-timeline')}>
-              <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Active</div>
+            <div className="doc-row" onClick={() => navigateTo('discovery-timeline')}>
+              <div className="doc-row__badge doc-row__badge--scope"><span className="badge-dot" />Discovery</div>
               <div className="doc-row__body">
                 <h3>Discovery Timeline</h3>
                 <p>Interactive timeline of all 10 sessions, deliverables, and success factors. Click any session to explore.</p>
               </div>
               <div className="doc-row__date">Apr-May 2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>}
+            </div>
           </div>
         </Reveal>
       </section>
