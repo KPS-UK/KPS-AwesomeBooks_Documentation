@@ -484,11 +484,6 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 }}
                               >
                                 <div>{session.date}</div>
-                                {session.num === 1 && !hasInteracted && (
-                                  <div style={{ fontSize: 9, marginTop: 2, letterSpacing: '0.03em' }}>
-                                    Click to explore
-                                  </div>
-                                )}
                                 <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }`}</style>
                               </button>
                             )}
