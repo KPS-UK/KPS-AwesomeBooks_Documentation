@@ -102,7 +102,7 @@ strong { color: var(--cyan); font-weight: 600; }
 }
 
 .hero-logos img { height: auto; width: auto; }
-.hero-logos .logo-vm { height: 180px; }
+.hero-logos .logo-vm { height: 160px; }
 .hero-logos .logo-kps { height: 100px; }
 .hero-logos .logo-sep { width: 1px; height: 100px; background: rgba(255,255,255,0.18); }
 
