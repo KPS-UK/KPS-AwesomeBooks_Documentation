@@ -570,70 +570,65 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                       </div>
 
                       {/* Sub-sections grid */}
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16, marginTop: 20 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12, marginTop: 20 }}>
                         {session.kpsTeam && (
-                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--white)', marginBottom: 8 }}>KPS Team</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {session.kpsTeam.map((s, k) => (
-                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
-                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: 'var(--white)' }} />
-                                  {s}
-                                </li>
-                              ))}
-                            </ul>
+                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.7 }}>KPS Team</div>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                              <tbody>
+                                {session.kpsTeam.map((s, k) => {
+                                  const parts = s.split(' - ');
+                                  return (
+                                    <tr key={k}>
+                                      <td style={{ padding: '5px 0', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
+                                      <td style={{ padding: '5px 0 5px 12px', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
                           </div>
                         )}
                         {session.stakeholders && (
-                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--cyan)', marginBottom: 8 }}>{client.shortName} Attendees</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {session.stakeholders.map((s, k) => (
-                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
-                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: 'var(--cyan)' }} />
-                                  {s}
-                                </li>
-                              ))}
-                            </ul>
+                          <div style={{ background: 'rgba(40,220,202,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(40,220,202,0.1)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>{client.shortName} Attendees</div>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                              <tbody>
+                                {session.stakeholders.map((s, k) => {
+                                  const parts = s.split(' - ');
+                                  return (
+                                    <tr key={k}>
+                                      <td style={{ padding: '5px 0', borderBottom: k < session.stakeholders!.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
+                                      <td style={{ padding: '5px 0 5px 12px', borderBottom: k < session.stakeholders!.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
                           </div>
                         )}
                         {session.preparation && (
-                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--gold)', marginBottom: 8 }}>Client Preparation</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {session.preparation.map((p, k) => (
-                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
-                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: 'var(--gold)' }} />
-                                  {p}
-                                </li>
-                              ))}
-                            </ul>
+                          <div style={{ background: 'rgba(255,180,0,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,180,0,0.1)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Client Preparation</div>
+                            {session.preparation.map((p, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < session.preparation!.length - 1 ? '1px solid rgba(255,180,0,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{p}</div>
+                            ))}
                           </div>
                         )}
                         {session.outputs && (
-                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5ef0e0', marginBottom: 8 }}>Outputs</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {session.outputs.map((o, k) => (
-                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
-                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: '#5ef0e0' }} />
-                                  {o}
-                                </li>
-                              ))}
-                            </ul>
+                          <div style={{ background: 'rgba(94,240,224,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(94,240,224,0.1)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#5ef0e0', marginBottom: 10, opacity: 0.8 }}>Outputs</div>
+                            {session.outputs.map((o, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < session.outputs!.length - 1 ? '1px solid rgba(94,240,224,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{o}</div>
+                            ))}
                           </div>
                         )}
                         {session.risks && (
-                          <div style={{ background: 'rgba(232,30,97,0.05)', borderRadius: 8, padding: '14px 16px' }}>
-                            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--pink)', marginBottom: 8 }}>Key Risks</div>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {session.risks.map((r, k) => (
-                                <li key={k} style={{ fontSize: 13, color: 'var(--grey-light)', padding: '3px 0', paddingLeft: 14, position: 'relative' }}>
-                                  <span style={{ position: 'absolute', left: 0, top: 10, width: 5, height: 5, borderRadius: '50%', background: 'var(--pink)' }} />
-                                  {r}
-                                </li>
-                              ))}
-                            </ul>
+                          <div style={{ background: 'rgba(232,30,97,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(232,30,97,0.1)', gridColumn: 'span 2' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--pink)', marginBottom: 10, opacity: 0.8 }}>Key Risks</div>
+                            {session.risks.map((r, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < session.risks!.length - 1 ? '1px solid rgba(232,30,97,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{r}</div>
+                            ))}
                           </div>
                         )}
                       </div>
