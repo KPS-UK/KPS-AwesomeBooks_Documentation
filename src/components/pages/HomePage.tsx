@@ -46,33 +46,6 @@ export default function HomePage({ navigateTo }: HomePageProps) {
         </Reveal>
       </section>
 
-      {/* ── What Discovery Delivers ── */}
-      <section className="section" id="delivers">
-        <Reveal>
-          <span className="section-label">What Discovery Delivers</span>
-          <h2>Five Outputs That Shape the Build</h2>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="scope-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-            {[
-              { title: 'Business Requirements', icon: '1' },
-              { title: 'Solution Architecture', icon: '2' },
-              { title: 'Integration Catalogue', icon: '3' },
-              { title: 'MVP Scope & Roadmap', icon: '4' },
-              { title: 'Operating Model', icon: '5' },
-            ].map((d, i) => (
-              <div key={i} className="scope-card" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => navigateTo('discovery-timeline')}>
-                <div>
-                  <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--cyan)', marginBottom: 8 }}>{d.icon}</div>
-                  <h4 style={{ fontSize: 14 }}>{d.title}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       {/* ── The Journey ── */}
       <section className="section" id="journey">
         <Reveal>
