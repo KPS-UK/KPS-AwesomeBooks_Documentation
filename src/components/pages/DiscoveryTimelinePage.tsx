@@ -369,10 +369,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         <Reveal>
           <div style={{ fontSize: 17, color: 'var(--grey-light)', lineHeight: 1.75, marginBottom: 48 }}>
             <p>
-              Before we commit to build timelines, we invest in a <span className="hl">structured discovery phase</span> to make sure every decision is grounded in evidence. Over six weeks, KPS and {client.shortName} will work through 10 facilitated sessions covering everything from commercial vision and product data through to architecture, checkout, and MVP scope.
+              KPS and {client.shortName} are running a focused <span className="hl">6-week discovery phase</span> before build begins. Across 10 structured sessions, we will work through commercial goals, product data, integrations, checkout, and MVP scope to produce a validated set of requirements, a costed delivery plan, and a clear architecture.
             </p>
             <p style={{ marginTop: 12 }}>
-              The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence.
+              The output is a <span className="hl">fixed-price build commitment</span> with no surprises.
             </p>
             <p style={{ marginTop: 12, color: 'var(--cyan)' }}>
               Click any session below to see what we will cover.
