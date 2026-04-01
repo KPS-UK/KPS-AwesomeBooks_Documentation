@@ -40,7 +40,7 @@ const sessions: Session[] = [
     id: 's1', num: 1, shortTitle: 'Vision & Goals',
     title: 'Vision, Goals & Customer Journeys',
     goal: 'Align on commercial objectives and how customers interact with the brand.',
-    duration: '2-3 hrs', date: '14 Apr', weekIdx: 0,
+    duration: '2-3 hrs', date: '14th Apr', weekIdx: 0,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Welcome, introductions, agenda walkthrough', type: 'prep' },
@@ -60,7 +60,7 @@ const sessions: Session[] = [
     id: 's2', num: 2, shortTitle: 'Product & Search',
     title: 'Product Model, Search & Discovery',
     goal: 'Define how customers find and explore products.',
-    duration: '3-4 hrs', date: '15 Apr', weekIdx: 0,
+    duration: '3-4 hrs', date: '15th Apr', weekIdx: 0,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Recap Session 1 decisions; set agenda', type: 'prep' },
@@ -81,7 +81,7 @@ const sessions: Session[] = [
     id: 's3', num: 3, shortTitle: 'Promotions',
     title: 'Promotions, Pricing & Loyalty',
     goal: 'Define commercial levers that drive revenue.',
-    duration: '2.5-3 hrs', date: '16 Apr', weekIdx: 0,
+    duration: '2.5-3 hrs', date: '16th Apr', weekIdx: 0,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -101,7 +101,7 @@ const sessions: Session[] = [
     id: 's4', num: 4, shortTitle: 'Ways of Working',
     title: 'Ways of Working',
     goal: 'Establish roles, responsibilities, and delivery approach.',
-    duration: '2-3 hrs', date: 'W/C 20 Apr', weekIdx: 1,
+    duration: '2-3 hrs', date: 'W/C 20th Apr', weekIdx: 1,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Leigh Duncan - Senior Project Manager', 'Ro', 'Luke Hipkiss - Senior Requirements Analyst'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -120,7 +120,7 @@ const sessions: Session[] = [
     id: 's5', num: 5, shortTitle: 'Personalisation',
     title: 'Personalisation, AI & CRM',
     goal: 'Define how experiences are tailored to users.',
-    duration: '3 hrs', date: '28 Apr', weekIdx: 2,
+    duration: '3 hrs', date: '28th Apr', weekIdx: 2,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -140,7 +140,7 @@ const sessions: Session[] = [
     id: 's6', num: 6, shortTitle: 'CMS & Content',
     title: 'CMS, Content & Experimentation',
     goal: 'Define how marketing teams manage and optimise content.',
-    duration: '2-2.5 hrs', date: '30 Apr', weekIdx: 2,
+    duration: '2-2.5 hrs', date: '30th Apr', weekIdx: 2,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -160,7 +160,7 @@ const sessions: Session[] = [
     id: 's7', num: 7, shortTitle: 'Integrations',
     title: 'Third-Party Ecosystem & Integrations',
     goal: 'Define how the platform operates within the wider commerce ecosystem.',
-    duration: '3-4 hrs', date: '1 May', weekIdx: 2,
+    duration: '3-4 hrs', date: '1st May', weekIdx: 2,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -181,7 +181,7 @@ const sessions: Session[] = [
     id: 's8', num: 8, shortTitle: 'Architecture',
     title: 'Architecture, ERP & Data',
     goal: 'Define the technical backbone of the platform.',
-    duration: '3-4 hrs', date: '6 May', weekIdx: 3,
+    duration: '3-4 hrs', date: '6th May', weekIdx: 3,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -202,7 +202,7 @@ const sessions: Session[] = [
     id: 's9', num: 9, shortTitle: 'Checkout',
     title: 'Checkout & Payments Deep Dive',
     goal: 'Define the checkout experience and payment flows.',
-    duration: '2-3 hrs', date: '7 May', weekIdx: 3,
+    duration: '2-3 hrs', date: '7th May', weekIdx: 3,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
@@ -222,7 +222,7 @@ const sessions: Session[] = [
     id: 's10', num: 10, shortTitle: 'MVP & Playback',
     title: 'Operating Model, MVP Scope & Playback',
     goal: 'Align on how the platform will be delivered and operated.',
-    duration: '2-3 hrs', date: '12 May', weekIdx: 4,
+    duration: '2-3 hrs', date: '12th May', weekIdx: 4,
     kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Full discovery recap: key decisions and open items', type: 'prep' },
@@ -245,6 +245,7 @@ interface Workstream {
   startWeek: number;
   endWeek: number;
   type: 'writeup' | 'playback';
+  date?: string;
   summary: string;
   details: { heading: string; color: string; items: string[] }[];
 }
@@ -275,7 +276,7 @@ const workstreams: Workstream[] = [
     ],
   },
   {
-    id: 'playback', label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback',
+    id: 'playback', label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback', date: '21st May',
     summary: 'A formal presentation to senior stakeholders summarising everything discovered, decided, and designed across the 10 sessions. This is the gate to the build phase.',
     details: [
       { heading: 'Agenda', color: 'var(--pink)', items: ['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'] },
@@ -463,7 +464,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   border: isActive ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
                                   background: isActive
                                     ? 'linear-gradient(135deg, rgba(40,220,202,0.25), rgba(40,220,202,0.1))'
-                                    : session.num === 1 && !hasInteracted ? 'rgba(40,220,202,0.2)' : 'rgba(40,220,202,0.12)',
+                                    : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
                                   color: 'var(--white)',
                                   cursor: 'pointer',
                                   fontSize: 11,
@@ -544,8 +545,12 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 cursor: 'pointer',
                                 transition: 'opacity 0.2s',
                                 border: isWsActive ? `1px solid ${barColor}` : '1px solid transparent',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,0.7)',
                               }}
-                            />
+                            >
+                              {ws.date && isStart ? ws.date : ''}
+                            </div>
                           )}
                         </div>
                       );
@@ -576,8 +581,8 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                           <div style={{ fontSize: 12, fontWeight: 700, color: accentColor, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                             {activeWs.label}
                           </div>
-                          {activeWs.id === 'playback' && (
-                            <span style={{ fontSize: 12, color: 'var(--pink)', fontWeight: 600 }}>21 May</span>
+                          {activeWs.date && (
+                            <span style={{ fontSize: 12, color: accentColor, fontWeight: 600 }}>{activeWs.date}</span>
                           )}
                         </div>
                         <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.7, marginBottom: 16 }}>
