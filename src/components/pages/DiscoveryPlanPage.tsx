@@ -508,14 +508,12 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                       transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
                     }}
                   >
-                    <div style={{
-                      width: 36, height: 36, borderRadius: '50%',
-                      background: 'linear-gradient(135deg, var(--cyan), var(--pink))',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 15, fontWeight: 700, flexShrink: 0,
+                    <span style={{
+                      fontSize: 14, fontWeight: 700, color: 'var(--grey-light)',
+                      minWidth: 24, textAlign: 'center', flexShrink: 0,
                     }}>
                       {session.num}
-                    </div>
+                    </span>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 16, fontWeight: 600 }}>{session.title}</div>
                       <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 2 }}>{session.goal}</div>
