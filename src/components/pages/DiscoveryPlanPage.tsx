@@ -102,7 +102,7 @@ const sessions: Session[] = [
     risks: ['Over-complex promotions exceeding platform capability'],
   },
   {
-    id: 's10', num: 10,
+    id: 's4', num: 4,
     title: 'Ways of Working',
     goal: 'Establish roles, responsibilities, and delivery approach.',
     duration: '2-3 hrs', date: 'W/C 20 Apr',
@@ -121,7 +121,7 @@ const sessions: Session[] = [
     outputs: ['Ways of working document', 'Delivery approach agreement'],
   },
   {
-    id: 's4', num: 4,
+    id: 's5', num: 5,
     title: 'Personalisation, AI & CRM',
     goal: 'Define how experiences are tailored to users.',
     duration: '3 hrs', date: '28 Apr',
@@ -142,7 +142,7 @@ const sessions: Session[] = [
     risks: ['Personalisation ambition exceeding available data and tooling'],
   },
   {
-    id: 's5', num: 5,
+    id: 's6', num: 6,
     title: 'CMS, Content & Experimentation',
     goal: 'Define how marketing teams manage and optimise content.',
     duration: '2-2.5 hrs', date: '30 Apr',
@@ -162,7 +162,7 @@ const sessions: Session[] = [
     outputs: ['CMS approach recommendation', 'Experimentation framework'],
   },
   {
-    id: 's6', num: 6,
+    id: 's7', num: 7,
     title: 'Third-Party Ecosystem & Integrations',
     goal: 'Define how the platform operates within the wider commerce ecosystem.',
     duration: '3-4 hrs', date: '1 May',
@@ -184,7 +184,7 @@ const sessions: Session[] = [
     risks: ['Fragmented architecture from unclear ownership across tools', 'Over-reliance on apps impacting performance and maintainability', 'Conflicting logic across platforms (e.g. personalisation vs promotions)'],
   },
   {
-    id: 's7', num: 7,
+    id: 's8', num: 8,
     title: 'Architecture, ERP & Data (+ Checkout & Payments)',
     goal: 'Define the technical backbone of the platform.',
     duration: '3-4 hrs', date: '6 May',
@@ -206,7 +206,7 @@ const sessions: Session[] = [
     risks: ['ERP uncertainty impacting architecture decisions', 'Over-reliance on apps creating fragmented architecture'],
   },
   {
-    id: 's8', num: 8,
+    id: 's9', num: 9,
     title: 'Checkout & Payments Deep Dive',
     goal: 'Define the checkout experience and payment flows.',
     duration: '2-3 hrs', date: '7 May',
@@ -227,7 +227,7 @@ const sessions: Session[] = [
     risks: ['Poor checkout performance impacting conversion', 'Misalignment between payment flows and fulfilment/ERP', 'Inability to support complex order scenarios (split, pre-order)'],
   },
   {
-    id: 's9', num: 9,
+    id: 's10', num: 10,
     title: 'Operating Model, MVP Scope & Playback',
     goal: 'Align on how the platform will be delivered and operated.',
     duration: '2-3 hrs', date: '12 May',
@@ -253,19 +253,20 @@ interface ScheduleRow {
   label: string;
   bold?: boolean;
   weeks: ('' | 'workshop' | 'writeup' | 'playback' | 'prep')[];
+  date?: string;
 }
 
 const scheduleRows: ScheduleRow[] = [
-  { label: 'S1: Vision, Goals & Journeys', weeks: ['workshop', '', '', '', '', ''] },
-  { label: 'S2: Product Model & Search', weeks: ['workshop', '', '', '', '', ''] },
-  { label: 'S3: Promotions & Loyalty', weeks: ['workshop', '', '', '', '', ''] },
-  { label: 'S10: Ways of Working', weeks: ['', 'workshop', '', '', '', ''] },
-  { label: 'S4: Personalisation & CRM', weeks: ['', '', 'workshop', '', '', ''] },
-  { label: 'S5: CMS & Content', weeks: ['', '', 'workshop', '', '', ''] },
-  { label: 'S6: Ecosystem & Integrations', weeks: ['', '', 'workshop', '', '', ''] },
-  { label: 'S7: Architecture, ERP & Data', weeks: ['', '', '', 'workshop', '', ''] },
-  { label: 'S8: Checkout & Payments', weeks: ['', '', '', 'workshop', '', ''] },
-  { label: 'S9: Operating Model & MVP', weeks: ['', '', '', '', 'workshop', ''] },
+  { label: 'S1: Vision, Goals & Journeys', date: '14 Apr', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S2: Product Model & Search', date: '15 Apr', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S3: Promotions & Loyalty', date: '16 Apr', weeks: ['workshop', '', '', '', '', ''] },
+  { label: 'S4: Ways of Working', date: 'W/C 20 Apr', weeks: ['', 'workshop', '', '', '', ''] },
+  { label: 'S5: Personalisation & CRM', date: '28 Apr', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S6: CMS & Content', date: '30 Apr', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S7: Ecosystem & Integrations', date: '1 May', weeks: ['', '', 'workshop', '', '', ''] },
+  { label: 'S8: Architecture, ERP & Data', date: '6 May', weeks: ['', '', '', 'workshop', '', ''] },
+  { label: 'S9: Checkout & Payments', date: '7 May', weeks: ['', '', '', 'workshop', '', ''] },
+  { label: 'S10: Operating Model & MVP', date: '12 May', weeks: ['', '', '', '', 'workshop', ''] },
   { label: 'BRD Write-up', bold: true, weeks: ['', '', 'writeup', 'writeup', 'writeup', 'writeup'] },
   { label: 'Solution Design', bold: true, weeks: ['', '', '', 'writeup', 'writeup', 'writeup'] },
   { label: 'Project Estimation', bold: true, weeks: ['', '', '', '', 'writeup', 'writeup'] },
@@ -387,13 +388,13 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
         { id: 'dp-s1', label: '1. Vision & Goals' },
         { id: 'dp-s2', label: '2. Product & Search' },
         { id: 'dp-s3', label: '3. Promotions' },
-        { id: 'dp-s10', label: '10. Ways of Working' },
-        { id: 'dp-s4', label: '4. Personalisation' },
-        { id: 'dp-s5', label: '5. CMS & Content' },
-        { id: 'dp-s6', label: '6. Integrations' },
-        { id: 'dp-s7', label: '7. Architecture' },
-        { id: 'dp-s8', label: '8. Checkout' },
-        { id: 'dp-s9', label: '9. MVP & Playback' },
+        { id: 'dp-s4', label: '4. Ways of Working' },
+        { id: 'dp-s5', label: '5. Personalisation' },
+        { id: 'dp-s6', label: '6. CMS & Content' },
+        { id: 'dp-s7', label: '7. Integrations' },
+        { id: 'dp-s8', label: '8. Architecture' },
+        { id: 'dp-s9', label: '9. Checkout' },
+        { id: 'dp-s10', label: '10. MVP & Playback' },
         { id: 'dp-schedule', label: 'Schedule', group: 'Schedule & Outputs', groupId: 'ch-schedule' },
         { id: 'dp-deliverables', label: 'Deliverables' },
         { id: 'dp-risks', label: 'Key Risks' },
@@ -695,10 +696,15 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                         }}>
                           {w && (
                             <div style={{
-                              height: 22, borderRadius: 4,
+                              height: 24, borderRadius: 4,
                               background: barColor(w),
                               opacity: w === 'prep' ? 0.5 : 0.85,
-                            }} />
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              fontSize: 10, fontWeight: 600, color: 'rgba(0,0,0,0.7)',
+                              whiteSpace: 'nowrap', padding: '0 4px',
+                            }}>
+                              {row.date && w === 'workshop' ? row.date : ''}
+                            </div>
                           )}
                         </td>
                       ))}
