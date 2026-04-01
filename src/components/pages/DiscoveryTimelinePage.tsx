@@ -806,6 +806,62 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                           );
                         })}
                       </div>
+                      {/* Cross-referenced deliverables */}
+                      {(() => {
+                        const linkedDels = deliverables.filter(d => d.feedingSessions.includes(activeData.num));
+                        return linkedDels.length > 0 ? (
+                          <div style={{ background: 'rgba(40,220,202,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(40,220,202,0.1)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>Feeds into</div>
+                            {linkedDels.map(d => (
+                              <div key={d.id}
+                                onClick={() => {
+                                  setActiveSession(null);
+                                  setActiveDeliverable(d.id);
+                                  setTimeout(() => document.getElementById('deliverables-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                                }}
+                                style={{
+                                  padding: '6px 10px', marginBottom: 4,
+                                  background: 'rgba(40,220,202,0.06)', border: '1px solid rgba(40,220,202,0.12)',
+                                  borderRadius: 6, cursor: 'pointer', fontSize: 13, color: 'var(--white)',
+                                  transition: 'all 0.2s',
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(40,220,202,0.12)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(40,220,202,0.06)'; }}
+                              >
+                                {d.title} &rarr;
+                              </div>
+                            ))}
+                          </div>
+                        ) : null;
+                      })()}
+                      {/* Cross-referenced success factors */}
+                      {(() => {
+                        const linkedRisks = keyRisks.filter(r => r.addressedInSessions.includes(activeData.num));
+                        return linkedRisks.length > 0 ? (
+                          <div style={{ background: 'rgba(255,180,0,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,180,0,0.1)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Success factors addressed</div>
+                            {linkedRisks.map(r => (
+                              <div key={r.id}
+                                onClick={() => {
+                                  setActiveSession(null);
+                                  setActiveRisk(r.id);
+                                  setTimeout(() => document.getElementById('success-factors-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                                }}
+                                style={{
+                                  padding: '6px 10px', marginBottom: 4,
+                                  background: 'rgba(255,180,0,0.06)', border: '1px solid rgba(255,180,0,0.12)',
+                                  borderRadius: 6, cursor: 'pointer', fontSize: 13, color: 'var(--white)',
+                                  transition: 'all 0.2s',
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.12)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,180,0,0.06)'; }}
+                              >
+                                {r.risk} &rarr;
+                              </div>
+                            ))}
+                          </div>
+                        ) : null;
+                      })()}
                     </div>
                   )}
 
@@ -959,7 +1015,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         </section>
 
         {/* ── Key Risks ── */}
-        <section style={{ marginTop: 64, paddingBottom: 80 }}>
+        <section id="success-factors-section" style={{ marginTop: 64, paddingBottom: 80 }}>
           <Reveal>
             <span className="section-label" style={{ color: 'var(--gold)' }}>Success Factors</span>
             <h2 style={{ fontSize: 28 }}>Where We Are Focusing</h2>
@@ -1032,7 +1088,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             ))}
                           </div>
                           <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Where we tackle this</div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>Where we'll focus on this</div>
                             {r.addressedInSessions.map(sNum => {
                               const s = sessions.find(sess => sess.num === sNum);
                               return s ? (
