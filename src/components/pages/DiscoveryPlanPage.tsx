@@ -106,7 +106,7 @@ const sessions: Session[] = [
     title: 'Ways of Working',
     goal: 'Establish roles, responsibilities, and delivery approach.',
     duration: '2-3 hrs', date: 'W/C 20 Apr',
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Leigh Duncan - Senior Project Manager', 'Ro', 'Luke Hipkiss - Senior Requirements Analyst'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Leigh Duncan - Senior Project Manager', 'Rowena Bellamy - Head of Commerce Projects', 'Luke Hipkiss - Senior Requirements Analyst'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Roles and responsibilities: marketing vs development ownership', type: 'workshop', facilitator: 'PM', notes: '' },
