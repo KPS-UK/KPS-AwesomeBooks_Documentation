@@ -465,10 +465,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   background: isActive
                                     ? 'linear-gradient(135deg, rgba(40,220,202,0.25), rgba(40,220,202,0.1))'
                                     : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
-                                  color: 'var(--white)',
+                                  color: session.num === 1 && !hasInteracted ? 'var(--navy)' : 'var(--white)',
                                   cursor: 'pointer',
                                   fontSize: 11,
-                                  fontWeight: 600,
+                                  fontWeight: 700,
                                   textAlign: 'center',
                                   transition: 'all 0.25s cubic-bezier(0.4,0,0.2,1)',
                                   boxShadow: isActive ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.2)' : 'none',
@@ -485,7 +485,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 }}
                               >
                                 <div>{session.date}</div>
-                                <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }`}</style>
+                                <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }`}</style>
                               </button>
                             )}
                           </div>
