@@ -458,37 +458,38 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 onClick={() => toggleSession(session.id)}
                                 style={{
                                   width: '100%',
-                                  padding: '8px 10px',
+                                  padding: session.num === 1 && !hasInteracted ? '10px 10px' : '8px 10px',
                                   borderRadius: 6,
-                                  border: isActive ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
+                                  border: isActive ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
                                   background: isActive
                                     ? 'linear-gradient(135deg, rgba(40,220,202,0.25), rgba(40,220,202,0.1))'
-                                    : 'rgba(40,220,202,0.12)',
+                                    : session.num === 1 && !hasInteracted ? 'rgba(40,220,202,0.2)' : 'rgba(40,220,202,0.12)',
                                   color: 'var(--white)',
                                   cursor: 'pointer',
                                   fontSize: 11,
                                   fontWeight: 600,
                                   textAlign: 'center',
                                   transition: 'all 0.25s cubic-bezier(0.4,0,0.2,1)',
-                                  boxShadow: isActive ? '0 0 20px rgba(40,220,202,0.15)' : 'none',
+                                  boxShadow: isActive ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.2)' : 'none',
                                   whiteSpace: 'nowrap',
                                   overflow: 'hidden',
                                   textOverflow: 'ellipsis',
+                                  animation: session.num === 1 && !hasInteracted ? 'sessionBounce 2s ease-in-out infinite' : 'none',
                                 }}
                                 onMouseEnter={e => {
                                   if (!isActive) e.currentTarget.style.background = 'rgba(40,220,202,0.2)';
                                 }}
                                 onMouseLeave={e => {
-                                  if (!isActive) e.currentTarget.style.background = 'rgba(40,220,202,0.12)';
+                                  if (!isActive && !(session.num === 1 && !hasInteracted)) e.currentTarget.style.background = 'rgba(40,220,202,0.12)';
                                 }}
                               >
                                 <div>{session.date}</div>
                                 {session.num === 1 && !hasInteracted && (
-                                  <div style={{ fontSize: 9, marginTop: 3, letterSpacing: '0.03em', animation: 'clickHint 1.8s ease-in-out infinite' }}>
-                                    Click to explore &darr;
-                                    <style>{`@keyframes clickHint { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(2px); opacity: 1; } }`}</style>
+                                  <div style={{ fontSize: 9, marginTop: 2, letterSpacing: '0.03em' }}>
+                                    Click to explore
                                   </div>
                                 )}
+                                <style>{`@keyframes sessionBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }`}</style>
                               </button>
                             )}
                           </div>
