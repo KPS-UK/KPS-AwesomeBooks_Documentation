@@ -544,7 +544,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                           <thead>
                             <tr>
-                              {['Duration', 'Activity', 'Type', 'Notes'].map(h => (
+                              {['Duration', 'Activity'].map(h => (
                                 <th key={h} style={{
                                   textAlign: 'left', padding: '8px 10px',
                                   borderBottom: '1px solid rgba(255,255,255,0.1)',
@@ -565,8 +565,6 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                               }}>
                                 <td style={{ padding: '7px 10px', borderBottom: '1px solid rgba(255,255,255,0.04)', whiteSpace: 'nowrap', color: 'var(--grey-light)', fontSize: 12 }}>{a.dur}</td>
                                 <td style={{ padding: '7px 10px', borderBottom: '1px solid rgba(255,255,255,0.04)', color: 'var(--white)' }}>{a.activity}</td>
-                                <td style={{ padding: '7px 10px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}><TypeBadge type={a.type} /></td>
-                                <td style={{ padding: '7px 10px', borderBottom: '1px solid rgba(255,255,255,0.04)', color: 'var(--grey-light)', fontSize: 12 }}>{a.notes}</td>
                               </tr>
                             ))}
                           </tbody>
