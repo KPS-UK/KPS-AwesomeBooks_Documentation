@@ -1018,7 +1018,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
         <section id="success-factors-section" style={{ marginTop: 64, paddingBottom: 80 }}>
           <Reveal>
             <span className="section-label" style={{ color: 'var(--gold)' }}>Success Factors</span>
-            <h2 style={{ fontSize: 28 }}>Where We Are Focusing</h2>
+            <h2 style={{ fontSize: 28 }}>Our Focus</h2>
             <p className="section-intro">
               The areas that matter most for a successful Shopify launch. Each one is tackled head-on during discovery.
             </p>
