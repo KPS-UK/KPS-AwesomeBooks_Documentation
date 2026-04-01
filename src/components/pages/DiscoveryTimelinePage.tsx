@@ -288,12 +288,46 @@ const workstreams: Workstream[] = [
 const weekHeaders = ['w/c 13 April', 'w/c 20 April', 'w/c 27 April', 'w/c 4 May', 'w/c 11 May', 'w/c 18 May'];
 
 /* ── Deliverables ── */
-const deliverables = [
-  { title: 'Business Requirements Document', desc: 'Gap analysis of current vs future state, prioritised by business impact. A focused scope for what needs to change, validated by stakeholders across all 10 sessions.' },
-  { title: 'Solution Architecture', desc: 'Target architecture, integration patterns, and technology recommendations grounded in evidence and trade-off analysis. Defensible decisions the team can own.' },
-  { title: 'Integration Catalogue', desc: 'Complete mapping of every third-party system, data flow, ownership model, and integration pattern. The single source of truth for how the ecosystem connects.' },
-  { title: 'MVP Scope & Phased Roadmap', desc: 'A clear line between what ships first and what comes later. Costed, sequenced, with dependencies mapped and risks quantified.' },
-  { title: 'Operating Model', desc: 'Roles, responsibilities, release processes, and governance. How the platform will be built, maintained, and evolved after launch.' },
+interface Deliverable {
+  id: string;
+  title: string;
+  desc: string;
+  feedingSessions: number[]; // session nums that feed into this deliverable
+  contents: string[];
+  color: string;
+}
+
+const deliverables: Deliverable[] = [
+  {
+    id: 'brd', title: 'Business Requirements Document', color: 'var(--gold)',
+    desc: 'Gap analysis of current vs future state, prioritised by business impact. A focused scope for what needs to change, validated by stakeholders across all 10 sessions.',
+    feedingSessions: [1, 2, 3, 5, 6, 7, 8, 9],
+    contents: ['Prioritised functional requirements', 'Non-functional requirements (performance, security, accessibility)', 'Current state vs target state gap analysis', 'Acceptance criteria per feature area', 'Traceability matrix back to workshop decisions'],
+  },
+  {
+    id: 'architecture', title: 'Solution Architecture', color: 'var(--cyan)',
+    desc: 'Target architecture, integration patterns, and technology recommendations grounded in evidence and trade-off analysis.',
+    feedingSessions: [2, 7, 8, 9],
+    contents: ['Target architecture diagram', 'Shopify theme architecture (sections, blocks, metafields)', 'Integration patterns per third-party system', 'Data model and entity relationships', 'Technology decision log with rationale'],
+  },
+  {
+    id: 'integrations', title: 'Integration Catalogue', color: '#5ef0e0',
+    desc: 'Complete mapping of every third-party system, data flow, ownership model, and integration pattern.',
+    feedingSessions: [7, 8],
+    contents: ['System-by-system integration spec (Algolia, Klaviyo, AB Tasty, ERP, etc.)', 'Data flow diagrams per integration', 'Ownership model: which system is master for each data entity', 'Real-time vs batch classification per integration', 'API contract expectations and error handling'],
+  },
+  {
+    id: 'mvp', title: 'MVP Scope & Phased Roadmap', color: 'var(--pink)',
+    desc: 'A clear line between what ships first and what comes later. Costed, sequenced, with dependencies mapped and risks quantified.',
+    feedingSessions: [1, 3, 5, 10],
+    contents: ['MVP feature list with in/out classification', 'Phase 2 backlog with priority ranking', 'Sprint-level delivery plan', 'Dependency map and critical path', 'Risk-adjusted cost estimate (fixed price)'],
+  },
+  {
+    id: 'opmodel', title: 'Operating Model', color: 'var(--gold)',
+    desc: 'Roles, responsibilities, release processes, and governance. How the platform will be built, maintained, and evolved after launch.',
+    feedingSessions: [4, 10],
+    contents: ['RACI for build and run phases', 'Release and deployment process', 'Sprint cadence and ceremony schedule', 'Escalation paths and decision-making framework', 'Transition plan from KPS delivery to BAU'],
+  },
 ];
 
 /* ── Key risks ── */
@@ -332,6 +366,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   const [hoveredWeek, setHoveredWeek] = useState<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [activeWorkstream, setActiveWorkstream] = useState<string | null>(null);
+  const [activeDeliverable, setActiveDeliverable] = useState<string | null>(null);
+  const highlightedSessions = activeDeliverable
+    ? (deliverables.find(d => d.id === activeDeliverable)?.feedingSessions ?? [])
+    : [];
   const detailRef = useRef<HTMLDivElement>(null);
   const currentWeekIdx = getCurrentWeekIdx();
 
@@ -422,14 +460,15 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                 {/* Row label column + week cells for each session */}
                 {sessions.map((session) => {
                   const isActive = activeSession === session.id;
+                  const isHighlighted = highlightedSessions.includes(session.num);
                   return (
                     <div key={session.id} style={{ display: 'contents' }}>
                       {/* Label */}
                       <div style={{
                         padding: '8px 10px 8px 0',
                         fontSize: 14,
-                        color: isActive ? 'var(--white)' : 'var(--grey-light)',
-                        fontWeight: isActive ? 600 : 500,
+                        color: isActive ? 'var(--white)' : isHighlighted ? 'var(--cyan)' : 'var(--grey-light)',
+                        fontWeight: isActive || isHighlighted ? 600 : 500,
                         display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.04)',
                         transition: 'color 0.2s',
@@ -461,9 +500,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   width: '100%',
                                   padding: session.num === 1 && !hasInteracted ? '10px 10px' : '8px 10px',
                                   borderRadius: 6,
-                                  border: isActive ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
+                                  border: isActive || isHighlighted ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
                                   background: isActive
                                     ? 'linear-gradient(135deg, rgba(40,220,202,0.25), rgba(40,220,202,0.1))'
+                                    : isHighlighted ? 'rgba(40,220,202,0.25)'
                                     : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
                                   color: session.num === 1 && !hasInteracted ? 'var(--navy)' : 'var(--white)',
                                   cursor: 'pointer',
@@ -471,7 +511,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   fontWeight: 700,
                                   textAlign: 'center',
                                   transition: 'all 0.25s cubic-bezier(0.4,0,0.2,1)',
-                                  boxShadow: isActive ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.2)' : 'none',
+                                  boxShadow: isActive || isHighlighted ? '0 0 20px rgba(40,220,202,0.15)' : session.num === 1 && !hasInteracted ? '0 0 16px rgba(40,220,202,0.2)' : 'none',
                                   whiteSpace: 'nowrap',
                                   overflow: 'hidden',
                                   textOverflow: 'ellipsis',
@@ -766,16 +806,107 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <span className="section-label">Outputs</span>
             <h2>Key Deliverables</h2>
             <p className="section-intro">
-              Discovery produces <span className="hl">5 core deliverables</span> that form the foundation for the build phase.
+              Discovery produces <span className="hl">5 core deliverables</span> that form the foundation for the build phase. Click any deliverable to see what it contains and which sessions feed into it.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="scope-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-              {deliverables.map((d, i) => (
-                <div key={i} className="scope-card">
-                  <div><h4>{d.title}</h4><p>{d.desc}</p></div>
-                </div>
-              ))}
+            <div style={{ display: 'grid', gap: 12 }}>
+              {deliverables.map((d) => {
+                const isDelActive = activeDeliverable === d.id;
+                return (
+                  <div key={d.id}>
+                    {/* Deliverable header card */}
+                    <button
+                      onClick={() => {
+                        setActiveDeliverable(prev => prev === d.id ? null : d.id);
+                        setActiveSession(null);
+                      }}
+                      style={{
+                        width: '100%', textAlign: 'left', cursor: 'pointer',
+                        padding: '18px 22px',
+                        background: isDelActive ? `${d.color === 'var(--gold)' ? 'rgba(255,180,0' : d.color === 'var(--cyan)' ? 'rgba(40,220,202' : d.color === 'var(--pink)' ? 'rgba(232,30,97' : 'rgba(94,240,224'},0.08)` : 'rgba(255,255,255,0.03)',
+                        border: `1px solid ${isDelActive ? d.color : 'rgba(255,255,255,0.08)'}`,
+                        borderRadius: isDelActive ? '10px 10px 0 0' : 10,
+                        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
+                        display: 'flex', alignItems: 'center', gap: 16,
+                      }}
+                    >
+                      <div style={{
+                        width: 4, height: 36, borderRadius: 2,
+                        background: d.color, flexShrink: 0,
+                      }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)' }}>{d.title}</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 3 }}>{d.desc}</div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                        <span style={{ fontSize: 11, color: d.color, fontWeight: 600, opacity: 0.8 }}>
+                          {d.feedingSessions.length} sessions
+                        </span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDelActive ? d.color : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                          style={{ transition: 'transform 0.3s', transform: isDelActive ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </div>
+                    </button>
+
+                    {/* Expanded detail */}
+                    <div style={{
+                      maxHeight: isDelActive ? 800 : 0,
+                      opacity: isDelActive ? 1 : 0,
+                      overflow: 'hidden',
+                      transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
+                    }}>
+                      <div style={{
+                        background: 'rgba(255,255,255,0.02)',
+                        border: `1px solid ${d.color}`,
+                        borderTop: 'none',
+                        borderRadius: '0 0 10px 10px',
+                        padding: '20px 24px',
+                      }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                          {/* What it contains */}
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: d.color, marginBottom: 10, opacity: 0.8 }}>What it contains</div>
+                            {d.contents.map((item, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < d.contents.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
+                            ))}
+                          </div>
+                          {/* Feeding sessions */}
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>Built from these sessions</div>
+                            {d.feedingSessions.map(sNum => {
+                              const s = sessions.find(sess => sess.num === sNum);
+                              return s ? (
+                                <div key={sNum}
+                                  onClick={() => { setActiveDeliverable(null); toggleSession(s.id); }}
+                                  style={{
+                                    padding: '6px 10px', marginBottom: 4,
+                                    background: 'rgba(40,220,202,0.08)',
+                                    border: '1px solid rgba(40,220,202,0.15)',
+                                    borderRadius: 6, cursor: 'pointer',
+                                    fontSize: 13, color: 'var(--white)',
+                                    transition: 'all 0.2s',
+                                    display: 'flex', alignItems: 'center', gap: 8,
+                                  }}
+                                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(40,220,202,0.15)'; }}
+                                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(40,220,202,0.08)'; }}
+                                >
+                                  <span style={{ fontSize: 11, color: 'var(--cyan)', fontWeight: 700 }}>{sNum}</span>
+                                  {s.shortTitle}
+                                </div>
+                              ) : null;
+                            })}
+                            <div style={{ marginTop: 8, fontSize: 11, color: 'var(--grey-light)', opacity: 0.6 }}>
+                              Click a session to jump to its detail above
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </section>
