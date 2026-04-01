@@ -12,6 +12,7 @@ export function generateStaticParams() {
     { slug: ['audit-findings'] },
     { slug: ['factsheet'] },
     { slug: ['discovery'] },
+    { slug: ['consolidation-options'] },
   ];
 }
 

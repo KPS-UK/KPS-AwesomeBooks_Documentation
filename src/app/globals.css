@@ -672,6 +672,11 @@ strong { color: var(--cyan); font-weight: 600; }
   .hero { min-height: 85vh; padding: 60px 28px 100px; }
   .sticky-nav { padding: 0 16px; }
   .qa-question, .qa-answer { padding: 18px 20px; }
+
+  /* Triangle explorer responsive */
+  .axis-explainer-desktop { display: none !important; }
+  .axis-explainer-mobile { display: block !important; }
+  .triangle-presets { position: static !important; display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: center; gap: 8px !important; margin-top: 16px; padding: 0 !important; }
 }
 
 @media (max-width: 600px) {
@@ -681,4 +686,8 @@ strong { color: var(--cyan); font-weight: 600; }
   .hero-logos .logo-vm { height: 64px; }
   .hero-logos .logo-kps { height: 48px; }
   .doc-footer { flex-direction: column; gap: 16px; text-align: center; }
+
+  /* Triangle explorer - compact on small screens */
+  .triangle-presets { flex-direction: column !important; align-items: stretch; }
+  .triangle-presets button { font-size: 11px !important; padding: 6px 10px !important; }
 }

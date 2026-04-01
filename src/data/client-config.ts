@@ -30,6 +30,15 @@ export const client = {
   audiences: ['trade professionals', 'retail consumers'],
   /** B2B features present */
   b2bFeatures: ['quoting', 'punchout (cXML)', 'Assisted Service Mode', 'PO numbers', 'approval workflows'],
+  /** Business units / brands (used in consolidation options triangle) */
+  businessUnits: [
+    { name: 'Brand A', shortName: 'Brand A', color: '#6b7d22' },
+    { name: 'Brand B', shortName: 'Brand B', color: '#1a8fd1' },
+    { name: 'Brand C', shortName: 'Brand C', color: '#b8c94a' },
+    { name: 'Brand D', shortName: 'Brand D', color: '#14374a' },
+  ],
+  /** Regions for CCv2 hosting */
+  regions: ['Region 1', 'Region 2'],
 };
 
 export const kps = {
@@ -189,4 +198,5 @@ export const pageTitles: Record<string, string> = {
   'audit-findings': `Audit Findings Detail - ${client.name} × KPS`,
   factsheet: `Platform Factsheet - ${client.name} × KPS`,
   discovery: `Discovery & Technical Design - ${client.name} × KPS`,
+  'consolidation-options': `Consolidation Options - ${client.name} × KPS`,
 };

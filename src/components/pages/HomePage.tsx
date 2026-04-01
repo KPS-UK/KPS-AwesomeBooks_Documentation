@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { client, kps, metrics, platform, audit } from '@/data/client-config';
 
 interface HomePageProps {
-  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery') => void;
+  navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options') => void;
 }
 
 export default function HomePage({ navigateTo }: HomePageProps) {
@@ -242,6 +242,16 @@ export default function HomePage({ navigateTo }: HomePageProps) {
                 <p>The audit scope covering performance, accessibility, code quality, integrations, headless readiness, and security.</p>
               </div>
               <div className="doc-row__date">27/02/2026</div>
+              <div className="doc-row__arrow">&rarr;</div>
+            </div>
+
+            <div className="doc-row" onClick={() => navigateTo('consolidation-options')}>
+              <div className="doc-row__badge doc-row__badge--phased"><span className="badge-dot" />Interactive</div>
+              <div className="doc-row__body">
+                <h3>Consolidation Options Explorer</h3>
+                <p>Interactive tool to explore how prioritising cost, agility, or BU autonomy affects the consolidation strategy.</p>
+              </div>
+              <div className="doc-row__date">&nbsp;</div>
               <div className="doc-row__arrow">&rarr;</div>
             </div>
 
