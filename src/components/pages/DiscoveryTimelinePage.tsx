@@ -331,11 +331,39 @@ const deliverables: Deliverable[] = [
 ];
 
 /* ── Key risks ── */
-const keyRisks = [
-  { risk: 'ERP integration uncertainty', desc: 'Current ERP landscape is evolving. Architecture decisions depend on understanding where inventory, pricing, and order truth lives.', mitigation: 'Dedicated Session 8 focus; require ERP documentation before the session; design for abstraction at the integration layer.' },
-  { risk: 'Product data complexity', desc: 'Large catalogue with complex relationships (editions, authors, series) may exceed platform-native limits or require external tooling.', mitigation: 'Session 2 product data assessment; early prototype of data model; search strategy decision before build phase.' },
-  { risk: 'Scope creep in personalisation', desc: 'Ambition for personalised experiences may outstrip available data, tooling, and team capacity.', mitigation: 'Session 5 explicitly separates MVP from future-state; decisions captured and signed off before build.' },
-  { risk: 'Stakeholder availability', desc: 'Discovery sessions require key decision-makers. Gaps in attendance delay decisions and create rework.', mitigation: 'Pre-schedule all 10 sessions in prep week; confirm attendees; provide async decision capture for unavoidable conflicts.' },
+interface KeyRisk {
+  id: string;
+  risk: string;
+  desc: string;
+  addressedInSessions: number[];
+  mitigations: string[];
+}
+
+const keyRisks: KeyRisk[] = [
+  {
+    id: 'erp', risk: 'ERP integration uncertainty',
+    desc: 'Current ERP landscape is evolving. Architecture decisions depend on understanding where inventory, pricing, and order truth lives.',
+    addressedInSessions: [7, 8],
+    mitigations: ['Dedicated Session 8 deep-dive on ERP integration', 'Require ERP documentation before the session', 'Design for abstraction at the integration layer', 'Identify fallback patterns if ERP landscape changes'],
+  },
+  {
+    id: 'product', risk: 'Product data complexity',
+    desc: 'Large catalogue with complex relationships (editions, authors, series) may exceed platform-native limits or require external tooling.',
+    addressedInSessions: [2],
+    mitigations: ['Session 2 product data assessment with real data samples', 'Early prototype of Shopify data model', 'Algolia configuration validated against dataset size', 'Decision captured before build phase begins'],
+  },
+  {
+    id: 'personalisation', risk: 'Scope creep in personalisation',
+    desc: 'Ambition for personalised experiences may outstrip available data, tooling, and team capacity.',
+    addressedInSessions: [5, 10],
+    mitigations: ['Session 5 explicitly separates MVP from future-state', 'Decisions captured and signed off before build', 'MoSCoW applied to personalisation features in Session 10', 'Tooling decisions (Nosto, Rebuy, native) grounded in real data'],
+  },
+  {
+    id: 'stakeholders', risk: 'Stakeholder availability',
+    desc: 'Discovery sessions require key decision-makers. Gaps in attendance delay decisions and create rework.',
+    addressedInSessions: [1, 4],
+    mitigations: ['All 10 sessions pre-scheduled in prep week', 'Attendee confirmation before each session', 'Async decision capture for unavoidable conflicts', 'Ways of working session (S4) establishes governance and escalation'],
+  },
 ];
 
 /* ── Helpers ── */
@@ -367,8 +395,11 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   const [hasInteracted, setHasInteracted] = useState(false);
   const [activeWorkstream, setActiveWorkstream] = useState<string | null>(null);
   const [activeDeliverable, setActiveDeliverable] = useState<string | null>(null);
+  const [activeRisk, setActiveRisk] = useState<string | null>(null);
   const highlightedSessions = activeDeliverable
     ? (deliverables.find(d => d.id === activeDeliverable)?.feedingSessions ?? [])
+    : activeRisk
+    ? (keyRisks.find(r => r.id === activeRisk)?.addressedInSessions ?? [])
     : [];
   const detailRef = useRef<HTMLDivElement>(null);
   const currentWeekIdx = getCurrentWeekIdx();
@@ -806,7 +837,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <span className="section-label">Outputs</span>
             <h2>Key Deliverables</h2>
             <p className="section-intro">
-              Discovery produces <span className="hl">5 core deliverables</span> that form the foundation for the build phase. Click any deliverable to see what it contains and which sessions feed into it.
+              Discovery produces <span className="hl">5 core deliverables</span> that form the foundation for the build phase.
+            </p>
+            <p style={{ marginTop: 8, color: 'var(--cyan)', fontSize: 16 }}>
+              Click any deliverable to see what it contains and which sessions feed into it.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -916,25 +950,110 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
           <Reveal>
             <span className="section-label">Risk Management</span>
             <h2>Key Risks & Mitigations</h2>
+            <p className="section-intro">
+              These are the risks identified before discovery begins. Each one is addressed by specific sessions.
+            </p>
+            <p style={{ marginTop: 8, color: 'var(--cyan)', fontSize: 16 }}>
+              Click any risk to see how it will be mitigated and which sessions address it.
+            </p>
           </Reveal>
-          {keyRisks.map((r, i) => (
-            <Reveal key={i} delay={0.05 * (i + 1)}>
-              <div style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: 10, padding: '20px 24px', marginBottom: 12, borderLeft: '3px solid var(--pink)',
-              }}>
-                <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)', marginBottom: 6 }}>{r.risk}</div>
-                <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>{r.desc}</p>
-                <div style={{
-                  marginTop: 12, padding: '10px 14px', background: 'rgba(40,220,202,0.06)',
-                  borderRadius: 6, borderLeft: '2px solid var(--cyan)',
-                }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--cyan)' }}>Mitigation</span>
-                  <p style={{ fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.6, margin: '4px 0 0' }}>{r.mitigation}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+          <Reveal delay={0.1}>
+            <div style={{ display: 'grid', gap: 12 }}>
+              {keyRisks.map((r) => {
+                const isRiskActive = activeRisk === r.id;
+                return (
+                  <div key={r.id}>
+                    <button
+                      onClick={() => {
+                        setActiveRisk(prev => prev === r.id ? null : r.id);
+                        setActiveDeliverable(null);
+                        setActiveSession(null);
+                      }}
+                      style={{
+                        width: '100%', textAlign: 'left', cursor: 'pointer',
+                        padding: '18px 22px',
+                        background: isRiskActive ? 'rgba(232,30,97,0.08)' : 'rgba(255,255,255,0.03)',
+                        border: `1px solid ${isRiskActive ? 'var(--pink)' : 'rgba(255,255,255,0.08)'}`,
+                        borderRadius: isRiskActive ? '10px 10px 0 0' : 10,
+                        transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
+                        display: 'flex', alignItems: 'center', gap: 16,
+                      }}
+                    >
+                      <div style={{
+                        width: 4, height: 36, borderRadius: 2,
+                        background: 'var(--pink)', flexShrink: 0,
+                      }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--white)' }}>{r.risk}</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-light)', marginTop: 3 }}>{r.desc}</div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                        <span style={{ fontSize: 11, color: 'var(--pink)', fontWeight: 600, opacity: 0.8 }}>
+                          {r.addressedInSessions.length} {r.addressedInSessions.length === 1 ? 'session' : 'sessions'}
+                        </span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isRiskActive ? 'var(--pink)' : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                          style={{ transition: 'transform 0.3s', transform: isRiskActive ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </div>
+                    </button>
+
+                    <div style={{
+                      maxHeight: isRiskActive ? 600 : 0,
+                      opacity: isRiskActive ? 1 : 0,
+                      overflow: 'hidden',
+                      transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
+                    }}>
+                      <div style={{
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid var(--pink)',
+                        borderTop: 'none',
+                        borderRadius: '0 0 10px 10px',
+                        padding: '20px 24px',
+                      }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>How we mitigate this</div>
+                            {r.mitigations.map((m, k) => (
+                              <div key={k} style={{ padding: '5px 0', borderBottom: k < r.mitigations.length - 1 ? '1px solid rgba(40,220,202,0.06)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{m}</div>
+                            ))}
+                          </div>
+                          <div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--pink)', marginBottom: 10, opacity: 0.8 }}>Addressed in these sessions</div>
+                            {r.addressedInSessions.map(sNum => {
+                              const s = sessions.find(sess => sess.num === sNum);
+                              return s ? (
+                                <div key={sNum}
+                                  onClick={() => { setActiveRisk(null); toggleSession(s.id); }}
+                                  style={{
+                                    padding: '6px 10px', marginBottom: 4,
+                                    background: 'rgba(232,30,97,0.08)',
+                                    border: '1px solid rgba(232,30,97,0.15)',
+                                    borderRadius: 6, cursor: 'pointer',
+                                    fontSize: 13, color: 'var(--white)',
+                                    transition: 'all 0.2s',
+                                    display: 'flex', alignItems: 'center', gap: 8,
+                                  }}
+                                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(232,30,97,0.15)'; }}
+                                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(232,30,97,0.08)'; }}
+                                >
+                                  <span style={{ fontSize: 11, color: 'var(--pink)', fontWeight: 700 }}>{sNum}</span>
+                                  {s.shortTitle}
+                                </div>
+                              ) : null;
+                            })}
+                            <div style={{ marginTop: 8, fontSize: 11, color: 'var(--grey-light)', opacity: 0.6 }}>
+                              Click a session to jump to its detail above
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
         </section>
       </div>
 
