@@ -41,46 +41,55 @@ export default function HomePage({ navigateTo }: HomePageProps) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div style={{ position: 'relative', paddingLeft: 32, marginTop: 8 }}>
-            {/* Vertical line */}
-            <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 2, background: 'rgba(255,255,255,0.08)' }} />
+          <div style={{ position: 'relative', paddingLeft: 40, marginTop: 16 }}>
+            {/* Vertical line - glowing at the top, fading down */}
+            <div style={{ position: 'absolute', left: 11, top: 12, bottom: 12, width: 2, background: 'linear-gradient(to bottom, var(--cyan), rgba(255,180,0,0.3) 60%, rgba(255,255,255,0.06))' }} />
 
-            {/* Phase 1 - Discovery (clickable) */}
-            <div
-              onClick={() => navigateTo('discovery-timeline')}
-              style={{ position: 'relative', marginBottom: 32, cursor: 'pointer' }}
-            >
-              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'var(--cyan)', border: '3px solid var(--navy)' }} />
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--cyan)', marginBottom: 4 }}>Phase 1</div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Discovery & Design</h3>
-              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: '0 0 10px' }}>10 sessions, validated requirements, architecture decisions, and a fixed-price build plan.</p>
-              <span style={{
-                display: 'inline-block', padding: '6px 16px', borderRadius: 6,
-                background: 'var(--cyan)', color: 'var(--navy)',
-                fontSize: 13, fontWeight: 700,
-                transition: 'all 0.2s',
-              }}>
-                Explore the Discovery &rarr;
-              </span>
-            </div>
+            {/* Discovery (clickable, active) */}
+            <Reveal>
+              <div
+                onClick={() => navigateTo('discovery-timeline')}
+                style={{ position: 'relative', marginBottom: 48, cursor: 'pointer', paddingBottom: 48, borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                onMouseEnter={e => { const btn = e.currentTarget.querySelector('span[data-cta]') as HTMLElement; if (btn) btn.style.background = 'var(--white)'; }}
+                onMouseLeave={e => { const btn = e.currentTarget.querySelector('span[data-cta]') as HTMLElement; if (btn) btn.style.background = 'var(--cyan)'; }}
+              >
+                <div style={{ position: 'absolute', left: -40, top: 6, width: 24, height: 24, borderRadius: '50%', background: 'var(--cyan)', boxShadow: '0 0 20px rgba(40,220,202,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--navy)' }} />
+                </div>
+                <h3 style={{ fontSize: 24, fontWeight: 700, color: 'var(--white)', margin: '0 0 8px' }}>Discovery & Design</h3>
+                <p style={{ fontSize: 15, color: 'var(--grey-light)', lineHeight: 1.7, margin: '0 0 16px', maxWidth: 520 }}>10 structured sessions working through commercial goals, product data, integrations, checkout, and MVP scope. Every decision validated before build begins.</p>
+                <span data-cta="" style={{
+                  display: 'inline-block', padding: '10px 24px', borderRadius: 8,
+                  background: 'var(--cyan)', color: 'var(--navy)',
+                  fontSize: 14, fontWeight: 700,
+                  transition: 'all 0.25s',
+                }}>
+                  Explore the Discovery &rarr;
+                </span>
+              </div>
+            </Reveal>
 
-            {/* Phase 2 - Build */}
-            <div style={{ position: 'relative', marginBottom: 32 }}>
-              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '3px solid var(--navy)' }} />
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 4 }}>Phase 2</div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Build</h3>
-              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Sprint-based delivery: Shopify configuration, integrations, data migration, and storefront development.</p>
-              <div style={{ marginTop: 8, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600, opacity: 0.6 }}>Up next</div>
-            </div>
+            {/* Build */}
+            <Reveal delay={0.1}>
+              <div style={{ position: 'relative', marginBottom: 48, paddingBottom: 48, borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <div style={{ position: 'absolute', left: -40, top: 6, width: 24, height: 24, borderRadius: '50%', border: '2px solid rgba(255,180,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(255,180,0,0.4)' }} />
+                </div>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--white)', margin: '0 0 8px', opacity: 0.7 }}>Build</h3>
+                <p style={{ fontSize: 15, color: 'var(--grey-light)', lineHeight: 1.7, margin: 0, maxWidth: 520, opacity: 0.6 }}>Sprint-based delivery: Shopify configuration, integrations, data migration, and storefront development. Fixed-price commitment.</p>
+              </div>
+            </Reveal>
 
-            {/* Phase 3 - Launch */}
-            <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: -32, top: 4, width: 16, height: 16, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '3px solid var(--navy)' }} />
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 4 }}>Phase 3</div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', margin: '0 0 6px' }}>Launch & Hypercare</h3>
-              <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.6, margin: 0 }}>Go-live, monitoring, stabilisation, and transition to continuous improvement.</p>
-              <div style={{ marginTop: 8, fontSize: 12, color: 'var(--grey-light)', fontWeight: 600, opacity: 0.6 }}>Planned</div>
-            </div>
+            {/* Launch */}
+            <Reveal delay={0.2}>
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', left: -40, top: 6, width: 24, height: 24, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(255,255,255,0.12)' }} />
+                </div>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: 'var(--white)', margin: '0 0 8px', opacity: 0.5 }}>Launch & Hypercare</h3>
+                <p style={{ fontSize: 15, color: 'var(--grey-light)', lineHeight: 1.7, margin: 0, maxWidth: 520, opacity: 0.4 }}>Go-live, monitoring, stabilisation, and transition to continuous improvement.</p>
+              </div>
+            </Reveal>
           </div>
         </Reveal>
       </section>
