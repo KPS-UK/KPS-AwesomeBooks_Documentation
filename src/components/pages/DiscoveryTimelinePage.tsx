@@ -359,10 +359,22 @@ const keyRisks: KeyRisk[] = [
     mitigations: ['Session 5 explicitly separates MVP from future-state', 'Decisions captured and signed off before build', 'MoSCoW applied to personalisation features in Session 10', 'Tooling decisions (Nosto, Rebuy, native) grounded in real data'],
   },
   {
-    id: 'stakeholders', risk: 'Stakeholder availability',
-    desc: 'Discovery sessions require key decision-makers. Gaps in attendance delay decisions and create rework.',
-    addressedInSessions: [1, 4],
-    mitigations: ['All 10 sessions pre-scheduled in prep week', 'Attendee confirmation before each session', 'Async decision capture for unavoidable conflicts', 'Ways of working session (S4) establishes governance and escalation'],
+    id: 'datamigration', risk: 'Data migration risk',
+    desc: 'Migrating products, customers, and order history into Shopify requires clean source data, clear mapping rules, and validation. Bad data in means bad data out.',
+    addressedInSessions: [2, 8],
+    mitigations: ['Product data sample reviewed in Session 2 to surface quality issues early', 'Migration strategy defined as part of the solution design', 'Dry-run migration planned before go-live with automated validation', 'Rollback plan documented as part of the cutover checklist'],
+  },
+  {
+    id: 'thirdparty', risk: 'Third-party app dependency',
+    desc: 'Shopify\'s ecosystem relies on third-party apps for advanced functionality. Over-reliance on apps introduces performance, compatibility, and vendor lock-in risk.',
+    addressedInSessions: [7, 9],
+    mitigations: ['Full ecosystem mapping in Session 7 to quantify app reliance', 'Performance impact of every app assessed during checkout deep-dive', 'KPS recommends proven, enterprise-grade apps based on delivery experience', 'Custom development preferred where apps introduce unacceptable risk'],
+  },
+  {
+    id: 'checkout', risk: 'Checkout conversion impact',
+    desc: 'Checkout is the highest-value page on the site. Any degradation in performance or user experience during migration directly impacts revenue.',
+    addressedInSessions: [9],
+    mitigations: ['Dedicated Session 9 on checkout and payments', 'Shopify Checkout is a proven, conversion-optimised platform capability', 'Script audit and third-party load time assessment built into discovery', 'Performance benchmarking planned before and after migration'],
   },
 ];
 
