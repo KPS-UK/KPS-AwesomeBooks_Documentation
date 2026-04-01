@@ -512,7 +512,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                         transition: 'color 0.2s',
                         whiteSpace: 'nowrap',
                       }}>
-                        <span style={{ color: 'var(--cyan)', opacity: 0.6, marginRight: 8, fontSize: 12, fontWeight: 700 }}>{session.num}</span>
+                        <span style={{ color: 'var(--cyan)', opacity: isActive ? 1 : 0.6, marginRight: 8, fontSize: 12, fontWeight: 700 }}>{session.num}</span>
                         {session.shortTitle}
                       </div>
                       {/* Week cells */}
@@ -540,10 +540,10 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   borderRadius: 6,
                                   border: isActive || isHighlighted ? '1px solid var(--cyan)' : session.num === 1 && !hasInteracted ? '1px solid var(--cyan)' : '1px solid rgba(40,220,202,0.3)',
                                   background: isActive
-                                    ? 'linear-gradient(135deg, rgba(40,220,202,0.25), rgba(40,220,202,0.1))'
+                                    ? 'var(--cyan)'
                                     : isHighlighted ? 'rgba(40,220,202,0.25)'
                                     : session.num === 1 && !hasInteracted ? 'var(--cyan)' : 'rgba(40,220,202,0.12)',
-                                  color: session.num === 1 && !hasInteracted ? 'var(--navy)' : 'var(--white)',
+                                  color: isActive || (session.num === 1 && !hasInteracted) ? 'var(--navy)' : 'var(--white)',
                                   cursor: 'pointer',
                                   fontSize: 11,
                                   fontWeight: 700,
