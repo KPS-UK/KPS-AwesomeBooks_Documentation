@@ -368,7 +368,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
   return (
     <>
       <Hero
-        title={<>Discovery<br /><span className="accent">Plan</span></>}
+        title={<>Discovery <span className="accent">Plan</span></>}
         subtitle={`A structured 6-week discovery phase for ${client.name}, covering 10 facilitated sessions from commercial vision through to MVP scope and sign-off.`}
       />
 
