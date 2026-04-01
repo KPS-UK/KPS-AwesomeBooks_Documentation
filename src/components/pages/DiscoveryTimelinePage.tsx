@@ -351,7 +351,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <div style={{ minWidth: 900 }}>
 
               {/* Week headers */}
-              <div style={{ display: 'grid', gridTemplateColumns: '140px repeat(6, 1fr)', gap: 0 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
                 <div />
                 {weekHeaders.map((wh, i) => (
                   <div
@@ -359,12 +359,11 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     onMouseEnter={() => setHoveredWeek(i)}
                     onMouseLeave={() => setHoveredWeek(null)}
                     style={{
-                      padding: '10px 8px',
+                      padding: '12px 8px',
                       textAlign: 'center',
-                      fontSize: 11,
+                      fontSize: 13,
                       fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
+                      letterSpacing: '0.02em',
                       color: currentWeekIdx === i ? 'var(--cyan)' : 'var(--grey-light)',
                       borderBottom: `2px solid ${currentWeekIdx === i ? 'var(--cyan)' : 'rgba(255,255,255,0.08)'}`,
                       background: hoveredWeek === i ? 'rgba(40,220,202,0.04)' : 'transparent',
@@ -384,7 +383,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               </div>
 
               {/* Session rows - one row per session */}
-              <div style={{ display: 'grid', gridTemplateColumns: '140px repeat(6, 1fr)', gap: 0 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
                 {/* Row label column + week cells for each session */}
                 {sessions.map((session) => {
                   const isActive = activeSession === session.id;
@@ -392,16 +391,16 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     <div key={session.id} style={{ display: 'contents' }}>
                       {/* Label */}
                       <div style={{
-                        padding: '6px 8px 6px 0',
-                        fontSize: 11,
+                        padding: '8px 10px 8px 0',
+                        fontSize: 14,
                         color: isActive ? 'var(--white)' : 'var(--grey-light)',
-                        fontWeight: isActive ? 600 : 400,
+                        fontWeight: isActive ? 600 : 500,
                         display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.04)',
                         transition: 'color 0.2s',
                         whiteSpace: 'nowrap',
                       }}>
-                        <span style={{ color: 'var(--grey-light)', opacity: 0.5, marginRight: 6, fontSize: 10, fontWeight: 600 }}>S{session.num}</span>
+                        <span style={{ color: 'var(--cyan)', opacity: 0.6, marginRight: 8, fontSize: 12, fontWeight: 700 }}>{session.num}</span>
                         {session.shortTitle}
                       </div>
                       {/* Week cells */}
@@ -420,7 +419,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
                             }}
                           >
-                            {isSessionWeek && (
+                            {isSessionWeek && (<>
                               <button
                                 onClick={() => toggleSession(session.id)}
                                 style={{
@@ -461,7 +460,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                   <style>{`@keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }`}</style>
                                 </div>
                               )}
-                            )}
+                            </>)}
                           </div>
                         );
                       })}
@@ -471,11 +470,11 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               </div>
 
               {/* Workstream bars */}
-              <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '140px repeat(6, 1fr)', gap: 0 }}>
+              <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
                 {workstreams.map((ws, i) => (
                   <div key={i} style={{ display: 'contents' }}>
                     <div style={{
-                      padding: '5px 8px 5px 0', fontSize: 11, color: 'var(--grey-light)',
+                      padding: '6px 10px 6px 0', fontSize: 13, color: 'var(--grey-light)',
                       fontWeight: 600, display: 'flex', alignItems: 'center',
                       borderBottom: '1px solid rgba(255,255,255,0.03)',
                       whiteSpace: 'nowrap',
