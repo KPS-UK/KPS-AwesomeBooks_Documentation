@@ -342,7 +342,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <p style={{ marginTop: 12 }}>
               The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence.
             </p>
-            <p style={{ marginTop: 12, color: 'var(--pink)', fontWeight: 700 }}>
+            <p style={{ marginTop: 12, color: 'var(--cyan)' }}>
               Click any session below to see what we will cover.
             </p>
           </div>
