@@ -13,32 +13,27 @@
 
 export const client = {
   /** Client company name */
-  name: 'Meridian Home & Garden',
+  name: 'AwesomeBooks',
   /** Short name for tight spaces */
-  shortName: 'Meridian',
+  shortName: 'AwesomeBooks',
   /** Client logo URL (white version for dark backgrounds) */
-  logoUrl: 'https://storage.googleapis.com/kps-logos/test-logos/meridian-home-and-garden/meridian-logo-white.png',
+  logoUrl: 'https://storage.googleapis.com/kps-logos/external-brand-logos/customers-prospects/awsomebooks/awsomebooks-logo-white.png',
   /** Primary website URL */
-  primaryWebsite: 'https://www.meridianhomeandgarden.com',
+  primaryWebsite: 'https://www.awesomebooks.com',
   /** Secondary / headless website URL (if applicable) */
-  headlessWebsite: 'https://trade.meridianhomeandgarden.com',
+  headlessWebsite: '',
   /** Year for footer confidential notice */
   year: 2026,
   /** Product verticals / categories */
-  verticals: ['kitchens', 'bathrooms', 'outdoor living', 'lighting'],
+  verticals: [] as string[],
   /** Target audiences */
-  audiences: ['trade professionals', 'retail consumers'],
+  audiences: [] as string[],
   /** B2B features present */
-  b2bFeatures: ['quoting', 'punchout (cXML)', 'Assisted Service Mode', 'PO numbers', 'approval workflows'],
+  b2bFeatures: [] as string[],
   /** Business units / brands (used in consolidation options triangle) */
-  businessUnits: [
-    { name: 'Brand A', shortName: 'Brand A', color: '#6b7d22' },
-    { name: 'Brand B', shortName: 'Brand B', color: '#1a8fd1' },
-    { name: 'Brand C', shortName: 'Brand C', color: '#b8c94a' },
-    { name: 'Brand D', shortName: 'Brand D', color: '#14374a' },
-  ],
+  businessUnits: [] as { name: string; shortName: string; color: string }[],
   /** Regions for CCv2 hosting */
-  regions: ['Region 1', 'Region 2'],
+  regions: [] as string[],
 };
 
 export const kps = {
@@ -188,7 +183,7 @@ export const integrations = [
  * Page titles for the site shell - update when adding/removing pages
  */
 export const pageTitles: Record<string, string> = {
-  home: `${client.name} × KPS - Headless Commerce Transformation`,
+  home: `${client.name} × KPS`,
   rfp: `Our Response - ${client.name} × KPS`,
   audit: `Technical Audit Scope - ${client.name} × KPS`,
   phased: `Phased Go-Live - ${client.name} × KPS`,
@@ -200,3 +195,21 @@ export const pageTitles: Record<string, string> = {
   discovery: `Discovery & Technical Design - ${client.name} × KPS`,
   'consolidation-options': `Consolidation Options - ${client.name} × KPS`,
 };
+
+/**
+ * Hidden pages - these pages still exist and are routable via direct URL,
+ * but are not shown in the homepage navigation. Set to an empty array to
+ * show all pages, or add page IDs to hide them.
+ */
+export const hiddenPages: string[] = [
+  'rfp',
+  'audit',
+  'phased',
+  'qa',
+  'technical-audit-report',
+  'sonar-detail',
+  'audit-findings',
+  'factsheet',
+  'discovery',
+  'consolidation-options',
+];

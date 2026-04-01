@@ -3,29 +3,34 @@
 import Reveal from '@/components/Reveal';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
-import { client, kps, metrics, platform, audit } from '@/data/client-config';
+import { client, kps, metrics, platform, audit, hiddenPages } from '@/data/client-config';
 
 interface HomePageProps {
   navigateTo: (page: 'rfp' | 'audit' | 'phased' | 'qa' | 'technical-audit-report' | 'factsheet' | 'discovery' | 'consolidation-options') => void;
 }
 
 export default function HomePage({ navigateTo }: HomePageProps) {
+  const allHidden = hiddenPages.length > 0 &&
+    ['rfp', 'audit', 'phased', 'qa', 'technical-audit-report', 'factsheet', 'discovery', 'consolidation-options']
+      .every(p => hiddenPages.includes(p));
+  const isVisible = (page: string) => !hiddenPages.includes(page);
+
   return (
     <>
       {/* ── Hero ── */}
       <Hero
         title={
           <>
-            Headless Commerce
+            {client.name}
             <br />
-            <span className="accent">Transformation</span>
+            <span className="accent">× KPS</span>
           </>
         }
-        subtitle={`A proposal built around ${client.name}'s ambition to modernise its digital commerce platform - starting with evidence, moving with confidence.`}
+        subtitle={`Project documentation for ${client.name} and KPS.`}
       />
 
       {/* ── Overview ── */}
-      <section className="section" id="overview">
+      {!allHidden && <section className="section" id="overview">
         <Reveal>
           <span className="section-label">Overview</span>
           <h2>How {kps.contactName ? 'KPS' : 'We'} Can Help</h2>
@@ -48,10 +53,10 @@ export default function HomePage({ navigateTo }: HomePageProps) {
           </div>
         </Reveal>
 
-      </section>
+      </section>}
 
       {/* ── Audit Summary ── */}
-      <section className="section" id="audit-summary">
+      {!allHidden && <section className="section" id="audit-summary">
         <Reveal>
           <span className="section-label">Technical Audit</span>
           <h2>What the Audit Found</h2>
@@ -108,10 +113,10 @@ export default function HomePage({ navigateTo }: HomePageProps) {
             Read the full Technical Audit Report
           </button>
         </Reveal>
-      </section>
+      </section>}
 
       {/* ── Next Steps ── */}
-      <section className="section" id="next-steps">
+      {!allHidden && <section className="section" id="next-steps">
         <Reveal>
           <span className="section-label">Next Steps</span>
           <h2>Discovery &amp; Technical Design</h2>
@@ -171,10 +176,10 @@ export default function HomePage({ navigateTo }: HomePageProps) {
             Read the full Discovery &amp; Technical Design proposal
           </button>
         </Reveal>
-      </section>
+      </section>}
 
       {/* ── Documents ── */}
-      <section className="section" id="documents">
+      {!allHidden && <section className="section" id="documents">
         <Reveal>
           <span className="section-label">Documents</span>
           <h2>Explore the Detail</h2>
@@ -185,7 +190,7 @@ export default function HomePage({ navigateTo }: HomePageProps) {
 
         <Reveal delay={0.1}>
           <div className="doc-rows">
-            <div className="doc-row" onClick={() => navigateTo('discovery')}>
+            {isVisible('discovery') && <div className="doc-row" onClick={() => navigateTo('discovery')}>
               <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Next Steps</div>
               <div className="doc-row__body">
                 <h3>Discovery &amp; Technical Design</h3>
@@ -193,9 +198,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">19/03/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('technical-audit-report')}>
+            {isVisible('technical-audit-report') && <div className="doc-row" onClick={() => navigateTo('technical-audit-report')}>
               <div className="doc-row__badge doc-row__badge--complete"><span className="badge-dot" />Complete</div>
               <div className="doc-row__body">
                 <h3>Technical Audit Report</h3>
@@ -203,9 +208,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">18/03/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('factsheet')}>
+            {isVisible('factsheet') && <div className="doc-row" onClick={() => navigateTo('factsheet')}>
               <div className="doc-row__badge doc-row__badge--reference"><span className="badge-dot" />Reference</div>
               <div className="doc-row__body">
                 <h3>Platform Factsheet</h3>
@@ -213,9 +218,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">19/03/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('qa')}>
+            {isVisible('qa') && <div className="doc-row" onClick={() => navigateTo('qa')}>
               <div className="doc-row__badge doc-row__badge--qa"><span className="badge-dot" />Q&amp;A</div>
               <div className="doc-row__body">
                 <h3>Follow-up Questions &amp; Answers</h3>
@@ -223,9 +228,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">10/03/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('phased')}>
+            {isVisible('phased') && <div className="doc-row" onClick={() => navigateTo('phased')}>
               <div className="doc-row__badge doc-row__badge--phased"><span className="badge-dot" />Strategy</div>
               <div className="doc-row__body">
                 <h3>A Phased Go-Live Strategy</h3>
@@ -233,9 +238,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">27/02/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('audit')}>
+            {isVisible('audit') && <div className="doc-row" onClick={() => navigateTo('audit')}>
               <div className="doc-row__badge doc-row__badge--scope"><span className="badge-dot" />Scope</div>
               <div className="doc-row__body">
                 <h3>Technical Audit Scope</h3>
@@ -243,9 +248,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">27/02/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('consolidation-options')}>
+            {isVisible('consolidation-options') && <div className="doc-row" onClick={() => navigateTo('consolidation-options')}>
               <div className="doc-row__badge doc-row__badge--phased"><span className="badge-dot" />Interactive</div>
               <div className="doc-row__body">
                 <h3>Consolidation Options Explorer</h3>
@@ -253,9 +258,9 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">&nbsp;</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
 
-            <div className="doc-row" onClick={() => navigateTo('rfp')}>
+            {isVisible('rfp') && <div className="doc-row" onClick={() => navigateTo('rfp')}>
               <div className="doc-row__badge doc-row__badge--rfp"><span className="badge-dot" />Proposal</div>
               <div className="doc-row__body">
                 <h3>Our Full Response</h3>
@@ -263,10 +268,10 @@ export default function HomePage({ navigateTo }: HomePageProps) {
               </div>
               <div className="doc-row__date">27/02/2026</div>
               <div className="doc-row__arrow">&rarr;</div>
-            </div>
+            </div>}
           </div>
         </Reveal>
-      </section>
+      </section>}
 
       {/* ── Footer ── */}
       <Footer />
