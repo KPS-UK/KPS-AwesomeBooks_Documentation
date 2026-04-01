@@ -538,24 +538,6 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
 
                       {/* Sub-sections grid */}
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12, marginTop: 20 }}>
-                        {session.kpsTeam && (
-                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.7 }}>KPS Team</div>
-                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                              <tbody>
-                                {session.kpsTeam.map((s, k) => {
-                                  const parts = s.split(' - ');
-                                  return (
-                                    <tr key={k}>
-                                      <td style={{ padding: '5px 0', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
-                                      <td style={{ padding: '5px 0 5px 12px', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
-                        )}
                         {session.stakeholders && (
                           <div style={{ background: 'rgba(40,220,202,0.04)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(40,220,202,0.1)' }}>
                             <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>{client.shortName} Attendees</div>
@@ -567,6 +549,24 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                                     <tr key={k}>
                                       <td style={{ padding: '5px 0', borderBottom: k < session.stakeholders!.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
                                       <td style={{ padding: '5px 0 5px 12px', borderBottom: k < session.stakeholders!.length - 1 ? '1px solid rgba(40,220,202,0.08)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                        {session.kpsTeam && (
+                          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 10, opacity: 0.7 }}>KPS Team</div>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                              <tbody>
+                                {session.kpsTeam.map((s, k) => {
+                                  const parts = s.split(' - ');
+                                  return (
+                                    <tr key={k}>
+                                      <td style={{ padding: '5px 0', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, fontWeight: 600, color: 'var(--white)', whiteSpace: 'nowrap' }}>{parts[0]}</td>
+                                      <td style={{ padding: '5px 0 5px 12px', borderBottom: k < session.kpsTeam.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{parts[1] || ''}</td>
                                     </tr>
                                   );
                                 })}
