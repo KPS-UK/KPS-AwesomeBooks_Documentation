@@ -414,7 +414,11 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   useEffect(() => {
     if ((activeSession || activeWorkstream) && detailRef.current) {
       setTimeout(() => {
-        detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const rect = detailRef.current?.getBoundingClientRect();
+        if (rect) {
+          const targetY = window.scrollY + rect.top - window.innerHeight * 0.4;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
       }, 350);
     }
   }, [activeSession, activeWorkstream]);
