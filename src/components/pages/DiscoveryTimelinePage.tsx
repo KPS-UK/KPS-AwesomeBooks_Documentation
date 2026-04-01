@@ -240,17 +240,48 @@ const sessions: Session[] = [
 
 /* ── Parallel workstreams (span multiple weeks) ── */
 interface Workstream {
+  id: string;
   label: string;
   startWeek: number;
   endWeek: number;
   type: 'writeup' | 'playback';
+  summary: string;
+  details: { heading: string; color: string; items: string[] }[];
 }
 
 const workstreams: Workstream[] = [
-  { label: 'BRD Write-up', startWeek: 2, endWeek: 5, type: 'writeup' },
-  { label: 'Solution Design', startWeek: 3, endWeek: 5, type: 'writeup' },
-  { label: 'Project Estimation', startWeek: 4, endWeek: 5, type: 'writeup' },
-  { label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback' },
+  {
+    id: 'brd', label: 'BRD Write-up', startWeek: 2, endWeek: 5, type: 'writeup',
+    summary: 'Distilling workshop outputs into a structured Business Requirements Document that captures what needs to change, why, and what the target state looks like.',
+    details: [
+      { heading: 'What we produce', color: 'var(--gold)', items: ['Gap analysis: current state vs target state', 'Prioritised requirements by business impact', 'Functional and non-functional requirements', 'Acceptance criteria for MVP features', 'Requirements traceability back to workshop decisions'] },
+      { heading: 'How we work', color: 'var(--cyan)', items: ['Written in parallel with workshops from week 3', 'Shared incrementally for review, not as a big-bang document', 'Each session\'s decisions are captured within 48 hours', 'Client review and feedback built into the schedule'] },
+    ],
+  },
+  {
+    id: 'solution', label: 'Solution Design', startWeek: 3, endWeek: 5, type: 'writeup',
+    summary: 'Translating requirements into a concrete technical architecture: how the Shopify store, integrations, data flows, and third-party systems fit together.',
+    details: [
+      { heading: 'What we produce', color: 'var(--gold)', items: ['Target architecture diagram', 'Integration catalogue with patterns per system', 'Data model and flow documentation', 'Technology recommendations with rationale', 'Theme architecture and component structure'] },
+      { heading: 'How we work', color: 'var(--cyan)', items: ['Architecture decisions validated against workshop findings', 'Design reviews with the KPS technical team', 'Shopify-specific patterns and best practices applied throughout', 'Aligned with the BRD to ensure full traceability'] },
+    ],
+  },
+  {
+    id: 'estimation', label: 'Project Estimation', startWeek: 4, endWeek: 5, type: 'writeup',
+    summary: 'Building a costed, phased delivery plan with clear timelines, dependencies, and resource requirements for the build phase.',
+    details: [
+      { heading: 'What we produce', color: 'var(--gold)', items: ['Detailed effort estimates per workstream', 'Phased delivery plan with sprint breakdown', 'Resource plan and team structure', 'Dependency map and critical path', 'Risk-adjusted timeline with contingency'] },
+      { heading: 'How we work', color: 'var(--cyan)', items: ['Estimates grounded in BRD and solution design outputs', 'Based on KPS delivery experience with similar Shopify projects', 'Fixed-price commitment for the build phase', 'Transparent breakdown so nothing is hidden'] },
+    ],
+  },
+  {
+    id: 'playback', label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback',
+    summary: 'A formal presentation to senior stakeholders summarising everything discovered, decided, and designed across the 10 sessions. This is the gate to the build phase.',
+    details: [
+      { heading: 'Agenda', color: 'var(--pink)', items: ['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'] },
+      { heading: `What KPS expects from ${client.shortName}`, color: 'var(--cyan)', items: ['Senior decision-makers in the room (Mubin, Mikey, Mark)', 'Authority to approve MVP scope and sign off on build phase', 'Any outstanding data, access, or documentation provided before the session', 'Commitment to the delivery timeline and ways of working agreed in Session 4', 'Readiness to mobilise internal resources for the build phase'] },
+    ],
+  },
 ];
 
 const weekHeaders = ['w/c 13 April', 'w/c 20 April', 'w/c 27 April', 'w/c 4 May', 'w/c 11 May', 'w/c 18 May'];
@@ -299,7 +330,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
   const [activeSession, setActiveSession] = useState<string | null>(null);
   const [hoveredWeek, setHoveredWeek] = useState<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [playbackOpen, setPlaybackOpen] = useState(false);
+  const [activeWorkstream, setActiveWorkstream] = useState<string | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
   const currentWeekIdx = getCurrentWeekIdx();
 
@@ -470,19 +501,20 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
 
               {/* Workstream bars */}
               <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
-                {workstreams.map((ws, i) => {
-                  const isPlayback = ws.type === 'playback';
+                {workstreams.map((ws) => {
+                  const isWsActive = activeWorkstream === ws.id;
+                  const barColor = ws.type === 'writeup' ? 'var(--gold)' : 'var(--pink)';
                   return (
-                  <div key={i} style={{ display: 'contents' }}>
+                  <div key={ws.id} style={{ display: 'contents' }}>
                     <div
-                      onClick={isPlayback ? () => setPlaybackOpen(p => !p) : undefined}
+                      onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
                       style={{
                         padding: '6px 10px 6px 0', fontSize: 13,
-                        color: isPlayback && playbackOpen ? 'var(--pink)' : 'var(--grey-light)',
+                        color: isWsActive ? barColor : 'var(--grey-light)',
                         fontWeight: 600, display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.03)',
                         whiteSpace: 'nowrap',
-                        cursor: isPlayback ? 'pointer' : 'default',
+                        cursor: 'pointer',
                         transition: 'color 0.2s',
                       }}
                     >
@@ -492,7 +524,6 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       const inRange = weekIdx >= ws.startWeek && weekIdx <= ws.endWeek;
                       const isStart = weekIdx === ws.startWeek;
                       const isEnd = weekIdx === ws.endWeek;
-                      const color = ws.type === 'writeup' ? 'var(--gold)' : 'var(--pink)';
                       return (
                         <div
                           key={weekIdx}
@@ -507,12 +538,18 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                           }}
                         >
                           {inRange && (
-                            <div style={{
-                              width: '100%', height: 20,
-                              background: color,
-                              opacity: 0.75,
-                              borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
-                            }} />
+                            <div
+                              onClick={() => setActiveWorkstream(prev => prev === ws.id ? null : ws.id)}
+                              style={{
+                                width: '100%', height: 22,
+                                background: barColor,
+                                opacity: isWsActive ? 1 : 0.7,
+                                borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
+                                cursor: 'pointer',
+                                transition: 'opacity 0.2s',
+                                border: isWsActive ? `1px solid ${barColor}` : '1px solid transparent',
+                              }}
+                            />
                           )}
                         </div>
                       );
@@ -522,39 +559,49 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                 })}
               </div>
 
-              {/* Full Playback info panel */}
-              <div style={{
-                maxHeight: playbackOpen ? 600 : 0,
-                opacity: playbackOpen ? 1 : 0,
-                overflow: 'hidden',
-                transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
-              }}>
-                <div style={{
-                  background: 'rgba(232,30,97,0.05)', border: '1px solid rgba(232,30,97,0.15)',
-                  borderRadius: 10, padding: '24px 28px', marginTop: 12,
-                }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--pink)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-                    Full Playback & Sign-off
+              {/* Workstream detail panel */}
+              {(() => {
+                const activeWs = activeWorkstream ? workstreams.find(w => w.id === activeWorkstream) : null;
+                const panelColor = activeWs?.type === 'playback' ? 'rgba(232,30,97' : 'rgba(255,180,0';
+                const accentColor = activeWs?.type === 'playback' ? 'var(--pink)' : 'var(--gold)';
+                return (
+                  <div style={{
+                    maxHeight: activeWs ? 600 : 0,
+                    opacity: activeWs ? 1 : 0,
+                    overflow: 'hidden',
+                    transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease',
+                  }}>
+                    {activeWs && (
+                      <div style={{
+                        background: `${panelColor},0.05)`, border: `1px solid ${panelColor},0.15)`,
+                        borderRadius: 10, padding: '24px 28px', marginTop: 12,
+                      }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: accentColor, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                            {activeWs.label}
+                          </div>
+                          {activeWs.id === 'playback' && (
+                            <span style={{ fontSize: 12, color: 'var(--pink)', fontWeight: 600 }}>21 May</span>
+                          )}
+                        </div>
+                        <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.7, marginBottom: 16 }}>
+                          {activeWs.summary}
+                        </p>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+                          {activeWs.details.map((col, ci) => (
+                            <div key={ci}>
+                              <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: col.color, marginBottom: 8, opacity: 0.8 }}>{col.heading}</div>
+                              {col.items.map((item, k) => (
+                                <div key={k} style={{ padding: '4px 0', borderBottom: `1px solid ${panelColor},0.06)`, fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <p style={{ fontSize: 14, color: 'var(--grey-light)', lineHeight: 1.7, marginBottom: 16 }}>
-                    A formal presentation to senior stakeholders summarising everything discovered, decided, and designed across the 10 sessions. This is the gate to the build phase.
-                  </p>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
-                    <div>
-                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--pink)', marginBottom: 8, opacity: 0.8 }}>Agenda</div>
-                      {['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'].map((item, k) => (
-                        <div key={k} style={{ padding: '4px 0', borderBottom: '1px solid rgba(232,30,97,0.06)', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
-                      ))}
-                    </div>
-                    <div>
-                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 8, opacity: 0.8 }}>What KPS expects from {client.shortName}</div>
-                      {['Senior decision-makers in the room (Mubin, Mikey, Mark)', 'Authority to approve MVP scope and sign off on build phase', 'Any outstanding data, access, or documentation provided before the session', 'Commitment to the delivery timeline and ways of working agreed in Session 4', 'Readiness to mobilise internal resources for the build phase'].map((item, k) => (
-                        <div key={k} style={{ padding: '4px 0', borderBottom: '1px solid rgba(40,220,202,0.06)', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                );
+              })()}
 
               {/* Legend */}
               <div style={{ display: 'flex', gap: 24, marginTop: 16, flexWrap: 'wrap' }}>
