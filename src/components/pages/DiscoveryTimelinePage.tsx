@@ -299,10 +299,12 @@ function getCurrentWeekIdx(): number {
 export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryTimelinePageProps) {
   const [activeSession, setActiveSession] = useState<string | null>(null);
   const [hoveredWeek, setHoveredWeek] = useState<number | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
   const currentWeekIdx = getCurrentWeekIdx();
 
   const toggleSession = (id: string) => {
+    setHasInteracted(true);
     setActiveSession(prev => prev === id ? null : id);
   };
 
@@ -333,9 +335,14 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
 
         {/* ── Intro ── */}
         <Reveal>
-          <p style={{ fontSize: 17, color: 'var(--grey-light)', lineHeight: 1.75, marginBottom: 48 }}>
-            Ten sessions across <span className="hl">six weeks</span>. Click any session to explore what happens inside it. Parallel workstreams run alongside the workshops to produce the deliverables.
-          </p>
+          <div style={{ fontSize: 17, color: 'var(--grey-light)', lineHeight: 1.75, marginBottom: 48 }}>
+            <p>
+              Before we commit to build timelines, we invest in a <span className="hl">structured discovery phase</span> to make sure every decision is grounded in evidence. Over six weeks, KPS and {client.shortName} will work through 10 facilitated sessions covering everything from commercial vision and product data through to architecture, checkout, and MVP scope.
+            </p>
+            <p style={{ marginTop: 12 }}>
+              The goal is simple: turn assumptions into validated decisions, so the build phase starts with clarity and confidence. Click any session below to see what we will cover.
+            </p>
+          </div>
         </Reveal>
 
         {/* ── INTERACTIVE TIMELINE ── */}
@@ -444,6 +451,16 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                               >
                                 {session.date}
                               </button>
+                              {session.num === 1 && !hasInteracted && (
+                                <div style={{
+                                  marginTop: 6, fontSize: 10, color: 'var(--cyan)',
+                                  textAlign: 'center', fontWeight: 600, letterSpacing: '0.03em',
+                                  animation: 'pulse 2s ease-in-out infinite',
+                                }}>
+                                  Click to explore
+                                  <style>{`@keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }`}</style>
+                                </div>
+                              )}
                             )}
                           </div>
                         );
