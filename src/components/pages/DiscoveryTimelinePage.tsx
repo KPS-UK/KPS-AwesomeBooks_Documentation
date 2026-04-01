@@ -341,40 +341,34 @@ interface KeyRisk {
 
 const keyRisks: KeyRisk[] = [
   {
-    id: 'integration', risk: 'Integration complexity across multiple systems',
-    desc: 'Connecting Shopify to ERP, search, CRM, and payment systems requires careful architectural planning to avoid fragile, tightly-coupled integrations.',
+    id: 'integration', risk: 'Uncovering the full integration landscape',
+    desc: 'Discovery needs to map every system, data flow, and integration point. Missing a connection means incomplete architecture decisions and gaps in the build scope.',
     addressedInSessions: [7, 8],
-    mitigations: ['Full ecosystem mapping in Session 7 before any architecture decisions', 'Integration patterns defined per system with clear ownership', 'KPS designs for abstraction so individual systems can evolve independently', 'Middleware approach using AWS SQS validated during discovery'],
+    mitigations: ['Session 7 dedicated to full ecosystem mapping with all systems on the whiteboard', 'KPS brings a structured integration questionnaire from prior Shopify migrations', 'Each integration classified by pattern, ownership, and criticality', 'Architecture decisions deferred until the full picture is clear'],
   },
   {
-    id: 'product', risk: 'Product model design for Shopify',
-    desc: 'Books have unique data relationships (editions, formats, authors, series) that need careful modelling within Shopify\'s product and variant structure.',
+    id: 'product', risk: 'Getting the product model right in discovery',
+    desc: 'Books have unique data relationships (editions, formats, authors, series). The product model decision in discovery directly shapes the build and must be validated with real data.',
     addressedInSessions: [2],
-    mitigations: ['Session 2 dedicated to product model with real data samples', 'KPS prototypes the Shopify data model before build begins', 'Algolia integration approach validated against the catalogue structure', 'Model decision captured and signed off before committing to build'],
+    mitigations: ['Session 2 works with real product data samples, not assumptions', 'KPS prototypes the Shopify data model during discovery', 'Algolia integration approach validated against the actual catalogue structure', 'Decision documented and signed off before build commitment'],
   },
   {
-    id: 'scope', risk: 'MVP scope discipline',
-    desc: 'Platform migrations carry a natural risk of scope expansion. Every feature added to MVP delays time-to-value and increases cost.',
-    addressedInSessions: [5, 10],
-    mitigations: ['MoSCoW prioritisation applied across all feature areas', 'Session 10 draws a clear line between MVP and Phase 2', 'KPS provides fixed-price commitment based on agreed MVP scope', 'Phase 2 backlog captured so nothing is lost, just sequenced'],
+    id: 'scope', risk: 'Maintaining scope clarity across 10 sessions',
+    desc: 'With 10 sessions covering broad ground, there is a risk of scope expanding incrementally. Clear boundaries need to be established and maintained throughout discovery.',
+    addressedInSessions: [1, 10],
+    mitigations: ['Success metrics and priority journeys agreed in Session 1 as the anchor', 'MoSCoW applied to every feature area as sessions progress', 'Session 10 formally draws the MVP line with senior sign-off', 'KPS captures a Phase 2 backlog so ideas are parked, not lost'],
   },
   {
-    id: 'datamigration', risk: 'Data migration continuity',
-    desc: 'Migrating products, customers, and order history to a new platform requires precise mapping, validation, and a tested cutover plan to avoid disruption.',
-    addressedInSessions: [2, 8],
-    mitigations: ['Product data reviewed early in Session 2 to inform the migration strategy', 'KPS defines a migration approach as part of the solution design', 'Dry-run migration with automated validation planned before go-live', 'Rollback plan documented as part of the cutover checklist'],
+    id: 'decisions', risk: 'Capturing decisions that stick',
+    desc: 'Workshop decisions need to be documented, validated, and owned. Without rigour, decisions get revisited and discovery stalls.',
+    addressedInSessions: [4, 10],
+    mitigations: ['Every session ends with formal decision capture', 'KPS writes up decisions within 48 hours of each session', 'Ways of working (Session 4) establishes the governance and sign-off process', 'Full playback at the end ensures all decisions are reviewed and confirmed'],
   },
   {
-    id: 'thirdparty', risk: 'Third-party app dependency',
-    desc: 'Shopify\'s ecosystem relies on apps for advanced functionality. Over-reliance on apps can introduce performance, compatibility, and maintainability risk.',
-    addressedInSessions: [7, 9],
-    mitigations: ['Full ecosystem mapping in Session 7 to assess every app', 'Performance impact of each app assessed during checkout deep-dive', 'KPS recommends proven, enterprise-grade apps from direct delivery experience', 'Custom development preferred where apps introduce unacceptable risk or lock-in'],
-  },
-  {
-    id: 'checkout', risk: 'Checkout performance during migration',
-    desc: 'Checkout is the highest-value page on the site. Maintaining or improving conversion performance during migration is critical.',
-    addressedInSessions: [9],
-    mitigations: ['Dedicated Session 9 focused entirely on checkout and payments', 'Shopify Checkout is a proven, conversion-optimised platform capability', 'Script audit and third-party load time assessment built into discovery', 'Performance benchmarking planned before and after migration to quantify improvement'],
+    id: 'alignment', risk: 'Maintaining alignment between commercial and technical goals',
+    desc: 'Discovery covers both business strategy and technical architecture. These need to stay connected so that architecture decisions serve the commercial objectives.',
+    addressedInSessions: [1, 8, 10],
+    mitigations: ['Session 1 establishes commercial vision and KPIs as the foundation', 'Architecture sessions (S7, S8) are explicitly tied back to business requirements', 'KPS ensures traceability from business goals through to technical decisions', 'Final playback validates that the solution design serves the commercial case'],
   },
 ];
 
