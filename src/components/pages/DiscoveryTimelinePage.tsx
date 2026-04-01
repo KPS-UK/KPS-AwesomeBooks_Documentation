@@ -1073,8 +1073,8 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                       style={{
                         width: '100%', textAlign: 'left', cursor: 'pointer',
                         padding: '18px 22px',
-                        background: isDelActive ? `${d.color === 'var(--gold)' ? 'rgba(255,180,0' : d.color === 'var(--cyan)' ? 'rgba(40,220,202' : d.color === 'var(--pink)' ? 'rgba(232,30,97' : 'rgba(94,240,224'},0.08)` : 'rgba(255,255,255,0.03)',
-                        border: `1px solid ${isDelActive ? d.color : 'rgba(255,255,255,0.08)'}`,
+                        background: isDelActive ? 'rgba(40,220,202,0.06)' : 'rgba(255,255,255,0.03)',
+                        border: `1px solid ${isDelActive ? 'var(--cyan)' : 'rgba(255,255,255,0.08)'}`,
                         borderRadius: isDelActive ? '10px 10px 0 0' : 10,
                         transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
                         display: 'flex', alignItems: 'center', gap: 16,
@@ -1092,7 +1092,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                         <span style={{ fontSize: 11, color: 'var(--cyan)', fontWeight: 600, opacity: 0.8 }}>
                           {d.feedingSessions.length} sessions
                         </span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDelActive ? d.color : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDelActive ? 'var(--cyan)' : 'var(--grey-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                           style={{ transition: 'transform 0.3s', transform: isDelActive ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                           <polyline points="6 9 12 15 18 9" />
                         </svg>
@@ -1108,7 +1108,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     }}>
                       <div style={{
                         background: 'rgba(255,255,255,0.02)',
-                        border: `1px solid ${d.color}`,
+                        border: '1px solid var(--cyan)',
                         borderTop: 'none',
                         borderRadius: '0 0 10px 10px',
                         padding: '20px 24px',
@@ -1116,7 +1116,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                           {/* What it contains */}
                           <div>
-                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: d.color, marginBottom: 10, opacity: 0.8 }}>What it contains</div>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>What it contains</div>
                             {d.contents.map((item, k) => (
                               <div key={k} style={{ padding: '5px 0', borderBottom: k < d.contents.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none', fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.5 }}>{item}</div>
                             ))}
