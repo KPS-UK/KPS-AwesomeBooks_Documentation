@@ -16,14 +16,8 @@ export default function HomePage({ navigateTo }: HomePageProps) {
     <>
       {/* ── Hero ── */}
       <Hero
-        title={
-          <>
-            {client.name}
-            <br />
-            <span className="accent">× KPS</span>
-          </>
-        }
-        subtitle={`Shopify Plus migration for ${client.name} - discovery, design, and delivery.`}
+        title=""
+        subtitle=""
       />
 
       {/* ── Where We Are ── */}
