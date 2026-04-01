@@ -43,7 +43,7 @@ const sessions: Session[] = [
     title: 'Vision, Goals & Customer Journeys',
     goal: 'Align on commercial objectives and how customers interact with the brand.',
     duration: '2-3 hrs', date: '14 Apr',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Welcome, introductions, agenda walkthrough', type: 'prep', facilitator: 'PM', notes: 'Set the tone, confirm attendees' },
       { dur: '30 min', activity: 'Revenue targets, growth trajectory, commercial vision', type: 'workshop', facilitator: 'SA', notes: 'Capture current revenue baseline and ambition' },
@@ -63,7 +63,7 @@ const sessions: Session[] = [
     title: 'Product Model, Search & Discovery',
     goal: 'Define how customers find and explore products.',
     duration: '3-4 hrs', date: '15 Apr',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Recap Session 1 decisions; set agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '35 min', activity: 'Product structure deep-dive: editions, condition, variants', type: 'workshop', facilitator: 'SA', notes: 'Explore whether variants or separate products suit the catalogue' },
@@ -85,7 +85,7 @@ const sessions: Session[] = [
     title: 'Promotions, Pricing & Loyalty',
     goal: 'Define commercial levers that drive revenue.',
     duration: '2.5-3 hrs', date: '16 Apr',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Promotion types: bundles, series-based, cohort-based', type: 'workshop', facilitator: 'SA', notes: 'Map current promotions and frequency' },
@@ -106,7 +106,7 @@ const sessions: Session[] = [
     title: 'Ways of Working',
     goal: 'Establish roles, responsibilities, and delivery approach.',
     duration: '2-3 hrs', date: 'W/C 20 Apr',
-    kpsTeam: ['Simon', 'Leigh D', 'Ro', 'Luke'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Leigh Duncan - Senior Project Manager', 'Ro', 'Luke Hipkiss - Senior Requirements Analyst'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Roles and responsibilities: marketing vs development ownership', type: 'workshop', facilitator: 'PM', notes: '' },
@@ -124,7 +124,7 @@ const sessions: Session[] = [
     title: 'Personalisation, AI & CRM',
     goal: 'Define how experiences are tailored to users.',
     duration: '3 hrs', date: '28 Apr',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '25 min', activity: 'Segmentation strategy: cohorts, behavioural triggers', type: 'workshop', facilitator: 'SA', notes: 'What data exists today?' },
@@ -144,7 +144,7 @@ const sessions: Session[] = [
     title: 'CMS, Content & Experimentation',
     goal: 'Define how marketing teams manage and optimise content.',
     duration: '2-2.5 hrs', date: '30 Apr',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '25 min', activity: 'Page creation workflows: current process and pain points', type: 'workshop', facilitator: 'SA', notes: '' },
@@ -163,7 +163,7 @@ const sessions: Session[] = [
     title: 'Third-Party Ecosystem & Integrations',
     goal: 'Define how the platform operates within the wider commerce ecosystem.',
     duration: '3-4 hrs', date: '1 May',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '35 min', activity: 'Full ecosystem mapping: platform + all third-party systems', type: 'workshop', facilitator: 'SA', notes: 'Whiteboard/Miro exercise: map every system' },
@@ -184,7 +184,7 @@ const sessions: Session[] = [
     title: 'Architecture, ERP & Data (+ Checkout & Payments)',
     goal: 'Define the technical backbone of the platform.',
     duration: '3-4 hrs', date: '6 May',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Order lifecycle walkthrough: end-to-end', type: 'workshop', facilitator: 'SA', notes: 'Map the full order journey from basket to fulfilment' },
@@ -205,7 +205,7 @@ const sessions: Session[] = [
     title: 'Checkout & Payments Deep Dive',
     goal: 'Define the checkout experience and payment flows.',
     duration: '2-3 hrs', date: '7 May',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Checkout experience: express checkout, guest vs logged-in, mobile', type: 'workshop', facilitator: 'SA', notes: '' },
@@ -225,7 +225,7 @@ const sessions: Session[] = [
     title: 'Operating Model, MVP Scope & Playback',
     goal: 'Align on how the platform will be delivered and operated.',
     duration: '2-3 hrs', date: '12 May',
-    kpsTeam: ['Simon', 'Jamie', 'Luke', 'Leigh D', 'Slav'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Full discovery recap: key decisions and open items', type: 'prep', facilitator: 'PM', notes: '' },
       { dur: '30 min', activity: 'Roles and responsibilities: marketing vs development ownership', type: 'workshop', facilitator: 'PM / SA', notes: '' },
@@ -570,7 +570,7 @@ export default function DiscoveryPlanPage({ navigateTo, goHome }: DiscoveryPlanP
                       </div>
 
                       {/* Sub-sections grid */}
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, marginTop: 20 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16, marginTop: 20 }}>
                         {session.kpsTeam && (
                           <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px' }}>
                             <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--white)', marginBottom: 8 }}>KPS Team</div>
