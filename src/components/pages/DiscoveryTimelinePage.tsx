@@ -458,7 +458,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
       <StickyNav
         logoText={<>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={kps.logoUrl} alt="KPS" style={{ height: 22 }} /> <span>Discovery Timeline</span>
+          <img src={kps.logoUrl} alt="KPS" style={{ height: 22 }} /> <span>Discovery</span>
         </>}
         onHome={goHome}
       />

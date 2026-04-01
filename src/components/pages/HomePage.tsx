@@ -60,7 +60,7 @@ export default function HomePage({ navigateTo }: HomePageProps) {
                 fontSize: 13, fontWeight: 700,
                 transition: 'all 0.2s',
               }}>
-                Explore the Discovery Timeline &rarr;
+                Explore the Discovery &rarr;
               </span>
             </div>
 
@@ -92,7 +92,7 @@ export default function HomePage({ navigateTo }: HomePageProps) {
             <div className="doc-row" onClick={() => navigateTo('discovery-timeline')}>
               <div className="doc-row__badge doc-row__badge--discovery"><span className="badge-dot" />Discovery</div>
               <div className="doc-row__body">
-                <h3>Discovery Timeline</h3>
+                <h3>Discovery</h3>
                 <p>Interactive timeline of all 10 sessions, deliverables, and success factors. Click any session to explore.</p>
               </div>
               <div className="doc-row__date">Apr-May 2026</div>
