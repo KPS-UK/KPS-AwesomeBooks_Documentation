@@ -283,7 +283,7 @@ const workstreams: Workstream[] = [
     ],
   },
   {
-    id: 'sprint0', label: 'Sprint 0', startWeek: 4, endWeek: 5, type: 'sprint0', date: 'w/c 13 May',
+    id: 'sprint0', label: 'Sprint 0', startWeek: 0, endWeek: 5, type: 'sprint0',
     summary: 'Configure the Shopify platform, establish core commerce capabilities, and enable delivery tooling (GitHub, Jira, CI/CD), with all required system access provisioned to ensure an efficient start to delivery.',
     details: [
       { heading: 'Access & Onboarding', color: 'var(--gold)', items: [
@@ -778,7 +778,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
             <div
               ref={detailRef}
               style={{
-                maxHeight: showDetail ? 1200 : 0,
+                maxHeight: showDetail ? 2400 : 0,
                 opacity: showDetail ? 1 : 0,
                 overflow: 'hidden',
                 transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',
