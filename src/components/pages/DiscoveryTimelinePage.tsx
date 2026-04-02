@@ -61,7 +61,7 @@ const sessions: Session[] = [
     title: 'Product Model, Search & Discovery',
     goal: 'Define how customers find and explore products.',
     duration: '3-4 hrs', date: '15th Apr', weekIdx: 0,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '15 min', activity: 'Recap Session 1 decisions; set agenda', type: 'prep' },
       { dur: '35 min', activity: 'Product structure deep-dive: editions, condition, variants', type: 'workshop' },
@@ -82,7 +82,7 @@ const sessions: Session[] = [
     title: 'Promotions, Pricing & Loyalty',
     goal: 'Define commercial levers that drive revenue.',
     duration: '2.5-3 hrs', date: '16th Apr', weekIdx: 0,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '30 min', activity: 'Promotion types: bundles, series-based, cohort-based', type: 'workshop' },
@@ -121,7 +121,7 @@ const sessions: Session[] = [
     title: 'Personalisation, AI & CRM',
     goal: 'Define how experiences are tailored to users.',
     duration: '3 hrs', date: '28th Apr', weekIdx: 2,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '25 min', activity: 'Segmentation strategy: cohorts, behavioural triggers', type: 'workshop' },
@@ -140,7 +140,7 @@ const sessions: Session[] = [
     title: 'CMS, Content & Experimentation',
     goal: 'Define how marketing teams manage and optimise content.',
     duration: '2-2.5 hrs', date: '30th Apr', weekIdx: 2,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '25 min', activity: 'Page creation workflows: current process and pain points', type: 'workshop' },
@@ -160,7 +160,7 @@ const sessions: Session[] = [
     title: 'Third-Party Ecosystem & Integrations',
     goal: 'Define how the platform operates within the wider commerce ecosystem.',
     duration: '3-4 hrs', date: '1st May', weekIdx: 2,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '35 min', activity: 'Full ecosystem mapping: platform + all third-party systems', type: 'workshop' },
@@ -181,7 +181,7 @@ const sessions: Session[] = [
     title: 'Architecture, ERP & Data',
     goal: 'Define the technical backbone of the platform.',
     duration: '3-4 hrs', date: '6th May', weekIdx: 3,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '30 min', activity: 'Order lifecycle walkthrough: end-to-end', type: 'workshop' },
@@ -202,7 +202,7 @@ const sessions: Session[] = [
     title: 'Checkout & Payments Deep Dive',
     goal: 'Define the checkout experience and payment flows.',
     duration: '2-3 hrs', date: '7th May', weekIdx: 3,
-    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer', 'Martin Harvey - Senior Account Manager'],
+    kpsTeam: ['Simon Holmes - Head of Technology', 'Jamie Bartlett - Shopify Practice Lead', 'Luke Hipkiss - Senior Requirements Analyst', 'Leigh Duncan - Senior Project Manager', 'Slav Pilus - Principal Developer'],
     activities: [
       { dur: '10 min', activity: 'Recap and agenda', type: 'prep' },
       { dur: '30 min', activity: 'Checkout experience: express checkout, guest vs logged-in, mobile', type: 'workshop' },
