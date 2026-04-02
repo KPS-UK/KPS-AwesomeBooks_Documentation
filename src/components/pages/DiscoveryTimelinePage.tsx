@@ -275,7 +275,7 @@ const workstreams: Workstream[] = [
     ],
   },
   {
-    id: 'playback', label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback', date: '21st May',
+    id: 'playback', label: 'Full Playback & Sign-off', startWeek: 5, endWeek: 5, type: 'playback', date: 'From 21st May',
     summary: 'A formal presentation to senior stakeholders summarising everything discovered, decided, and designed across the 10 sessions. This is the gate to the build phase.',
     details: [
       { heading: 'Agenda', color: 'var(--pink)', items: ['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'] },
