@@ -294,7 +294,6 @@ const workstreams: Workstream[] = [
       { heading: 'Store & Environment Setup', color: 'var(--gold)', items: [
         'Set up development store(s) and environment strategy',
         'Configure access via Shopify Admin',
-        'Configure domain and SSL (via CDN/DNS provider)',
       ]},
       { heading: 'Source Control & Delivery Tooling', color: 'var(--gold)', items: [
         'Create repositories in GitHub',
@@ -305,7 +304,6 @@ const workstreams: Workstream[] = [
       ]},
       { heading: 'Core Commerce Configuration', color: 'var(--gold)', items: [
         'Product model (products, variants, metafields)',
-        'Customer model (accounts, segmentation)',
         'Category/navigation structure',
         'Markets (regions, currencies)',
       ]},
@@ -317,8 +315,7 @@ const workstreams: Workstream[] = [
       { heading: 'Fulfilment, Promotions & CX', color: 'var(--gold)', items: [
         'Shipping options and zones',
         'Locations setup',
-        'Discounts and promotions configuration',
-        'Emails and notifications',
+        'Initial discounts and promotions configuration',
         'Customer account setup',
       ]},
       { heading: 'Analytics, Users & DevOps', color: 'var(--gold)', items: [
