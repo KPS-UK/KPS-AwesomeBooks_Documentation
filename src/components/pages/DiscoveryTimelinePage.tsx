@@ -243,7 +243,7 @@ interface Workstream {
   label: string;
   startWeek: number;
   endWeek: number;
-  type: 'writeup' | 'playback';
+  type: 'writeup' | 'playback' | 'sprint0';
   date?: string;
   summary: string;
   details: { heading: string; color: string; items: string[] }[];
@@ -280,6 +280,66 @@ const workstreams: Workstream[] = [
     details: [
       { heading: 'Agenda', color: 'var(--pink)', items: ['Recap of all key decisions from Sessions 1-10', 'Walkthrough of BRD and solution architecture', 'MVP scope and phased roadmap presentation', 'Integration model and data flow overview', 'Cost and timeline summary', 'Open items and risk register review', 'Formal approval to proceed to build'] },
       { heading: `What KPS expects from ${client.shortName}`, color: 'var(--cyan)', items: ['Senior decision-makers in the room (Mubin, Mikey, Mark)', 'Authority to approve MVP scope and sign off on build phase', 'Any outstanding data, access, or documentation provided before the session', 'Commitment to the delivery timeline and ways of working agreed in Session 4', 'Readiness to mobilise internal resources for the build phase'] },
+    ],
+  },
+  {
+    id: 'sprint0', label: 'Sprint 0', startWeek: 4, endWeek: 5, type: 'sprint0', date: 'w/c 13 May',
+    summary: 'Configure the Shopify platform, establish core commerce capabilities, and enable delivery tooling (GitHub, Jira, CI/CD), with all required system access provisioned to ensure an efficient start to delivery.',
+    details: [
+      { heading: 'Access & Onboarding', color: 'var(--gold)', items: [
+        `${client.shortName}: Provide access to Shopify Admin, GitHub, Jira, CDN/DNS provider, analytics platforms, payment providers, third parties (Algolia, Klaviyo), and hyperscaler access`,
+        'KPS: Define Shopify ACL and permission levels, support access setup, validate access across all systems',
+        'Outcome: All required systems accessible with correct permissions - no blockers to delivery',
+      ]},
+      { heading: 'Store & Environment Setup', color: 'var(--gold)', items: [
+        'Set up development store(s) and environment strategy',
+        'Configure access via Shopify Admin',
+        'Configure domain and SSL (via CDN/DNS provider)',
+      ]},
+      { heading: 'Source Control & Delivery Tooling', color: 'var(--gold)', items: [
+        'Create repositories in GitHub',
+        'Initialise theme repo via Shopify CLI',
+        'Define branching and PR workflows',
+        'Create and configure project in Jira',
+        'Implement automations (PR linking, status updates, notifications)',
+      ]},
+      { heading: 'Core Commerce Configuration', color: 'var(--gold)', items: [
+        'Product model (products, variants, metafields)',
+        'Customer model (accounts, segmentation)',
+        'Category/navigation structure',
+        'Markets (regions, currencies)',
+      ]},
+      { heading: 'Checkout, Payments & Tax', color: 'var(--gold)', items: [
+        'Payment setup',
+        'Tax configuration',
+        'Checkout configuration',
+      ]},
+      { heading: 'Fulfilment, Promotions & CX', color: 'var(--gold)', items: [
+        'Shipping options and zones',
+        'Locations setup',
+        'Discounts and promotions configuration',
+        'Emails and notifications',
+        'Customer account setup',
+      ]},
+      { heading: 'Analytics, Users & DevOps', color: 'var(--gold)', items: [
+        'Analytics setup and tracking validation',
+        'User creation, permissions and onboarding',
+        'CI/CD pipelines and deployment workflows',
+        'Rollback strategy',
+      ]},
+      { heading: 'Sprint 0 Deliverables', color: 'var(--cyan)', items: [
+        'Shopify platform configured',
+        'GitHub repositories and Jira project live',
+        'All required system access provisioned',
+        'Core commerce setup complete',
+        'CI/CD pipelines operational',
+        'Analytics and notifications configured',
+      ]},
+      { heading: 'Success Criteria', color: 'var(--cyan)', items: [
+        'No access-related blockers remain',
+        'Platform supports a test transaction',
+        'Team fully onboarded and productive',
+      ]},
     ],
   },
 ];
@@ -616,21 +676,22 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '180px repeat(6, 1fr)', gap: 0 }}>
                 {workstreams.map((ws, wsIdx) => {
                   const isPlayback = ws.type === 'playback';
+                  const isSprint0 = ws.type === 'sprint0';
                   const isWsActive = activeWorkstream === ws.id;
-                  const barColor = ws.type === 'writeup' ? 'var(--gold)' : 'var(--pink)';
-                  // Add gap before playback (after Project Estimation which is index 2)
-                  const showGapBefore = isPlayback;
+                  const barColor = ws.type === 'writeup' || isSprint0 ? 'var(--gold)' : 'var(--pink)';
+                  // Add gap before playback and sprint0
+                  const showGapBefore = isPlayback || isSprint0;
                   return (
                   <div key={ws.id} style={{ display: 'contents' }}>
                     {showGapBefore && <>
-                      <div style={{ height: 8 }} />
-                      {weekHeaders.map((_, gi) => <div key={`gap-${gi}`} style={{ height: 8 }} />)}
+                      <div style={{ height: isSprint0 ? 16 : 8 }} />
+                      {weekHeaders.map((_, gi) => <div key={`gap-${gi}`} style={{ height: isSprint0 ? 16 : 8 }} />)}
                     </>}
                     <div
                       onClick={() => { setActiveSession(null); setActiveWorkstream(prev => prev === ws.id ? null : ws.id); }}
                       style={{
-                        padding: isPlayback ? '10px 10px 10px 0' : '6px 10px 6px 0',
-                        fontSize: isPlayback ? 14 : 13,
+                        padding: (isPlayback || isSprint0) ? '10px 10px 10px 0' : '6px 10px 6px 0',
+                        fontSize: (isPlayback || isSprint0) ? 14 : 13,
                         color: barColor,
                         fontWeight: 600, display: 'flex', alignItems: 'center',
                         borderBottom: '1px solid rgba(255,255,255,0.03)',
@@ -662,8 +723,8 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                             <div
                               onClick={() => { setActiveSession(null); setActiveWorkstream(prev => prev === ws.id ? null : ws.id); }}
                               style={{
-                                width: '100%', height: isPlayback ? 36 : 24,
-                                background: isPlayback ? barColor : 'rgba(255,180,0,0.25)',
+                                width: '100%', height: isPlayback ? 36 : isSprint0 ? 32 : 24,
+                                background: isPlayback ? barColor : isSprint0 ? 'rgba(255,180,0,0.45)' : 'rgba(255,180,0,0.25)',
                                 borderRadius: `${isStart ? 4 : 0}px ${isEnd ? 4 : 0}px ${isEnd ? 4 : 0}px ${isStart ? 4 : 0}px`,
                                 cursor: 'pointer',
                                 transition: 'all 0.2s',
@@ -671,9 +732,9 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                                 borderLeftWidth: isPlayback ? '0' : isStart ? '1.5px' : '0',
                                 borderRightWidth: isPlayback ? '0' : isEnd ? '1.5px' : '0',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: isPlayback ? 14 : 10,
+                                fontSize: isPlayback ? 14 : isSprint0 ? 12 : 10,
                                 fontWeight: 700,
-                                color: isPlayback ? 'var(--white)' : barColor,
+                                color: (isPlayback || isSprint0) ? 'var(--white)' : barColor,
                                 opacity: isWsActive ? 1 : 0.7,
                               }}
                             >
@@ -694,7 +755,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
               <div style={{ display: 'flex', gap: 24, marginTop: 16, flexWrap: 'wrap' }}>
                 {[
                   { color: 'var(--cyan)', label: 'Workshop sessions' },
-                  { color: 'var(--gold)', label: 'Write-up / design' },
+                  { color: 'var(--gold)', label: 'KPS Activity' },
                   { color: 'var(--pink)', label: 'Playback / sign-off' },
                 ].map(l => (
                   <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--grey-light)' }}>
@@ -712,6 +773,7 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
           const accentColor = activeWsData ? (activeWsData.type === 'playback' ? 'var(--pink)' : 'var(--gold)') : 'var(--cyan)';
           const panelBg = activeWsData ? (activeWsData.type === 'playback' ? 'rgba(232,30,97,0.04)' : 'rgba(255,180,0,0.04)') : 'rgba(40,220,202,0.04)';
           const panelBorder = activeWsData ? (activeWsData.type === 'playback' ? 'rgba(232,30,97,0.15)' : 'rgba(255,180,0,0.15)') : 'rgba(40,220,202,0.15)';
+          const isSprint0Detail = activeWsData?.type === 'sprint0';
           return (
             <div
               ref={detailRef}
@@ -898,8 +960,8 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                     </div>
                   )}
 
-                  {/* Workstream: 2-column detail */}
-                  {activeWsData && (
+                  {/* Workstream: standard 2-column detail */}
+                  {activeWsData && !isSprint0Detail && (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
                       {activeWsData.details.map((col, ci) => (
                         <div key={ci}>
@@ -909,6 +971,75 @@ export default function DiscoveryTimelinePage({ navigateTo, goHome }: DiscoveryT
                           ))}
                         </div>
                       ))}
+                    </div>
+                  )}
+
+                  {/* Sprint 0: rich custom detail panel */}
+                  {isSprint0Detail && activeWsData && (
+                    <div>
+                      {/* Callout note */}
+                      <div style={{
+                        background: 'rgba(255,180,0,0.08)', border: '1px solid rgba(255,180,0,0.2)',
+                        borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 13, color: 'var(--grey-light)', lineHeight: 1.6,
+                      }}>
+                        These activities will be carried out during this period as capacity allows alongside discovery sessions. This is not a continuous, full-time block of work - tasks are progressed iteratively as access is provisioned and decisions are made.
+                      </div>
+
+                      {/* KPS Team */}
+                      <div style={{
+                        background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
+                        borderRadius: 8, padding: '14px 16px', marginBottom: 20,
+                      }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--grey-light)', marginBottom: 8, opacity: 0.7 }}>KPS Team</div>
+                        <div style={{ display: 'flex', gap: 24 }}>
+                          {[
+                            { name: 'Jamie Bartlett', role: 'Shopify Practice Lead' },
+                            { name: 'Slav Pilus', role: 'Principal Developer' },
+                          ].map((person, pi) => (
+                            <div key={pi} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)', opacity: 0.8 }} />
+                              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--white)' }}>{person.name}</span>
+                              <span style={{ fontSize: 12, color: 'var(--grey-light)', opacity: 0.7 }}>{person.role}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Activity sections in 3-column grid */}
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 20 }}>
+                        {activeWsData.details.filter(d => d.heading !== 'Sprint 0 Deliverables' && d.heading !== 'Success Criteria').map((col, ci) => (
+                          <div key={ci} style={{
+                            background: 'rgba(255,180,0,0.04)', border: '1px solid rgba(255,180,0,0.1)',
+                            borderRadius: 8, padding: '14px 16px',
+                          }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold)', marginBottom: 10, opacity: 0.8 }}>{col.heading}</div>
+                            {col.items.map((item, k) => (
+                              <div key={k} style={{ padding: '4px 0', fontSize: 12, color: 'var(--grey-light)', lineHeight: 1.5, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                                <span style={{ color: 'var(--gold)', opacity: 0.5, fontSize: 8, marginTop: 4, flexShrink: 0 }}>&#9679;</span>
+                                {item}
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Deliverables & Success Criteria side by side */}
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+                        {activeWsData.details.filter(d => d.heading === 'Sprint 0 Deliverables' || d.heading === 'Success Criteria').map((col, ci) => (
+                          <div key={ci} style={{
+                            background: 'rgba(40,220,202,0.04)', border: '1px solid rgba(40,220,202,0.1)',
+                            borderRadius: 8, padding: '14px 16px',
+                          }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--cyan)', marginBottom: 10, opacity: 0.8 }}>{col.heading}</div>
+                            {col.items.map((item, k) => (
+                              <div key={k} style={{ padding: '4px 0', fontSize: 12, color: 'var(--grey-light)', lineHeight: 1.5, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                                <span style={{ color: 'var(--cyan)', opacity: 0.6, fontSize: 10, marginTop: 2, flexShrink: 0 }}>&#10003;</span>
+                                {item}
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
